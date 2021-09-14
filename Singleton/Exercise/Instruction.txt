@@ -1,0 +1,62 @@
+﻿
+                            "Singleton" exercise:
+
+Please, change the code inside classes "BusinessLogic1.cs", "BusinessLogic2.cs", and so on...
+in a way that allows utilizing the expected "HttpClient" by all present business logics as
+a single resource.
+
+In simple words: Do not create "new HttpClient()" every time when you are calling GetResponse()
+method or when you are initializing new implementations of BusinessLogic[x].cs
+
+PS: All business logics are using a slightly different approach how to initialize HttpClient.
+    Propose or defend an universal solution, showing good practices which you are aware of.
+
+NOTE: HttpClient is a very heavy object/logic, establishing a connection with the web resources through
+      URL endpoints. Each new HttpClient will open new sockets, which will be kept active (open) for about
+      4 minutes. Creating [n] multiple HttpClients == creating [n] connections * [n] open sockets, and as
+      a result significant network and memory overhead (resources such as streams, connections, third party
+      libraries) https://www.codingame.com/playgrounds/6179/garbage-collection-and-c because HTTP connection
+      is unmanaged resource. You need to either dispose your client connection or implement more advanced
+      and more efficient strategies such as Http Client Factory (which will keep connections liferime).
+
+      In the advanced section of requirements (see below) you will find hints how to implement singleton
+      architecture without even using a classical Singleton Design Pattern (HttpClient + ILogger, where
+      both can be treated as singleton "services").
+
+
+                                Requirements:
+
+BASIC:
+
+  1. Use singleton design pattern to achieve this result
+  2. Cleanup and refactor an existing implementations 1, 2, 3, 4
+
+INTERMEDIATE:
+
+  3. Dispose http client (to not keep hanging open sockets)
+  4. Use Dependency Injection in Startup.cs class to inject ILogger and log potential
+     issues with the code (try / catch block). Check resources in the Internet (.NET Core)
+
+ADVANCED:
+
+  5. Implement IHttpContextFactory + services.AddHttpClient() approach used in modern .NET Core apps
+
+
+                              Expected outcome:
+
+- the implementations of business logic classes were simplified, and the new class
+  responsible for managing (only a single) HttpClient instance was introduced to the
+  solution (you can choose one of 4 solutions:
+  * static class with static constructor
+  * read-only properties
+  * method gate-keeping creation of a single instance
+  * services.AddSingleton<xyz> solution from .NET Core)
+
+- HttpClient will be disposed when it is not needed anymore
+
+- all unit tests are working (you can update only "HttpClientHandlers()" private static method)
+  not the logic of the unit tests themselves
+
+- code is still compiling and working (returned OK result code and generated client ID)
+
+- understand your solution, not only copy-paste from StackOverflow; be able to discuss it
