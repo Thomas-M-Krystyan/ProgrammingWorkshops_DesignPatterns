@@ -1,3 +1,4 @@
+using Moq;
 using NUnit.Framework;
 using Singleton.Exercise.Implementations;
 using Singleton.Exercise.Interfaces;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace SingletonTests
 {
+    [TestFixture]
     public class Tests
     {
         private readonly HashSet<int> _clientIds = new();
@@ -15,7 +17,7 @@ namespace SingletonTests
         [TestCaseSource(nameof(HttpClientHandlers))]
         public async Task CheckIfMethod_GetResponse_ReturnsOkStatusCode(IHttpClientHandler httpClientHandler)
         {
-            Assert.That(await httpClientHandler.GetResponse(), Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(await httpClientHandler.GetResponse("http://webcode.me"), Is.EqualTo(HttpStatusCode.OK));
             TestContext.WriteLine(httpClientHandler.GetImplementationName());
         }
         
@@ -30,20 +32,18 @@ namespace SingletonTests
 
         private static IHttpClientHandler[] HttpClientHandlers()
         {
+            Mock<IHttpClientFactory> _clientFactory = new();
+            _clientFactory.Setup(factory => factory.CreateClient(It.IsAny<string>()))
+                          .Returns(new HttpClient());
+
+            var httpClientFactory = _clientFactory.Object;
+
             return new IHttpClientHandler[]
             {
-                new BusinessLogic1(),
-
-                new BusinessLogic2(),
-                new BusinessLogic2(new HttpClient()),
-
-                new BusinessLogic3(),
-                new BusinessLogic3
-                {
-                    HttpClient = new HttpClient()
-                },
-
-                new BusinessLogic4()
+                new BusinessLogic1(httpClientFactory),
+                new BusinessLogic2(httpClientFactory),
+                new BusinessLogic3(httpClientFactory),
+                new BusinessLogic4(httpClientFactory)
             };
         }
     }

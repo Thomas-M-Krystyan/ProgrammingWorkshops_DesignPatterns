@@ -1,33 +1,20 @@
-﻿using Singleton.Exercise.Interfaces;
-using System.Net;
+﻿using Singleton.Exercise.Implementations.Abstractions;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace Singleton.Exercise.Implementations
 {
     /// <summary>
-    /// Third implementation using <seealso cref="System.Net.Http.HttpClient"/> resource injected through property.
+    /// Third implementation using <seealso cref="HttpClient"/>.
     /// </summary>
-    public sealed class BusinessLogic3 : IHttpClientHandler
+    public sealed class BusinessLogic3 : BaseHttpClientHandler
     {
-        public HttpClient HttpClient { get; set; } = new();
-
         /// <inheritdoc />
-        public async Task<HttpStatusCode> GetResponse()
+        public BusinessLogic3(IHttpClientFactory clientFactory) : base(clientFactory)
         {
-            var result = await this.HttpClient.GetAsync("http://webcode.me");
-
-            return result.StatusCode;
         }
 
         /// <inheritdoc />
-        public int GetClientId()
-        {
-            return this.HttpClient.GetHashCode();
-        }
-
-        /// <inheritdoc />
-        public string GetImplementationName()
+        public override string GetImplementationName()
         {
             return nameof(BusinessLogic3);
         }

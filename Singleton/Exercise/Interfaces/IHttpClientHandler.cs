@@ -9,7 +9,7 @@ namespace Singleton.Exercise.Interfaces
         /// Returns the response from a simple Http call.
         /// </summary>
         /// <returns>HTTP status code.</returns>
-        Task<HttpStatusCode> GetResponse();
+        Task<HttpStatusCode> GetResponse(string requestUri);
 
         /// <summary>
         /// Gets the Http Client identifier.
