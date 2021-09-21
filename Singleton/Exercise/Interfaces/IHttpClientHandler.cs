@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Singleton.Exercise.Interfaces
@@ -15,7 +16,7 @@ namespace Singleton.Exercise.Interfaces
         /// Gets the Http Client identifier.
         /// </summary>
         /// <returns>Client ID.</returns>
-        int GetClientId();
+        HttpClient GetClient();
 
         /// <summary>
         /// Gets the name of the class.

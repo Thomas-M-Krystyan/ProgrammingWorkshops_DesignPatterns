@@ -4,8 +4,8 @@ using NUnit.Framework;
 using Singleton.Exercise.Implementations;
 using Singleton.Exercise.Implementations.Abstractions;
 using Singleton.Exercise.Interfaces;
+using Singleton.Exercise.Services;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -15,28 +15,52 @@ namespace SingletonTests
     [TestFixture]
     public class Tests
     {
-        private readonly HashSet<int> _clientIds = new();
+        private readonly List<HttpClient> _totalItemsAmount = new();
+        private readonly HashSet<HttpClient> _uniqueItems = new();
+
+        [OneTimeTearDown]
+        public void CleanupAfterAllTests()
+        {
+            HttpClientSingleton.Dispose();
+        }
 
         [TestCaseSource(nameof(HttpClientHandlers_Factory))]
         [TestCaseSource(nameof(HttpClientHandlers_Singleton))]
         public async Task CheckIfMethod_GetResponse_ReturnsOkStatusCode(IHttpClientHandler httpClientHandler)
         {
-            Assert.That(await httpClientHandler.GetResponse("http://webcode.me"), Is.EqualTo(HttpStatusCode.OK));
             TestContext.WriteLine(httpClientHandler.GetImplementationName());
+
+            Assert.That(await httpClientHandler.GetResponse("http://webcode.me"), Is.EqualTo(HttpStatusCode.OK));
         }
 
-        // NOTE: When checking unique client ID the expected result can be achieved only if mocked HttpClientFactory is set up once
-        [TestCaseSource(nameof(HttpClientHandlers_Factory))]
-        // NOTE: When checking unique client ID we are always using the same HttpClient. So, does not matter how many times the implementation will be called
-        [TestCaseSource(nameof(HttpClientHandlers_Singleton))]
-        public void CheckIfMethod_GetClientId_ReturnsTheSameId(IHttpClientHandler httpClientHandler)
+        [Test]
+        public void CheckIfMethod_GetClientId_ReturnsTheSameId()
         {
-            var clientId = httpClientHandler.GetClientId();
+            // NOTE: When checking unique client ID the expected result can be achieved if mocked HttpClientFactory is set up once
+            CheckClientIds("Factory", HttpClientHandlers_Factory());
 
-            this._clientIds.Add(clientId);
+            // NOTE: When checking unique client ID we are always using the same HttpClient. It does not matter how many times the implementation will be called
+            CheckClientIds("Singleton", HttpClientHandlers_Singleton());
+        }
 
-            Assert.That(this._clientIds.Count, Is.EqualTo(1), message: "Expected is to have only a single unique client ID");
-            TestContext.WriteLine($"{httpClientHandler.GetImplementationName()}: {clientId}");
+        private void CheckClientIds(string outputIdentifier, IHttpClientHandler[] dataSource)
+        {
+            this._totalItemsAmount.Clear();
+            this._uniqueItems.Clear();
+
+            foreach (var dataItem in dataSource)
+            {
+                // Act
+                var client = dataItem.GetClient();
+
+                // Assert
+                this._totalItemsAmount.Add(client);
+                this._uniqueItems.Add(client);
+
+                TestContext.WriteLine($"{outputIdentifier} sample: {this._totalItemsAmount.Count} / {dataSource.Length}");
+
+                Assert.That(this._uniqueItems.Count, Is.EqualTo(1), message: "Expected is to have only a single unique client ID");
+            }
         }
 
         private static IHttpClientHandler[] HttpClientHandlers_Factory()
