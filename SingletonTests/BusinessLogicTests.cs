@@ -1,6 +1,8 @@
+using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
 using NUnit.Framework;
 using Singleton.Exercise.Implementations;
+using Singleton.Exercise.Implementations.Abstractions;
 using Singleton.Exercise.Interfaces;
 using System.Collections.Generic;
 using System.Net;
@@ -32,6 +34,8 @@ namespace SingletonTests
 
         private static IHttpClientHandler[] HttpClientHandlers()
         {
+            var logger = new NullLogger<BaseHttpClientHandler>();
+
             Mock<IHttpClientFactory> _clientFactory = new();
             _clientFactory.Setup(factory => factory.CreateClient(It.IsAny<string>()))
                           .Returns(new HttpClient());
@@ -40,10 +44,10 @@ namespace SingletonTests
 
             return new IHttpClientHandler[]
             {
-                new BusinessLogic1(httpClientFactory),
-                new BusinessLogic2(httpClientFactory),
-                new BusinessLogic3(httpClientFactory),
-                new BusinessLogic4(httpClientFactory)
+                new BusinessLogic1(logger, httpClientFactory),
+                new BusinessLogic2(logger, httpClientFactory),
+                new BusinessLogic3(logger, httpClientFactory),
+                new BusinessLogic4(logger, httpClientFactory)
             };
         }
     }

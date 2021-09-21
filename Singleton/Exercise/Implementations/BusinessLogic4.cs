@@ -1,4 +1,5 @@
-﻿using Singleton.Exercise.Implementations.Abstractions;
+﻿using Microsoft.Extensions.Logging;
+using Singleton.Exercise.Implementations.Abstractions;
 using System.Net.Http;
 
 namespace Singleton.Exercise.Implementations
@@ -9,7 +10,7 @@ namespace Singleton.Exercise.Implementations
     public sealed class BusinessLogic4 : BaseHttpClientHandler
     {
         /// <inheritdoc />
-        public BusinessLogic4(IHttpClientFactory clientFactory) : base(clientFactory)
+        public BusinessLogic4(ILogger<BaseHttpClientHandler> logger, IHttpClientFactory clientFactory) : base(logger, clientFactory)
         {
         }
 

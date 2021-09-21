@@ -1,4 +1,6 @@
-﻿using Singleton.Exercise.Interfaces;
+﻿using Microsoft.Extensions.Logging;
+using Singleton.Exercise.Interfaces;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -7,6 +9,7 @@ namespace Singleton.Exercise.Implementations.Abstractions
 {
     public abstract class BaseHttpClientHandler : IHttpClientHandler
     {
+        private readonly ILogger<BaseHttpClientHandler> _logger;
         private readonly IHttpClientFactory _clientFactory;
 
         private int _clientId;
@@ -15,8 +18,9 @@ namespace Singleton.Exercise.Implementations.Abstractions
         /// Initializes a new instance of the <see cref="BaseHttpClientHandler"/> class.
         /// </summary>
         /// <param name="clientFactory">The client factory.</param>
-        protected BaseHttpClientHandler(IHttpClientFactory clientFactory)
+        protected BaseHttpClientHandler(ILogger<BaseHttpClientHandler> logger, IHttpClientFactory clientFactory)
         {
+            this._logger = logger;
             this._clientFactory = clientFactory;
         }
 
@@ -25,15 +29,25 @@ namespace Singleton.Exercise.Implementations.Abstractions
         {
             try
             {
+                // HTTP Client
                 var client = this._clientFactory.CreateClient();
                 this._clientId = client.GetHashCode();
-                var result = await client.GetAsync(requestUri);
 
-                return result.StatusCode;
+                // Request
+                var result = await client.GetAsync(requestUri);
+                
+                // Result
+                var resultCode = result.StatusCode;
+
+                this._logger.LogInformation($"Success: {requestUri} | {resultCode}");
+
+                return resultCode;
             }
-            catch
+            catch (Exception exception)
             {
-                return HttpStatusCode.InternalServerError;
+                this._logger.LogError(exception.Message);
+
+                return HttpStatusCode.NotFound;
             }
         }
 
