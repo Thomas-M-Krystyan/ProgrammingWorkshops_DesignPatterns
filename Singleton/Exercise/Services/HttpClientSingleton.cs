@@ -23,7 +23,7 @@ namespace Singleton.Exercise.Services
                 {
                     _httpClient = new HttpClient()
                     {
-                        Timeout = TimeSpan.FromMilliseconds(new Random().Next(0, 1001))  // NOTE: Generate random timeout to ensure that instances differentiate somehow
+                        Timeout = TimeSpan.FromSeconds(new Random().Next(10, 61))  // NOTE: Generate random timeout to ensure that instances differentiate somehow
                     };
                 }
 
