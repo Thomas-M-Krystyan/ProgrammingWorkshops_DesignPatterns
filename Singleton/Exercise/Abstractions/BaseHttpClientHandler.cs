@@ -38,7 +38,7 @@ namespace Singleton.Exercise.Implementations.Abstractions
             try
             {
                 // HTTP Client
-                var client = GetClient();  // NOTE: Factory controls lifespan of "client" instance. You do not need to dispose it
+                var client = GetClientData().Client;  // NOTE: Factory controls lifespan of "client" instance. You do not need to dispose it
 
                 // Request
                 var result = await client.GetAsync(requestUri);
@@ -59,11 +59,11 @@ namespace Singleton.Exercise.Implementations.Abstractions
         }
 
         /// <inheritdoc />
-        public HttpClient GetClient()
+        public (HttpClient Client, string StrategyName) GetClientData()
         {
             // NOTE: Further reading => https://www.rahulpnath.com/blog/are-you-using-httpclient-in-the-right-way/
-            return this._clientFactory != null ? this._clientFactory.CreateClient()
-                                               : HttpClientSingleton.GetClient();
+            return this._clientFactory != null ? (this._clientFactory.CreateClient(), "Factory")
+                                               : (HttpClientSingleton.GetClient(), "Singleton");
         }
 
         /// <inheritdoc />

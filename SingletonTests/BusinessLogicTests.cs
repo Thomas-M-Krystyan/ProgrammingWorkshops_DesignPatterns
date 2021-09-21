@@ -51,7 +51,7 @@ namespace SingletonTests
             foreach (var dataItem in dataSource)
             {
                 // Act
-                var client = dataItem.GetClient();
+                var client = dataItem.GetClientData().Client;
 
                 // Assert
                 this._totalItemsAmount.Add(client);

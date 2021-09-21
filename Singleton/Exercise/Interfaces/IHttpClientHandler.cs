@@ -16,7 +16,7 @@ namespace Singleton.Exercise.Interfaces
         /// Gets the Http Client identifier.
         /// </summary>
         /// <returns>Client ID.</returns>
-        HttpClient GetClient();
+        (HttpClient Client, string StrategyName) GetClientData();
 
         /// <summary>
         /// Gets the name of the class.
