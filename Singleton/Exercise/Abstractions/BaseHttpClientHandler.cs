@@ -13,8 +13,6 @@ namespace Singleton.Exercise.Implementations.Abstractions
         private readonly ILogger<BaseHttpClientHandler> _logger;
         private readonly IHttpClientFactory _clientFactory;
 
-        private int _clientId;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseHttpClientHandler"/> class.
         /// </summary>
@@ -41,7 +39,6 @@ namespace Singleton.Exercise.Implementations.Abstractions
             {
                 // HTTP Client
                 var client = GetClient();  // NOTE: Factory controls lifespan of "client" instance. You do not need to dispose it
-                this._clientId = client.GetHashCode();
 
                 // Request
                 var result = await client.GetAsync(requestUri);
@@ -61,17 +58,12 @@ namespace Singleton.Exercise.Implementations.Abstractions
             }
         }
 
-        private HttpClient GetClient()
+        /// <inheritdoc />
+        public HttpClient GetClient()
         {
             // NOTE: Further reading => https://www.rahulpnath.com/blog/are-you-using-httpclient-in-the-right-way/
             return this._clientFactory != null ? this._clientFactory.CreateClient()
                                                : HttpClientSingleton.GetClient();
-        }
-
-        /// <inheritdoc />
-        public int GetClientId()
-        {
-            return this._clientId;
         }
 
         /// <inheritdoc />
