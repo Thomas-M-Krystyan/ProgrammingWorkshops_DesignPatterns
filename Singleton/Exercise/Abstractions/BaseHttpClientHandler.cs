@@ -30,7 +30,7 @@ namespace Singleton.Exercise.Implementations.Abstractions
             try
             {
                 // HTTP Client
-                var client = this._clientFactory.CreateClient();
+                var client = this._clientFactory.CreateClient();  // NOTE: Factory controls lifespan of "client" instance. You do not need to dispose it
                 this._clientId = client.GetHashCode();
 
                 // Request
