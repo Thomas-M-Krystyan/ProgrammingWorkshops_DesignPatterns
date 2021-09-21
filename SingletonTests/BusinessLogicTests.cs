@@ -52,7 +52,7 @@ namespace SingletonTests
             {
                 // Act
                 var data = dataItem.GetClientData();
-                var clientId = data.StrategyName.GetHashCode() * data.Client.GetHashCode();
+                var clientId = data.StrategyName.GetHashCode() * data.Client.Timeout.GetHashCode();
 
                 // Assert
                 this._totalItemsAmount.Add(data.Client);

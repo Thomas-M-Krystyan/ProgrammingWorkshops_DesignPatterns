@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 
 namespace Singleton.Exercise.Services
 {
@@ -20,7 +21,10 @@ namespace Singleton.Exercise.Services
             {
                 if (_httpClient == null)
                 {
-                    _httpClient = new HttpClient();
+                    _httpClient = new HttpClient()
+                    {
+                        Timeout = TimeSpan.FromMilliseconds(new Random().Next(0, 1001))  // NOTE: Generate random timeout to ensure that instances differentiate somehow
+                    };
                 }
 
                 return _httpClient;
