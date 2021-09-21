@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Singleton.Exercise.Interfaces;
+using Singleton.Exercise.Services;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -17,10 +18,19 @@ namespace Singleton.Exercise.Implementations.Abstractions
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseHttpClientHandler"/> class.
         /// </summary>
-        /// <param name="clientFactory">The client factory.</param>
-        protected BaseHttpClientHandler(ILogger<BaseHttpClientHandler> logger, IHttpClientFactory clientFactory)
+        /// <param name="logger">The logger.</param>
+        protected BaseHttpClientHandler(ILogger<BaseHttpClientHandler> logger)
         {
             this._logger = logger;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseHttpClientHandler"/> class.
+        /// </summary>
+        /// <param name="logger">The logger.</param>
+        /// <param name="clientFactory">The client factory.</param>
+        protected BaseHttpClientHandler(ILogger<BaseHttpClientHandler> logger, IHttpClientFactory clientFactory) : this(logger)
+        {
             this._clientFactory = clientFactory;
         }
 
@@ -30,7 +40,7 @@ namespace Singleton.Exercise.Implementations.Abstractions
             try
             {
                 // HTTP Client
-                var client = this._clientFactory.CreateClient();  // NOTE: Factory controls lifespan of "client" instance. You do not need to dispose it
+                var client = GetClient();  // NOTE: Factory controls lifespan of "client" instance. You do not need to dispose it
                 this._clientId = client.GetHashCode();
 
                 // Request
@@ -49,6 +59,13 @@ namespace Singleton.Exercise.Implementations.Abstractions
 
                 return HttpStatusCode.NotFound;
             }
+        }
+
+        private HttpClient GetClient()
+        {
+            // NOTE: Further reading => https://www.rahulpnath.com/blog/are-you-using-httpclient-in-the-right-way/
+            return this._clientFactory != null ? this._clientFactory.CreateClient()
+                                               : HttpClientSingleton.GetClient();
         }
 
         /// <inheritdoc />

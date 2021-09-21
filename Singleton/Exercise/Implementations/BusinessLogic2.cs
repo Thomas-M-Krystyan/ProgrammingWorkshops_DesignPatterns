@@ -10,6 +10,11 @@ namespace Singleton.Exercise.Implementations
     public sealed class BusinessLogic2 : BaseHttpClientHandler
     {
         /// <inheritdoc />
+        public BusinessLogic2(ILogger<BaseHttpClientHandler> logger) : base(logger)
+        {
+        }
+
+        /// <inheritdoc />
         public BusinessLogic2(ILogger<BaseHttpClientHandler> logger, IHttpClientFactory clientFactory) : base(logger, clientFactory)
         {
         }
