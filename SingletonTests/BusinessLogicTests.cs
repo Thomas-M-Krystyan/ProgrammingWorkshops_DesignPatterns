@@ -16,7 +16,7 @@ namespace SingletonTests
     public class Tests
     {
         private readonly List<HttpClient> _totalItemsAmount = new();
-        private readonly HashSet<HttpClient> _uniqueItems = new();
+        private readonly HashSet<int> _uniqueItems = new();
 
         [OneTimeTearDown]
         public void CleanupAfterAllTests()
@@ -51,13 +51,14 @@ namespace SingletonTests
             foreach (var dataItem in dataSource)
             {
                 // Act
-                var client = dataItem.GetClientData().Client;
+                var data = dataItem.GetClientData();
+                var clientId = data.StrategyName.GetHashCode() * data.Client.GetHashCode();
 
                 // Assert
-                this._totalItemsAmount.Add(client);
-                this._uniqueItems.Add(client);
+                this._totalItemsAmount.Add(data.Client);
+                this._uniqueItems.Add(clientId);
 
-                TestContext.WriteLine($"{outputIdentifier} sample: {this._totalItemsAmount.Count} / {dataSource.Length}");
+                TestContext.WriteLine($"{outputIdentifier} sample: {this._totalItemsAmount.Count} / {dataSource.Length}\t| Client ID: {clientId}");
 
                 Assert.That(this._uniqueItems.Count, Is.EqualTo(1), message: "Expected is to have only a single unique client ID");
             }
