@@ -1,6 +1,8 @@
 ﻿using Singleton.Exercise.Interfaces;
 using System.Net;
 using System.Net.Http;
+using Singleton.Exercise.Service;
+
 using System.Threading.Tasks;
 
 namespace Singleton.Exercise.Implementations
@@ -10,7 +12,7 @@ namespace Singleton.Exercise.Implementations
     /// </summary>
     public sealed class BusinessLogic3 : IHttpClientHandler
     {
-        public HttpClient HttpClient { get; set; } = new();
+        public HttpClient HttpClient = HTTPClientSingleService.GetInstance();
 
         /// <inheritdoc />
         public async Task<HttpStatusCode> GetResponse()

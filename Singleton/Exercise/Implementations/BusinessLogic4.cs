@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Singleton.Exercise.Service;
 
 namespace Singleton.Exercise.Implementations
 {
@@ -10,10 +11,10 @@ namespace Singleton.Exercise.Implementations
     /// </summary>
     public sealed class BusinessLogic4 : IHttpClientHandler
     {
+        private readonly HttpClient httpClient = HTTPClientSingleService.GetInstance();
         /// <inheritdoc />
         public async Task<HttpStatusCode> GetResponse()
         {
-            var httpClient = new HttpClient();
             var result = await httpClient.GetAsync("http://webcode.me");
 
             return result.StatusCode;
@@ -22,7 +23,7 @@ namespace Singleton.Exercise.Implementations
         /// <inheritdoc />
         public int GetClientId()
         {
-            return 12345678;
+           return httpClient.GetHashCode();
         }
 
         /// <inheritdoc />

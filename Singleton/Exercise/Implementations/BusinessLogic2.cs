@@ -2,6 +2,8 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Singleton.Exercise.Service;
+
 
 namespace Singleton.Exercise.Implementations
 {
@@ -15,7 +17,7 @@ namespace Singleton.Exercise.Implementations
 
         public BusinessLogic2()
         {
-            this._httpClient = new HttpClient();
+            this._httpClient = HTTPClientSingleService.GetInstance();
             this._implementationName += "_hardcoded";
         }
 

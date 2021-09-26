@@ -35,13 +35,8 @@ namespace SingletonTests
                 new BusinessLogic1(),
 
                 new BusinessLogic2(),
-                new BusinessLogic2(new HttpClient()),
-
-                new BusinessLogic3(),
-                new BusinessLogic3
-                {
-                    HttpClient = new HttpClient()
-                },
+               
+                new BusinessLogic3(),             
 
                 new BusinessLogic4()
             };
