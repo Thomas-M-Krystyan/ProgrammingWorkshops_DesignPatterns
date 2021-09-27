@@ -1,0 +1,6 @@
+- Singleton (design pattern)
+- HttpClient
+- ILogger
+- IHttpClientFactory
+- .NET Core configuration
+- Unit tests (NUnit)
