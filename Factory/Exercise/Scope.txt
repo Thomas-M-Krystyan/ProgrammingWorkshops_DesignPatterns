@@ -1,0 +1,8 @@
+- Factory (design pattern)
+- OOP (Polymorphism)
+- SOLID (Open-Closed Principle)
+- Enumerations (enums)
+- Generics <T>
+- Data types reliability
+- Unit tests (NUnit)
+- .NET Core configuration

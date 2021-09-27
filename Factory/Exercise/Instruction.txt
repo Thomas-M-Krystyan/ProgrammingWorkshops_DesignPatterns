@@ -1,0 +1,38 @@
+﻿
+                            "Factory" exercise:
+
+Firstly, let's distinguish between "Factory" design pattern and "Factory Method" design pattern.
+Your goal is to implement proper and functional full "Factory" design pattern to be used with the
+already existing code. You can add (for fun) more products - this is not very important. The essential
+part of this exercise is to understand how generic implementation can help in handling the provided
+business case (multiple models to be called from one place).
+
+
+                                Requirements:
+
+BASIC:
+
+  1. Use Factory design pattern (not Factory Method) in the "ProductsFactory.cs" class
+  2. Using OOP principles to align and improve models of products (hint: polymorphism, "Tell Don't Ask")
+  3. In the "ProductsFactory.cs" class you will find list of products which should be supported
+  4. Finish missing business logic in the "ShoppingCart.cs" implementation
+  5. Finish missing declarations in the interface "ICollectingService.cs"
+
+INTERMEDIATE:
+
+  6. Use generics as a solution to extend the functionality of your factory
+  7. Write unit tests to check if a specific product can be added to the shopping cart
+  8. Check carefully return types for methods. Are all of them safe for the business purpose?
+
+ADVANCED:
+
+  9. Register "ShoppingCart" service using "AddSingleton" method from .NET Core architecture
+
+
+                              Expected outcome:
+
+- when using unit tests or input from the console (Program.cs) you can add specific products to the shopping cart
+- the products can be customized but it should be very easy to use and/or extend your factory implementation
+- code is clean, generic, following good practices, using consistent and reliable data types
+- you understand your solution and can discuss about it (to present your way of thinking, areas to improve, advantages)
+- estimated time to finish the whole exercise => 8-12 hours (aprox. 2 days)
