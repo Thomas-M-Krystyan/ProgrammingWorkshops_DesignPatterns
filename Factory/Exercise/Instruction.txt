@@ -1,5 +1,5 @@
 ﻿
-                            "Factory" exercise:
+                            "Abstract Factory" exercise:
 
 Firstly, let's distinguish between "Abstract Factory" design pattern and "Factory Method" design pattern.
 Your goal is to implement proper and functional full "Abstract Factory" design pattern to be used with the
