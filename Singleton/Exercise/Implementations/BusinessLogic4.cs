@@ -3,31 +3,21 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Singleton.Exercise.Service;
+using Microsoft.Extensions.Logging;
 
 namespace Singleton.Exercise.Implementations
 {
     /// <summary>
     /// Fourth implementation using <seealso cref="HttpClient"/> resource created internally on demand.
     /// </summary>
-    public sealed class BusinessLogic4 : IHttpClientHandler
+    public sealed class BusinessLogic4 : HttpClientHandlerAbstract
     {
-        private readonly HttpClient httpClient = HTTPClientSingleService.GetInstance();
-        /// <inheritdoc />
-        public async Task<HttpStatusCode> GetResponse()
+        public BusinessLogic4(ILogger logger) : base(logger)
         {
-            var result = await httpClient.GetAsync("http://webcode.me");
 
-            return result.StatusCode;
         }
-
         /// <inheritdoc />
-        public int GetClientId()
-        {
-           return httpClient.GetHashCode();
-        }
-
-        /// <inheritdoc />
-        public string GetImplementationName()
+        public override string GetImplementationName()
         {
             return nameof(BusinessLogic4);
         }

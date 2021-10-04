@@ -1,0 +1,70 @@
+1. Internal usage of HttpClient singleton => and what if we would like to write integration test, using our own, mocked test HttpClient with fake, mocked response? How to inject this HttpClient into our business logic?
+
+2. We are reusing the same code. Every GetResponse() method is "doing the same" (check below #6, because not really). Can we somehow deal with the similarities?
+
+3. The URL is hardcoded: "http://webcode.me". How to deal with the problem that we want to send requests to a different endpoint? Like https://google.com/ or something?
+
+4. In BusinessLogic1 you introduced try-catch logic, which is nice in case of facing some unexpected exception
+
+  - but in catch statement you are storing exception in "ex" variable, and then doing nothing with it:
+
+    catch (Exception ex)
+    {
+        return HttpStatusCode.ExpectationFailed;
+    }
+
+  - did you chose "ExpectationFailed" intentionally? Or just tried something which looked like error?
+
+  - in case the error occurred, we might want to log the exception (message, stacktrace, custom communicate)
+    in some logs (file), or at least display them to user. We do not have such logging architecture here.
+    At least ILogger injection would be beneficial (you do not need to play with log files or logs severity)
+
+5. In BusinessLogic2 you kept the old implementation. One constructor is using singleton client, and another
+   injectable. This is a nice hint how to fix the remarks from feedback #1 (above)
+
+   Of course, I understand this may be a case that implementations 1, 3, and 4 may work bit different than
+   implementation 2 (the only one with constructor and injected http client), but I would risk an assumption
+   that injected approach is much more beneficial => beneficial enought to use this approach cross-wide.
+
+6. Only in implementation 1 you are using try-catch error handling. What with others three?
+
+7. I like your HttpClientSingleService. You can pass this class into constructor, or pass only HttpClient
+   (and in business usage or unit tests retrieve the HttpClient from your service by calling it's GetInstance
+   method) this step will allow you to pass dependency into your 4 implementations, and make them testable
+   (usually we do not want to call real webpage. Such an approach would create a hidden dependency, when you
+   rely on network connectivity and webpage availability. In integration tests we are usually mocking the
+   webpage => pretending that we are calling something, and only checking if the method was called or not
+   returning an exception. And, in other hand, in unit tests we are not calling any webpages at all, only
+   testing very narrow scope of the logic => for an example, if HttpClient = null was passed, then we are
+   expecting your status code, or specific exception).
+
+8. Good that you considered Dispose method for your http client
+
+9. Cool to have lock there as well. Do you know why we are using lock in a case of static resources?
+
+10. Your Startup.cs look like a good start. What happened that you could not continue? I can only assume
+that line 22
+
+// services.AddHttpClient();
+
+was raising a compilation error for you, that "services do not have such method like "AddHttpClient".
+
+I can explain you why, if that was the case.
+
+11. The same for Main in Program.cs. This implementation is even better, because it is complete (even with
+configuration for logging! :) ). I believe the issue was similar to the one from above. Some method or
+class / interface could not be found.
+
+12. In your csproj file you are adding 6 package references to Microsoft libraries. Steps 10, 11, and 12
+can be fixed in the same way, adding one crucial (FRAMEWORK) reference (Asp.Net.Core). The framework
+reference is usually created when you are creating new .NET Core project using dependency injection /
+configuration setup - such as web project. When you are creating normal, primitive console app project
+or library, such framework reference would not be created and it is required to make your Startup.cs
+and Program.cs classes work properly. Then:
+
+13. If you are using Asp.Net.Core framework reference, all Microsoft packages are already included in it.
+This is a new feature, and huge benefit of using .NET Core instead of .NET Framework => where you always
+had to include dozen of package references. In this new approach we are usually removing all Microsoft
+packages, to clean up our "Item Group" / "NuGet Package Manager" output. And of course in the Visual Studio
+also the section with package references would be much smaller. And if something will change in .NET Core,
+then you will also have all updated packages in a fly => so, you do not need to update [n] * packages.

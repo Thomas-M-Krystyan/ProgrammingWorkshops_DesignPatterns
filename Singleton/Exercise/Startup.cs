@@ -19,7 +19,7 @@ namespace Singleton.Exercise.Implementations
 
         public static void ConfigureServices(IServiceCollection services)
         {
-           // services.AddHttpClient();
+           services.AddHttpClient();
         }
     }
 

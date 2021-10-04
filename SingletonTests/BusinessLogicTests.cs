@@ -5,17 +5,20 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace SingletonTests
 {
     public class Tests
     {
-        private readonly HashSet<int> _clientIds = new();
+        private readonly HashSet<int> _clientIds = new HashSet<int>();
 
         [TestCaseSource(nameof(HttpClientHandlers))]
         public async Task CheckIfMethod_GetResponse_ReturnsOkStatusCode(IHttpClientHandler httpClientHandler)
         {
-            Assert.That(await httpClientHandler.GetResponse(), Is.EqualTo(HttpStatusCode.OK));
+            string weburi = "http://webcode.me";
+            Assert.That(await httpClientHandler.GetResponse(weburi), Is.EqualTo(HttpStatusCode.OK));
             TestContext.WriteLine(httpClientHandler.GetImplementationName());
         }
         
@@ -30,15 +33,16 @@ namespace SingletonTests
 
         private static IHttpClientHandler[] HttpClientHandlers()
         {
+            var logger = new NullLogger<HttpClientHandlerAbstract>();
             return new IHttpClientHandler[]
             {
-                new BusinessLogic1(),
+                new BusinessLogic1(logger),
 
-                new BusinessLogic2(),
+                new BusinessLogic2(logger),
                
-                new BusinessLogic3(),             
+                new BusinessLogic3(logger),             
 
-                new BusinessLogic4()
+                new BusinessLogic4(logger)
             };
         }
     }
