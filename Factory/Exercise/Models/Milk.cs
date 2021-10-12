@@ -1,20 +1,27 @@
-﻿namespace Factory.Exercise.Models
+﻿using Factory.Exercise.Factories;
+
+namespace Factory.Exercise.Models
 {
-    public sealed class Milk
+    public sealed class Milk : IProduct
     {
-        public string ProductName()
+
+        public Milk()
         {
-            return "Super Milk, 1%";
+        }
+        public float GetPrice()
+        {
+            return 1.5f;
         }
 
-        public string ProductWeight()
+        public string GetProductName()
         {
-            return "1,03 kg";
+            return "Milk";
+
         }
 
-        public string ProductPrice()
+        public float GetWeight()
         {
-            return "1.08 €";
+            return 1.0f;
         }
     }
 }

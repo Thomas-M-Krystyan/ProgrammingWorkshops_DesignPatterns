@@ -1,4 +1,6 @@
-﻿namespace Factory.Exercise.Models
+﻿using Factory.Exercise.Factories;
+
+namespace Factory.Exercise.Models
 {
     public enum CheaseType
     {
@@ -10,28 +12,34 @@
         Camembert
     }
 
-    public sealed class Chease
+    public sealed class Chease : IProduct
     {
         private CheaseType _type;
+       
 
         public Chease(CheaseType type)
         {
             this._type = type;
         }
 
-        public CheaseType GetName()
+        public CheaseType GetCheaseType()
         {
-            return this._type;
+            return _type;
         }
 
-        public double GetWeight()
+        public float GetPrice()
         {
-            return 0.5f;
+            return 4.3f;
         }
 
-        public decimal GetPrice()
+        public string GetProductName()
         {
-            return 5.45M;
+            return _type.ToString();
+
+        }
+        public float GetWeight()
+        {
+            return 2.5f;
         }
     }
 }

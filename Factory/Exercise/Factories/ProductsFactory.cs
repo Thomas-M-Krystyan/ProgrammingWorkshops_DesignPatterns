@@ -14,19 +14,9 @@ namespace Factory.Exercise.Factories
 
     public sealed class ProductsFactory
     {
-        public Bread GetBread()
-        {
-            return new Bread();
-        }
-
-        public Chease GetChease()
-        {
-            return new Chease(CheaseType.Edamer);
-        }
-
-        public Milk GetMilk()
-        {
-            return new Milk();
-        }
+       public static T Creat<T>() where T : IProduct, new ()
+       {
+            return new T();
+       }
     }
 }

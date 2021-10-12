@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Factory.Exercise.Factories;
+using System;
 using System.Collections.Generic;
 
 namespace Factory.Exercise.Services
@@ -7,14 +8,15 @@ namespace Factory.Exercise.Services
     // be reused with two implementations using similar logic ("add" and "display" from CRUD in this case)
     public sealed class Wishlist : ICollectingService
     {
-        public void AddProduct(object product)
+        private IList<IProduct> _shoppingList = new List<IProduct>();
+        public void AddProduct(IProduct product)
         {
-            throw new NotImplementedException();
+            _shoppingList.Add(product);
         }
 
-        public IList<object> GetCurrentProducts()
+        public IList<IProduct> GetCurrentProducts()
         {
-            throw new NotImplementedException();
+            return _shoppingList;
         }
     }
 }
