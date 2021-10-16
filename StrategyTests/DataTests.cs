@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Strategy;
 
 namespace StrategyTests
 {
@@ -8,7 +9,13 @@ namespace StrategyTests
         [Test]
         public void GraphContains10Nodes()
         {
-            Assert.Fail();
+            Assert.That(Graph.Count, Is.EqualTo(10));
+        }
+
+        [Test]
+        public void GraphFirstNodeIsA()
+        {
+            Assert.That(Graph.StartNode.Value, Is.EqualTo("A"));
         }
     }
 }
