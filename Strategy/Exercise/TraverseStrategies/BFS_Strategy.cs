@@ -1,4 +1,4 @@
-﻿namespace Strategy.TraverseStrategies
+﻿namespace Strategy.Exercise.TraverseStrategies
 {
     /// <summary>
     /// Breadth First Search (BFS) algorithm.

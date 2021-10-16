@@ -1,4 +1,4 @@
-﻿namespace Strategy.Data
+﻿namespace Strategy.Exercise.Data
 {
     /// <summary>
     /// The building element of <see cref="Graph"/>.

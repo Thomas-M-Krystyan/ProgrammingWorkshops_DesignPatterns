@@ -1,4 +1,4 @@
-﻿namespace Strategy.Data
+﻿namespace Strategy.Exercise.Data
 {
     /// <summary>
     /// The "tree" type of graph data structure.

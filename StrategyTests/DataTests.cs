@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using Strategy.Data;
+using Strategy.Exercise.Data;
 
 namespace StrategyTests
 {
