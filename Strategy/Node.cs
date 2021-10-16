@@ -24,9 +24,11 @@
         /// Initializes a new instance of the <see cref="Node"/> class.
         /// </summary>
         /// <param name="value">The value of the <see cref="Node"/>.</param>
-        public Node(string value)
+        /// <param name="count">The consecutive counter.</param>
+        public Node(string value, ref int count)
         {
             this.Value = value;
+            count++;
         }
     }
 }
