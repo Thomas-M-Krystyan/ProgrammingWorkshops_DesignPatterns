@@ -1,1 +1,23 @@
 ﻿
+                            "Strategy" exercise:
+
+Please, finish the implementation of Strategy design pattern. This exercise
+requires additionaly a knowledge about graph traverse algorithms such as
+Breadth First Search (BFS) and Depth First Search (DFS). Feel free to check
+their implementation in the Internet.
+
+                                Requirements:
+
+1. Implement Context class
+2. Introduce required strategy interface
+3. Implement BFS algorithm in a specific strategy
+4. Implement DFS algorithm in a specific strategy
+5. Use Context and both strategies in Program.cs
+
+
+                              Expected outcome:
+
+- Code is compiling
+- Strategy design pattern was introduced
+- All unit tests must pass (you cannot change them)
+- Program.cs workflow is finished and working
