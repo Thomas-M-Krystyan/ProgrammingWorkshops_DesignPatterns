@@ -1,5 +1,8 @@
 ﻿namespace Strategy.Exercise.Result
 {
+    /// <summary>
+    /// The result of graph traverse algorithm.
+    /// </summary>
     public sealed class TraverseResult
     {
         /// <summary>
