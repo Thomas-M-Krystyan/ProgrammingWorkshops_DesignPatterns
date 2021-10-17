@@ -1,0 +1,4 @@
+﻿- Strategy (design pattern)
+- BFS algorithm
+- DFS algorithm
+- Overloading
