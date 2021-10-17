@@ -32,7 +32,7 @@
         ///       / \
         ///      B   C      2nd layer
         ///     / \   \
-        ///    D  [E]  F    3rd layer
+        ///    D   E   F    3rd layer
         ///   / \
         ///  G   H          4th layer
         ///     / \
