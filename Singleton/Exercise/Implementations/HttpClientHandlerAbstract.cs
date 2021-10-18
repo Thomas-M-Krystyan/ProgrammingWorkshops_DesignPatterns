@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Singleton.Exercise.Interfaces;
 using Singleton.Exercise.Service;
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Singleton.Exercise.Implementations
 {
@@ -19,7 +16,7 @@ namespace Singleton.Exercise.Implementations
         {
             _logger = logger;
         }
-        public async  Task<HttpStatusCode> GetResponse(string webUri)
+        public async Task<HttpStatusCode> GetResponse(string webUri)
         {
             try
             {

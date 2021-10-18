@@ -11,7 +11,7 @@ namespace Singleton.Exercise.Implementations
     /// <summary>
     /// First implementation using <seealso cref="HttpClient"/> resource as a readonly, class-scope initialized field.
     /// </summary>
-    public class BusinessLogic1 : HttpClientHandlerAbstract
+    public sealed class BusinessLogic1 : HttpClientHandlerAbstract
     {
         public BusinessLogic1(ILogger logger) : base (logger)
         {
