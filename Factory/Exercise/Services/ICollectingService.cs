@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Factory.Exercise.Factories;
+﻿using Factory.Exercise.Factories;
+using System.Collections.Generic;
 
 namespace Factory.Exercise.Services
 {

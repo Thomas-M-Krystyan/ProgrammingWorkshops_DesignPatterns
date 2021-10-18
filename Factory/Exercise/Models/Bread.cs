@@ -1,27 +1,51 @@
 ﻿using Factory.Exercise.Factories;
+using System.ComponentModel.DataAnnotations;
 
 namespace Factory.Exercise.Models
 {
+    public enum BreadType
+    {
+        [Display(Name = "Whole grains")]
+        Low,
+        [Display(Name = "Toast")]
+        High
+    }
+
     public sealed class Bread : IProduct
     {
-       
-        public Bread()
-        { 
-        }
-        public float GetPrice()
+        private readonly decimal _price;
+        private readonly string _weight;
+        private readonly string _name;
+
+        public Bread(string type)
         {
-            return 2.3f;
+            if (type == BreadType.Low.GetAttribute<DisplayAttribute>().Name)
+            {
+                _name = "Whole grains";
+                _price = 1.65m;
+                _weight = "750g";
+            }
+            else
+            {
+                _name = "Toast";
+                _price = 1.2m;
+                _weight = "1000g";
+            }
+        }
+        public decimal GetPrice()
+        {
+            return _price;
         }
 
-        public string GetProductName()
+        public string GetName()
         {
-            return "Bread";
+            return _name;
 
         }
 
-        public float GetWeight()
+        public string GetWeight()
         {
-            return 2.0f;
+            return _weight;
         }
     }
 }

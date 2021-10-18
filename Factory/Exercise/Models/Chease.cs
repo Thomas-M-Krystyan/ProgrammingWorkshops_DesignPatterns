@@ -1,45 +1,61 @@
 ﻿using Factory.Exercise.Factories;
+using System.ComponentModel.DataAnnotations;
 
 namespace Factory.Exercise.Models
 {
     public enum CheaseType
     {
+        [Display(Name = "Edamer")]
         Edamer,
+        [Display(Name = "Gouda")]
         Gouda,
+        [Display(Name = "Tilsner")]
         Tilsner,
+        [Display(Name = "Salami")]
         Salami,
+        [Display(Name = "Roqueford")]
         Roqueford,
+        [Display(Name = "Camembert")]
         Camembert
     }
 
     public sealed class Chease : IProduct
     {
-        private CheaseType _type;
-       
+        private readonly decimal _price;
+        private readonly string _weight;
+        private readonly string _name;
 
-        public Chease(CheaseType type)
+        public Chease(string type)
         {
-            this._type = type;
+
+            if (type == CheaseType.Edamer.GetAttribute<DisplayAttribute>().Name)
+            {
+                _name = "Edamer";
+                _price = 4.25m;
+                _weight = "500g";
+            }
+            else
+            {
+                _name = "Gouda";
+                _price = 4.75m;
+                _weight = "500g";
+            }
         }
 
-        public CheaseType GetCheaseType()
+        public decimal GetPrice()
         {
-            return _type;
+            return _price;
         }
 
-        public float GetPrice()
+        public string GetName()
         {
-            return 4.3f;
-        }
-
-        public string GetProductName()
-        {
-            return _type.ToString();
+            return _name;
 
         }
-        public float GetWeight()
+
+        public string GetWeight()
         {
-            return 2.5f;
+            return _weight;
         }
     }
 }
