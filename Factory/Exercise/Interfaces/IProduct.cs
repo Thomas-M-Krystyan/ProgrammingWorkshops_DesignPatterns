@@ -6,11 +6,6 @@
     public interface IProduct
     {
         /// <summary>
-        /// Gets the product type.
-        /// </summary>
-        string GetTypeName();
-
-        /// <summary>
         /// Gets the product name.
         /// </summary>
         string GetName();

@@ -1,8 +1,5 @@
 ﻿using Factory.Exercise.Abstractions;
-using Factory.Exercise.Enums;
 using Factory.Exercise.Interfaces;
-using Factory.Exercise.Models;
-using System;
 
 namespace Factory.Exercise.Factories
 {
@@ -17,21 +14,9 @@ namespace Factory.Exercise.Factories
 
     public sealed class ProductsFactory
     {
-        public IProduct Get<T>(Enum type) where T : ProductBase
+        public IProduct Get<T>() where T : ProductBase, new()
         {
-            switch (type)
-            {
-                case BreadTypes.WholeGrains:
-                    return new Bread((BreadTypes)type, 0.750D, 1.65M);
-
-                case BreadTypes.Toast:
-                    return new Bread((BreadTypes)type, 1, 1.20M);
-
-                default:
-                    throw new NotImplementedException($"The type {type} is not supported yet.");
-            }
-
-            //var x = Get<Bread>(BreadTypes.Toast);
+            return new T();
         }
     }
 }

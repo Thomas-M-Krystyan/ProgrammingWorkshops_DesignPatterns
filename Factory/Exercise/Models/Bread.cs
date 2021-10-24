@@ -1,22 +1,30 @@
 ﻿using Factory.Exercise.Abstractions;
-using Factory.Exercise.Enums;
 
 namespace Factory.Exercise.Models
 {
-    public sealed class Bread : ProductBase
+    public sealed class WholeGrainBread : ProductBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Bread"/> class.
         /// </summary>
-        public Bread(BreadTypes type, double weightKg, decimal priceEur) : base(type, weightKg, priceEur)
+        public WholeGrainBread() : base(0.750D, 1.65M)
 	    {
-            ValidateParameters(type, weightKg, priceEur);
         }
 
         /// <inheritdoc />
-        public override string GetName()
+        public override string GetName() => "Whole Grain Bread";
+    }
+
+    public sealed class ToastBread : ProductBase
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ToastBread"/> class.
+        /// </summary>
+        public ToastBread() : base(1, 1.20M)
         {
-            return $"{this.Type} {nameof(Bread)}";
         }
+
+        /// <inheritdoc />
+        public override string GetName() => "Toast Bread";
     }
 }
