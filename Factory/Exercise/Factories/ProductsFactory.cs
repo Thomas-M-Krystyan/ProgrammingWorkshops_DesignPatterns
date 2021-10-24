@@ -12,8 +12,13 @@ namespace Factory.Exercise.Factories
      * Milk: High-Fat 3.5%, 1 liter, 1.20 €
      */
 
-    public sealed class ProductsFactory
+    /// <summary>
+    /// The factory of products.
+    /// </summary>
+    /// <seealso cref="IFactory" />
+    public sealed class ProductsFactory : IFactory
     {
+        /// <inheritdoc />
         public IProduct Get<T>() where T : ProductBase, new()
         {
             return new T();
