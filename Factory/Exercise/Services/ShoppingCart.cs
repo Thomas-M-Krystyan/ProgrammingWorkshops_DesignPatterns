@@ -1,6 +1,5 @@
 ﻿using Factory.Exercise.Abstractions;
 using Factory.Exercise.Interfaces;
-using System;
 using System.Collections.Generic;
 
 namespace Factory.Exercise.Services
@@ -23,10 +22,7 @@ namespace Factory.Exercise.Services
             this._factory = factory;
         }
 
-        /// <summary>
-        /// Adds the product to the shopping cart.
-        /// </summary>
-        /// <typeparam name="T">The type of product.</typeparam>
+        /// <inheritdoc />
         public void AddProduct<T>() where T : ProductBase, new()
         {
             // Create product
@@ -36,9 +32,7 @@ namespace Factory.Exercise.Services
             this._shoppingCart.Add(product);
         }
 
-        /// <summary>
-        /// Gets the current products from the shopping cart.
-        /// </summary>
+        /// <inheritdoc />
         public IList<IProduct> GetCurrentProducts()
         {
             return this._shoppingCart;
