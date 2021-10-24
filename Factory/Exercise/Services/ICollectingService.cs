@@ -1,7 +1,23 @@
-﻿namespace Factory.Exercise.Services
+﻿using Factory.Exercise.Abstractions;
+using Factory.Exercise.Interfaces;
+using System.Collections.Generic;
+
+namespace Factory.Exercise.Services
 {
+    /// <summary>
+    /// The collecting service.
+    /// </summary>
     public interface ICollectingService
     {
-        // TODO: Fix incomplete interface
+        /// <summary>
+        /// Adds the product to the shopping cart.
+        /// </summary>
+        /// <typeparam name="T">The type of product.</typeparam>
+        public void AddProduct<T>() where T : ProductBase, new();
+
+        /// <summary>
+        /// Gets the current products from the shopping cart.
+        /// </summary>
+        public IList<IProduct> GetCurrentProducts();
     }
 }
