@@ -35,5 +35,12 @@ namespace FactoryTests
             // Act & Assert
             Assert.Throws<ArgumentException>(() => new Bread(invalidType, 1, 1));
         }
+
+        [Test]
+        public void Model_Bread_ForInvalidWeight_ReturnExceptions()
+        {
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => new Bread(BreadTypes.Toast, -1, 1));
+        }
     }
 }
