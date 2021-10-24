@@ -70,8 +70,25 @@ namespace Factory.Exercise.Abstractions
         /// <summary>
         /// Validates the model parameters.
         /// </summary>
-        protected virtual void ValidateParameters(params object[] parameters)
+        protected virtual void ValidateParameters<T>(T type, double weightKg, decimal priceEur) where T : Enum
         {
+            // Type
+            if (!Enum.IsDefined(typeof(T), type.ToString()))
+            {
+                throw new ArgumentException($"Invalid product type.");
+            }
+
+            // Weight
+            if (weightKg <= 0)
+            {
+                throw new ArgumentException("The weight cannot be 0 or negative.");
+            }
+
+            // Price
+            if (priceEur < 0)
+            {
+                throw new ArgumentException("The price cannot be negative.");
+            }
         }
     }
 }
