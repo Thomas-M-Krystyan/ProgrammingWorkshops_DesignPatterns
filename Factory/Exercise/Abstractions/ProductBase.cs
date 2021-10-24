@@ -66,5 +66,12 @@ namespace Factory.Exercise.Abstractions
         {
             return $"€ {this.PriceEur.ToString(CultureInfo.InvariantCulture)}";
         }
+
+        /// <summary>
+        /// Validates the model parameters.
+        /// </summary>
+        protected virtual void ValidateParameters(params object[] parameters)
+        {
+        }
     }
 }
