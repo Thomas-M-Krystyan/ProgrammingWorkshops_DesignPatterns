@@ -66,7 +66,7 @@ namespace Factory.Exercise.Abstractions
         /// <inheritdoc />
         public string GetWeightInKg()
         {
-            return $"{this.WeightKg} kg";
+            return $"{this.WeightKg.ToString("N2", CultureInfo.InvariantCulture)} kg";
         }
 
         /// <inheritdoc />
