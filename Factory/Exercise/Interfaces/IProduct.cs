@@ -8,7 +8,7 @@
         /// <summary>
         /// Gets the product type.
         /// </summary>
-        string GetType();
+        string GetTypeName();
 
         /// <summary>
         /// Gets the product name.

@@ -38,7 +38,7 @@ namespace Factory.Exercise.Abstractions
         }
 
         /// <inheritdoc />
-        public new string GetType()
+        public string GetTypeName()
         {
             return this.Type.ToString();  // NOTE: Get enum name
         }

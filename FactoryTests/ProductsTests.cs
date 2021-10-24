@@ -25,8 +25,8 @@ namespace FactoryTests
 
             Assert.That(actualSerializedModelData, Is.EqualTo(expectedSerializedModelData));
 
+            Assert.That(model.GetTypeName(), Is.EqualTo("Toast"));
             Assert.That(model.GetName(), Is.EqualTo("Toast Bread"));
-            Assert.That(model.GetType(), Is.EqualTo("Toast"));
             Assert.That(model.GetWeightInKg(), Is.EqualTo("1 kg"));
             Assert.That(model.GetWeightInLb(), Is.EqualTo("2,20 lb"));
             Assert.That(model.GetPriceInEur(), Is.EqualTo("€ 1,20"));
