@@ -9,11 +9,15 @@ namespace FactoryTests
     [TestFixture]
     public class ProductsTests
     {
+        private const BreadTypes ValidBreadType = BreadTypes.Toast;
+        private const double ValidWeightInKg = 1;
+        private const decimal ValidPriceInEur = 1.65M;
+
         [Test]
         public void Model_Bread_ForValidInput_ReturnsExpectedValues()
         {
             // Act
-            var model = new Bread(BreadTypes.Toast, 1, 1.65M);
+            var model = new Bread(ValidBreadType, ValidWeightInKg, ValidPriceInEur);
 
             // Assert
             var actualSerializedModelData = JsonSerializer.Serialize(model);
@@ -33,21 +37,21 @@ namespace FactoryTests
         public void Model_Bread_ForInvalidType_ReturnExceptions(BreadTypes invalidType)
         {
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => new Bread(invalidType, 1, 1));
+            Assert.Throws<ArgumentException>(() => new Bread(invalidType, ValidWeightInKg, ValidPriceInEur));
         }
 
         [Test]
         public void Model_Bread_ForInvalidWeight_ReturnExceptions()
         {
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => new Bread(BreadTypes.Toast, -1, 1));
+            Assert.Throws<ArgumentException>(() => new Bread(ValidBreadType, -1, ValidPriceInEur));
         }
 
         [Test]
         public void Model_Bread_ForInvalidPrice_ReturnExceptions()
         {
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => new Bread(BreadTypes.Toast, 1, -1));
+            Assert.Throws<ArgumentException>(() => new Bread(ValidBreadType, ValidWeightInKg, -1));
         }
     }
 }
