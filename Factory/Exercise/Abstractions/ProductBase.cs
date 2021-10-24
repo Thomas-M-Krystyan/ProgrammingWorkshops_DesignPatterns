@@ -1,5 +1,6 @@
 ﻿using Factory.Exercise.Interfaces;
 using System;
+using System.Globalization;
 
 namespace Factory.Exercise.Abstractions
 {
@@ -57,13 +58,13 @@ namespace Factory.Exercise.Abstractions
         {
             const double KilogramsToPundsFactor = 2.20462262;
 
-            return $"{String.Format("{0:0.00}", this.WeightKg * KilogramsToPundsFactor)} lb";
+            return $"{(this.WeightKg * KilogramsToPundsFactor).ToString("N2", CultureInfo.InvariantCulture)} lb";
         }
 
         /// <inheritdoc />
         public string GetPriceInEur()
         {
-            return $"€ {String.Format("{0:0.00}", this.PriceEur)}";
+            return $"€ {this.PriceEur.ToString("N2", CultureInfo.InvariantCulture)}";
         }
 
         /// <summary>
