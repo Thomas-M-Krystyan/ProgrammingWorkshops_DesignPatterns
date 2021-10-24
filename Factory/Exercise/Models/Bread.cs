@@ -5,7 +5,7 @@ namespace Factory.Exercise.Models
     public sealed class WholeGrainBread : ProductBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Bread"/> class.
+        /// Initializes a new instance of the <see cref="WholeGrainBread"/> class.
         /// </summary>
         public WholeGrainBread() : base(0.750D, 1.65M)
 	    {
