@@ -1,5 +1,4 @@
-﻿using Factory.Exercise.Abstractions;
-using Factory.Exercise.Interfaces;
+﻿using Factory.Exercise.Interfaces;
 using System.Collections.Generic;
 
 namespace Factory.Exercise.Services
@@ -13,7 +12,7 @@ namespace Factory.Exercise.Services
         /// Adds the product to the shopping cart.
         /// </summary>
         /// <typeparam name="T">The type of product.</typeparam>
-        public void AddProduct<T>() where T : ProductBase, new();
+        public void AddProduct<T>() where T : IProduct, new();
 
         /// <summary>
         /// Gets the current products from the shopping cart.

@@ -1,5 +1,4 @@
-﻿using Factory.Exercise.Abstractions;
-using Factory.Exercise.Interfaces;
+﻿using Factory.Exercise.Interfaces;
 
 namespace Factory.Exercise.Factories
 {
@@ -19,7 +18,7 @@ namespace Factory.Exercise.Factories
     public sealed class ProductsFactory : IFactory
     {
         /// <inheritdoc />
-        public IProduct Get<T>() where T : ProductBase, new()
+        public IProduct Get<T>() where T : IProduct, new()
         {
             return new T();
         }

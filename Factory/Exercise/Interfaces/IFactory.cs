@@ -1,6 +1,4 @@
-﻿using Factory.Exercise.Abstractions;
-
-namespace Factory.Exercise.Interfaces
+﻿namespace Factory.Exercise.Interfaces
 {
     public interface IFactory
     {
@@ -8,6 +6,6 @@ namespace Factory.Exercise.Interfaces
         /// Gets the created product.
         /// </summary>
         /// <typeparam name="T">The type of product.</typeparam>
-        IProduct Get<T>() where T : ProductBase, new();
+        IProduct Get<T>() where T : IProduct, new();
     }
 }

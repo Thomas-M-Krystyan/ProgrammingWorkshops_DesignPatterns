@@ -1,5 +1,4 @@
-﻿using Factory.Exercise.Abstractions;
-using Factory.Exercise.Interfaces;
+﻿using Factory.Exercise.Interfaces;
 using System.Collections.Generic;
 
 namespace Factory.Exercise.Services
@@ -23,7 +22,7 @@ namespace Factory.Exercise.Services
         }
 
         /// <inheritdoc />
-        public void AddProduct<T>() where T : ProductBase, new()
+        public void AddProduct<T>() where T : IProduct, new()
         {
             // Create product
             var product = this._factory.Get<T>();
