@@ -42,5 +42,12 @@ namespace FactoryTests
             // Act & Assert
             Assert.Throws<ArgumentException>(() => new Bread(BreadTypes.Toast, -1, 1));
         }
+
+        [Test]
+        public void Model_Bread_ForInvalidPrice_ReturnExceptions()
+        {
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => new Bread(BreadTypes.Toast, 1, -1));
+        }
     }
 }
