@@ -1,20 +1,21 @@
-﻿namespace Factory.Exercise.Models
+﻿using Factory.Exercise.Abstractions;
+using System;
+
+namespace Factory.Exercise.Models
 {
-    public sealed class Bread
+    public sealed class Bread : ProductBase
     {
-        public string Name()
-        {
-            return "Whole grain";
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Bread"/> class.
+        /// </summary>
+        public Bread(Enum type, double weightKg, decimal priceEur) : base(type, weightKg, priceEur)
+	    {
         }
 
-        public float WeightInKg()
+        /// <inheritdoc />
+        public override string GetName()
         {
-            return 1450.0f;
-        }
-
-        public float PriceInEuro()
-        {
-            return 1.10f;
+            return $"{this.Type} {nameof(Bread)}";
         }
     }
 }
