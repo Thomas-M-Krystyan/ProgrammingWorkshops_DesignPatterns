@@ -1,6 +1,7 @@
 ﻿using Factory.Exercise.Enums;
 using Factory.Exercise.Models;
 using NUnit.Framework;
+using System;
 using System.Text.Json;
 
 namespace FactoryTests
@@ -25,6 +26,14 @@ namespace FactoryTests
             Assert.That(model.GetWeightInKg(), Is.EqualTo("1 kg"));
             Assert.That(model.GetWeightInLb(), Is.EqualTo("2.20 lb"));
             Assert.That(model.GetPriceInEur(), Is.EqualTo("€ 1.65"));
+        }
+
+        [TestCase((BreadTypes)(-1))]
+        [TestCase((BreadTypes)9999)]
+        public void Model_Bread_ForInvalidType_ReturnExceptions(BreadTypes invalidType)
+        {
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => new Bread(invalidType, 1, 1));
         }
     }
 }
