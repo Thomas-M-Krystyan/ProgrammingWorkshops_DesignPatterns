@@ -1,20 +1,41 @@
-﻿using System;
+﻿using Factory.Exercise.Abstractions;
+using Factory.Exercise.Interfaces;
 using System.Collections.Generic;
 
 namespace Factory.Exercise.Services
 {
-    // NOTE: The only purpose of this class is to show you, that "service" is a more general idea, and can
-    // be reused with two implementations using similar logic ("add" and "display" from CRUD in this case)
+    /// <summary>
+    /// The wishlist with products.
+    /// </summary>
+    /// <seealso cref="ICollectingService" />
     public sealed class Wishlist : ICollectingService
     {
-        public void AddProduct(object product)
+        private readonly IList<IProduct> _wishlist = new List<IProduct>();
+        private readonly IFactory _factory;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Wishlist"/> class.
+        /// </summary>
+        /// <param name="factory">The implementation of factory.</param>
+        public Wishlist(IFactory factory)
         {
-            throw new NotImplementedException();
+            this._factory = factory;
         }
 
-        public IList<object> GetCurrentProducts()
+        /// <inheritdoc />
+        public void AddProduct<T>() where T : ProductBase, new()
         {
-            throw new NotImplementedException();
+            // Create product
+            var product = this._factory.Get<T>();
+
+            // Add to wishlist
+            this._wishlist.Add(product);
+        }
+
+        /// <inheritdoc />
+        public IList<IProduct> GetCurrentProducts()
+        {
+            return this._wishlist;
         }
     }
 }
