@@ -1,7 +1,7 @@
 ﻿using Factory.Exercise.Interfaces;
 using System.Collections.Generic;
 
-namespace Factory.Exercise.Services
+namespace Factory.Exercise.Interfaces
 {
     /// <summary>
     /// The collecting service.
