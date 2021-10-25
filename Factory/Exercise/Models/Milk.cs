@@ -1,20 +1,30 @@
-﻿namespace Factory.Exercise.Models
+﻿using Factory.Exercise.Abstractions;
+
+namespace Factory.Exercise.Models
 {
-    public sealed class Milk
+    public sealed class LowFatMilk : Liquids
     {
-        public string ProductName()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LowFatMilk"/> class.
+        /// </summary>
+        public LowFatMilk() : base(1, 1.08M)
         {
-            return "Super Milk, 1%";
         }
 
-        public string ProductWeight()
+        /// <inheritdoc />
+        public override string GetName() => "Low-Fat Milk (2%)";
+    }
+
+    public sealed class HighFatMilk : Liquids
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HighFatMilk"/> class.
+        /// </summary>
+        public HighFatMilk() : base(1, 1.20M)
         {
-            return "1,03 kg";
         }
 
-        public string ProductPrice()
-        {
-            return "1.08 €";
-        }
+        /// <inheritdoc />
+        public override string GetName() => "High-Fat Milk (3.5%)";
     }
 }

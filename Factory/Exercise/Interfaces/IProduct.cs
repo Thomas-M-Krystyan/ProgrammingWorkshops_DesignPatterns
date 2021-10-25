@@ -11,19 +11,19 @@
         string GetName();
 
         /// <summary>
-        /// Gets the product weight (in kilograms).
+        /// Gets the product unit (e.g. weight or volume).
         /// </summary>
         /// <returns></returns>
-        string GetWeightInKg();
+        string GetUnit();
 
         /// <summary>
-        /// Gets the product weight (in pounds).
+        /// Gets the product unit (an alternative unit).
         /// </summary>
-        string GetWeightInLb();
+        string GetUnitAlt();
 
         /// <summary>
-        /// Gets the product price (in euro).
+        /// Gets the product price (e.g. in euro).
         /// </summary>
-        string GetPriceInEur();
+        string GetPriceEur();
     }
 }

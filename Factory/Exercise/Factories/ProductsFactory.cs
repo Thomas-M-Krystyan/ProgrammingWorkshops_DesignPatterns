@@ -2,13 +2,6 @@
 
 namespace Factory.Exercise.Factories
 {
-    // TODO: In this class implement a proper Factory Design Pattern
-
-    /* TODO: List of products to be supported
-     * Milk: Low-Fat 2%, 1 liter, 1.08 €
-     * Milk: High-Fat 3.5%, 1 liter, 1.20 €
-     */
-
     /// <summary>
     /// The factory of products.
     /// </summary>
