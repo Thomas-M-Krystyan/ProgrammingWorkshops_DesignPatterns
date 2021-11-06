@@ -6,6 +6,6 @@
 
         public string GetWeight();
 
-        public decimal GetPrice();
+        public string GetPrice();
     }
 }

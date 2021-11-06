@@ -1,5 +1,4 @@
-﻿using Factory.Exercise.Factories;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Factory.Exercise.Models
 {
@@ -19,13 +18,13 @@ namespace Factory.Exercise.Models
         Camembert
     }
 
-    public sealed class Chease : IProduct
+    public sealed class Chease : ProductBase
     {
         private readonly decimal _price;
         private readonly string _weight;
         private readonly string _name;
 
-        public Chease(string type)
+        public Chease(string type) : base(1, 1.20M)
         {
 
             if (type == CheaseType.Edamer.GetAttribute<DisplayAttribute>().Name)
@@ -42,20 +41,7 @@ namespace Factory.Exercise.Models
             }
         }
 
-        public decimal GetPrice()
-        {
-            return _price;
-        }
+        public override string GetName() => _name;
 
-        public string GetName()
-        {
-            return _name;
-
-        }
-
-        public string GetWeight()
-        {
-            return _weight;
-        }
     }
 }

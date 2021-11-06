@@ -11,13 +11,13 @@ namespace Factory.Exercise.Models
         High
     }
 
-    public sealed class Bread : IProduct
+    public sealed class Bread : ProductBase
     {
         private readonly decimal _price;
         private readonly string _weight;
         private readonly string _name;
 
-        public Bread(string type)
+        public Bread(string type) : base(0.750D,1.65M)
         {
             if (type == BreadType.Low.GetAttribute<DisplayAttribute>().Name)
             {
@@ -32,20 +32,7 @@ namespace Factory.Exercise.Models
                 _weight = "1000g";
             }
         }
-        public decimal GetPrice()
-        {
-            return _price;
-        }
-
-        public string GetName()
-        {
-            return _name;
-
-        }
-
-        public string GetWeight()
-        {
-            return _weight;
-        }
+     
+        public override string GetName() => _name;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Factory.Exercise.Factories;
+using static Factory.Exercise.Models.ProductBase;
 
 namespace Factory.Exercise.Models
 {
@@ -10,13 +11,13 @@ namespace Factory.Exercise.Models
         [Display(Name = "High-Fat")]
         High
     }
-    public sealed class Milk : IProduct
+    public sealed class Milk : Liquids
     {
         private readonly decimal _price;
         private readonly string _weight;
         private readonly string _name;
 
-        public Milk(string type)
+        public Milk(string type) : base(1,1.08M)
         {
             if (type == MilkType.Low.GetAttribute<DisplayAttribute>().Name)
             {
@@ -31,20 +32,8 @@ namespace Factory.Exercise.Models
                 _weight = "1L";
             }
         }
-        public decimal GetPrice()
-        {
-            return _price;
-        }
-
-        public string GetName()
-        {
-            return _name;
-
-        }
-
-        public string GetWeight()
-        {
-            return _weight;
-        }
+      
+        public override string GetName() => _name;
+      
     }
 }
