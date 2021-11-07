@@ -8,7 +8,7 @@ namespace Strategy.Exercise.TraverseStrategies
     /// <summary>
     /// Breadth First Search (BFS) algorithm.
     /// </summary>
-    public sealed class BFS_Strategy
+    public sealed class BFS_Strategy : IStrategy
     {
         /// <summary>
         /// Try to find the given element.
@@ -79,6 +79,11 @@ namespace Strategy.Exercise.TraverseStrategies
                 return result;
             }
             return result;
+        }
+
+        public string GetName()
+        {
+            return "BFS";
         }
     }
 }

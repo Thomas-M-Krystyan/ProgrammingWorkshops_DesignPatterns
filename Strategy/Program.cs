@@ -7,7 +7,8 @@ namespace Strategy
         public static void Main()
         {
             var value = AskForInput();
-            
+            var searchValue = AskForLetter();
+            string strategyName = string.Empty;
             switch (value)
             {
                 case "0":
@@ -16,10 +17,12 @@ namespace Strategy
 
                 case "1":
                     // 1. Use BFS algorithm
+                    strategyName = "BFS";
                     // 2. Print result
                     break;
 
                 case "2":
+                    strategyName = "DFS";
                     // 1. Use DFS algorithm
                     // 2. Print result
                     break;
@@ -28,7 +31,9 @@ namespace Strategy
                     Console.WriteLine("This command is not supported.\n");
                     break;
             }
-
+            Context con = new Context(strategyName);
+            var result = con.Find(false, searchValue);
+            Console.WriteLine(result.Path);
             Main();
         }
 
@@ -42,6 +47,15 @@ namespace Strategy
                 "\nand press ENTER");
 
             return Console.ReadLine();
+        }
+
+        private static string AskForLetter()
+        {
+            Console.WriteLine(
+                "Now chose the letter you want search for:" +
+                $"\nand press [ENTER]");
+
+            return Console.ReadLine().ToUpper();
         }
     }
 }
