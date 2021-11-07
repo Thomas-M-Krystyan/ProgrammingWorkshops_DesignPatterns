@@ -1,14 +1,18 @@
-﻿namespace Strategy.Exercise.Result
+﻿using System;
+
+namespace Strategy.Exercise.Result
 {
     /// <summary>
     /// The result of graph traverse algorithm.
     /// </summary>
-    public sealed class TraverseResult
+    public readonly struct TraverseResult
     {
         /// <summary>
         /// Gets a value indicating whether the looked up value was found.
         /// </summary>
         public bool IsFound { get; }
+        
+        private readonly string _path;
 
         /// <summary>
         /// Gets all the visited nodes (from starting point to the looked up value).
@@ -16,7 +20,10 @@
         ///   Example: "ABCD"
         /// </para>
         /// </summary>
-        public string Path { get; }
+        public string Path
+        {
+            get { return this._path ?? String.Empty; }
+        }
 
         /// <summary>
         /// Gets the count of all visited nodes (from starting point to the looked up value).
@@ -35,7 +42,7 @@
         public TraverseResult(bool isFound, string path, ushort count)
         {
             this.IsFound = isFound;
-            this.Path = path;
+            this._path = path;
             this.Count = count;
         }
     }
