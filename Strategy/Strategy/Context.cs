@@ -34,6 +34,12 @@ namespace Strategy.Strategy
             this._strategy = strategy;
         }
 
+        /// <inheritdoc cref="IStrategy.GetName"/>
+        public string GetName()
+        {
+            return this._strategy.GetName();
+        }
+
         /// <inheritdoc cref="IStrategy.Find"/>
         public string Find(string value, bool isLeftHanded)
         {

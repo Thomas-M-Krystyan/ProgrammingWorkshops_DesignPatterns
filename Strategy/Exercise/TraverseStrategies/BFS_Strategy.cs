@@ -13,6 +13,12 @@ namespace Strategy.Exercise.TraverseStrategies
     public sealed class BFS_Strategy : IStrategy
     {
         /// <inheritdoc/>
+        public string GetName()
+        {
+            return "BFS Strategy";
+        }
+
+        /// <inheritdoc/>
         public TraverseResult Find(string value, bool isLeftHanded)
         {
             if (String.IsNullOrWhiteSpace(value))

@@ -57,7 +57,7 @@ namespace Strategy
                 "\n[2] BFS (right-handed)" +
                 "\n[3] DFS (left-handed)" +
                 "\n[4] DFS (right-handed)" +
-                $"\nand press ENTER{Separator}");
+                $"\nand press [ENTER]{Separator}");
 
             return Console.ReadLine();
         }
@@ -72,9 +72,11 @@ namespace Strategy
 
         private static string AskForLetter()
         {
+            Console.WriteLine($"\"{Context.GetName()}\" is selected.\n");
+
             Console.WriteLine(
                 "Now, pick the letter from A-Z (case insensitive)" +
-                $"\nand press ENTER{Separator}");
+                $"\nand press [ENTER]{Separator}");
 
             return Console.ReadLine().ToUpper();
         }
