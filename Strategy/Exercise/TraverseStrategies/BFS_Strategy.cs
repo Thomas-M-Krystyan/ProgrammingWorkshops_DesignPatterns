@@ -13,7 +13,12 @@ namespace Strategy.Exercise.TraverseStrategies
         /// <summary>
         /// Try to find the given element.
         /// </summary>
-        public TraverseResult Find(string value)
+        /// <param name="value">The value of the Node to be found.</param>
+        /// <param name="isLeftHanded">
+        ///   If <c>true</c> left-handed version of <see cref="BFS_Strategy"/> algorithm will be used;
+        ///   otherwise, if <c>false</c>, right-handed version will be used.
+        /// </param>
+        public TraverseResult Find(string value, bool isLeftHanded)
         {
             Node startNode = Graph.StartNode;
 
