@@ -7,12 +7,20 @@ namespace StrategyTests
     [TestFixture]
     public class BFS_StrategyTests
     {
+        private BFS_Strategy _strategy;
+
+        [OneTimeSetUp]
+        public void InitializeTests()
+        {
+            this._strategy = new();
+        }
+
         [TestCase(true)]
         [TestCase(false)]
         public void FindElementA(bool isLeftHanded)
         {
             // Act
-            var result = GetBfsStrategy(isLeftHanded).Find("A");
+            var result = this._strategy.Find("A", isLeftHanded);
 
             // Assert
             Assert.IsNotNull(result);
@@ -26,7 +34,7 @@ namespace StrategyTests
         public void FindElementE(bool isLeftHanded, string path, int count)
         {
             // Act
-            var result = GetBfsStrategy(isLeftHanded).Find("E");
+            var result = this._strategy.Find("E", isLeftHanded);
 
             // Assert
             Assert.IsNotNull(result);
@@ -46,18 +54,13 @@ namespace StrategyTests
         public void FindElement_ForNotExistingValue_ReturnsEmptyResult(bool isLeftHanded, string value)
         {
             // Act
-            var result = GetBfsStrategy(isLeftHanded).Find(value);
+            var result = this._strategy.Find(value, isLeftHanded);
 
             // Assert
             Assert.IsNotNull(result);
             Assert.IsFalse(result.IsFound);
             Assert.That(result.Path, Is.EqualTo(String.Empty));
             Assert.That(result.Count, Is.EqualTo(0));
-        }
-
-        private static BFS_Strategy GetBfsStrategy(bool isLeftHanded)
-        {
-            return new(isLeftHanded);
         }
     }
 }
