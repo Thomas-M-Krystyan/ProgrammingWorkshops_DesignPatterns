@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Strategy.Exercise.Data;
 using Strategy.Exercise.TraverseStrategies;
 using System;
 
@@ -46,12 +47,10 @@ namespace StrategyTests
         [TestCase(true, null)]
         [TestCase(true, "")]
         [TestCase(true, " ")]
-        [TestCase(true, "Z")]
         [TestCase(false, null)]
         [TestCase(false, "")]
         [TestCase(false, " ")]
-        [TestCase(false, "Z")]
-        public void FindElement_ForNotExistingValue_ReturnsEmptyResult(bool isLeftHanded, string value)
+        public void FindElement_ForInvalidValue_ReturnsEmptyResult(bool isLeftHanded, string value)
         {
             // Act
             var result = this._strategy.Find(value, isLeftHanded);
@@ -61,6 +60,20 @@ namespace StrategyTests
             Assert.IsFalse(result.IsFound);
             Assert.That(result.Path, Is.EqualTo(String.Empty));
             Assert.That(result.Count, Is.EqualTo(0));
+        }
+
+        [TestCase(true, "Z", "ABCDEFGHIJ")]
+        [TestCase(false, "Z", "ACBFEDHGJI")]
+        public void FindElement_ForNotExistingValue_ReturnsEmptyResult(bool isLeftHanded, string value, string path)
+        {
+            // Act
+            var result = this._strategy.Find(value, isLeftHanded);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsFalse(result.IsFound);
+            Assert.That(result.Path, Is.EqualTo(path));
+            Assert.That(result.Count, Is.EqualTo(Graph.Count));
         }
     }
 }
