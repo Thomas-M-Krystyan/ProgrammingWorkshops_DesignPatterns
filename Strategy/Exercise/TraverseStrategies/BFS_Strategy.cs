@@ -11,24 +11,15 @@ namespace Strategy.Exercise.TraverseStrategies
     /// </summary>
     public sealed class BFS_Strategy
     {
-        private readonly bool _isLeftHanded;
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="BFS_Strategy"/> class.
+        /// Try to find the given element.
         /// </summary>
+        /// <param name="value">The value of the Node to be found.</param>
         /// <param name="isLeftHanded">
         ///   If <c>true</c> left-handed version of DFS algorithm will be used;
         ///   otherwise, if <c>false</c>, right-handed version will be used.
         /// </param>
-        public BFS_Strategy(bool isLeftHanded)
-        {
-            this._isLeftHanded = isLeftHanded;
-        }
-
-        /// <summary>
-        /// Try to find the given element.
-        /// </summary>
-        public TraverseResult Find(string value)
+        public TraverseResult Find(string value, bool isLeftHanded)
         {
             if (String.IsNullOrWhiteSpace(value))
             {
@@ -57,15 +48,15 @@ namespace Strategy.Exercise.TraverseStrategies
                 }
 
                 // Adding left and right Nodes to the queue
-                FollowTheRuleOfHand(queue, currentNode);
+                FollowTheRuleOfHand(isLeftHanded, queue, currentNode);
             }
             
             return default;  // Nothing was found
         }
 
-        private void FollowTheRuleOfHand(Queue<Node> queue, Node currentNode)
+        private void FollowTheRuleOfHand(bool isLeftHanded, Queue<Node> queue, Node currentNode)
         {
-            if (this._isLeftHanded)
+            if (isLeftHanded)
             {
                 AddTo(queue, currentNode.NextLeft);
                 AddTo(queue, currentNode.NextRight);
