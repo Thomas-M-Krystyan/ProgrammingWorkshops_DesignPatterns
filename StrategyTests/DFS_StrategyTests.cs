@@ -50,7 +50,7 @@ namespace StrategyTests
         [TestCase(false, null)]
         [TestCase(false, "")]
         [TestCase(false, " ")]
-        public void FindElement_ForNotExistingValue_ReturnsEmptyResult(bool isLeftHanded, string value)
+        public void FindElement_ForInvalidValue_ReturnsEmptyResult(bool isLeftHanded, string value)
         {
             // Act
             var result = this._strategy.Find(value, isLeftHanded);
