@@ -24,3 +24,5 @@
     achieve unbelievable code flexibility and maintainability
 
 - LINQ syntax
+
+- Unit tests (NUnit3)
