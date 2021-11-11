@@ -14,6 +14,17 @@ namespace FacadeTests.Services
         {
             this._service = new MultiplyingService(new NullLogger<MultiplyingService>());
         }
+
+        [TestCase(new int[] { })]
+        [TestCase(null)]
+        public void Method_Calculate_ForEmptyCollection_ReturnsDefaultResult(int[] numbers)
+        {
+            // Act
+            var actualResult = this._service.Calculate(numbers);
+
+            // Assert
+            Assert.That(actualResult, Is.EqualTo(default(int)));
+        }
         
         [TestCase(new[] { 1, 2, 3, 4 }, 24)]
         [TestCase(new[] { 0, 0, 0, 0 }, 0)]
