@@ -9,7 +9,7 @@ namespace Facade.Services.Mathematics
     /// Adds numbers to each other.
     /// </summary>
     /// <seealso cref="ICalculate"/>
-    public class AddingService : ICalculate
+    public sealed class AddingService : ICalculate
     {
         private readonly ILogger<AddingService> _logger;
 

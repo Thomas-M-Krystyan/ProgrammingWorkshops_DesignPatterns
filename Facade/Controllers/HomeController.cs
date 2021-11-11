@@ -6,7 +6,7 @@ namespace Facade.Controllers
     /// The main MVC Controller to display the Home page.
     /// </summary>
     /// <seealso cref="Controller" />
-    public class HomeController : Controller
+    public sealed class HomeController : Controller
     {
         /// <summary>
         /// Renders the first "Index" page.

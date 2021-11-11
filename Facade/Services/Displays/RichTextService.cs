@@ -6,7 +6,7 @@ namespace Facade.Services.Displays
     /// Formats the original calculation result for display purposes.
     /// </summary>
     /// <seealso cref="IDisplay" />
-    public class RichTextService : IDisplay
+    public sealed class RichTextService : IDisplay
     {
         /// <inheritdoc />
         public string Enrich(object value)

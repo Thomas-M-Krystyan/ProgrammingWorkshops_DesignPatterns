@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Facade.Services.Mathematics.Interfaces;
 using Microsoft.Extensions.Logging;
 
@@ -9,7 +8,7 @@ namespace Facade.Services.Mathematics
     /// Multiplies numbers by each other.
     /// </summary>
     /// <seealso cref="ICalculate"/>
-    public class MultiplyingService : ICalculate
+    public sealed class MultiplyingService : ICalculate
     {
         private readonly ILogger<MultiplyingService> _logger;
 
