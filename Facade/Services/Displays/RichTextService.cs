@@ -11,7 +11,7 @@ namespace Facade.Services.Displays
         /// <inheritdoc />
         public string Enrich(object value)
         {
-            return @$"The result is: {value}";
+            return @$"Happy {value}!";
         }
     }
 }

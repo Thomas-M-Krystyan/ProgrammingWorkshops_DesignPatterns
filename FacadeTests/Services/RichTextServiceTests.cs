@@ -6,12 +6,12 @@ namespace FacadeTests.Services
     [TestFixture]
     public class RichTextServiceTests
     {
-        private const string ResultText = "The result is: ";
+        private const string ResultText = "Happy ";
 
-        [TestCase(null, ResultText)]  // Value is empty
-        [TestCase("", ResultText)]    // Value is empty
-        [TestCase("25", ResultText + "25")]
-        [TestCase(new object[] { }, ResultText + "System.Object[]")]
+        [TestCase(null, ResultText + "!")]  // Value is empty
+        [TestCase("", ResultText + "!")]    // Value is empty
+        [TestCase("25", ResultText + "25!")]
+        [TestCase(new object[] { }, ResultText + "System.Object[]!")]
         public void Method_Enrich_ReturnsFormattedText(object value, string expectedResult)
         {
             // Arrange
