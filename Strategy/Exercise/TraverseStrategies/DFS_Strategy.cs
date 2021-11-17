@@ -54,7 +54,7 @@ namespace Strategy.Exercise.TraverseStrategies
             return new TraverseResult(false, path.ToString(), count);  // Nothing was found
         }
 
-        private void FollowTheRuleOfHand(bool isLeftHanded, Stack<Node> stack, Node currentNode)
+        private static void FollowTheRuleOfHand(bool isLeftHanded, Stack<Node> stack, Node currentNode)
         {
             if (isLeftHanded)
             {
