@@ -58,13 +58,13 @@ namespace Strategy.Exercise.TraverseStrategies
         {
             if (isLeftHanded)
             {
-                AddTo(stack, currentNode.NextLeft);
                 AddTo(stack, currentNode.NextRight);
+                AddTo(stack, currentNode.NextLeft);
             }
             else
             {
-                AddTo(stack, currentNode.NextRight);
                 AddTo(stack, currentNode.NextLeft);
+                AddTo(stack, currentNode.NextRight);
             }
         }
 
