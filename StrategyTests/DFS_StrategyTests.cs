@@ -30,8 +30,8 @@ namespace StrategyTests
             Assert.That(result.Count, Is.EqualTo(1));
         }
 
-        [TestCase(true, "ACFBE", 5)]
-        [TestCase(false, "ABDGHIJE", 8)]
+        [TestCase(true, "ABDGHIJE", 8)]
+        [TestCase(false, "ACFBE", 5)]
         public void FindElementE(bool isLeftHanded, string path, int count)
         {
             // Act
@@ -62,8 +62,8 @@ namespace StrategyTests
             Assert.That(result.Count, Is.EqualTo(0));
         }
 
-        [TestCase(true, "Z", "ACFBEDHJIG")]
-        [TestCase(false, "Z", "ABDGHIJECF")]
+        [TestCase(true, "Z", "ABDGHIJECF")]
+        [TestCase(false, "Z", "ACFBEDHJIG")]
         public void FindElement_ForNotExistingValue_ReturnsEmptyResult(bool isLeftHanded, string value, string path)
         {
             // Act
