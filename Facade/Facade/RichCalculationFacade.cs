@@ -1,8 +1,10 @@
 ﻿using Facade.DTOs;
 using Facade.Services.Displays.Interfaces;
+using Facade.Services.Mathematics;
 using Facade.Services.Mathematics.Interfaces;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Linq;
 
 namespace Facade.Facade
 {
@@ -12,8 +14,8 @@ namespace Facade.Facade
     public sealed class RichCalculationFacade : ICalculationFacade
     {
         private readonly ILogger<RichCalculationFacade> _logger;
-        private readonly ICalculate _addingService;
-        private readonly ICalculate _multiplyingService;
+        private readonly ICalculate<AddingService> _addingService;
+        private readonly ICalculate<MultiplyingService> _multiplyingService;
         private readonly IDisplay _displayService;
 
         /// <summary>
@@ -23,8 +25,8 @@ namespace Facade.Facade
         /// <param name="addingService">The adding service.</param>
         /// <param name="multiplyingService">The multiplying service.</param>
         /// <param name="displayService">The display service.</param>
-        public RichCalculationFacade(ILogger<RichCalculationFacade> logger, ICalculate addingService,
-                                     ICalculate multiplyingService, IDisplay displayService)
+        public RichCalculationFacade(ILogger<RichCalculationFacade> logger, ICalculate<AddingService> addingService,
+                                     ICalculate<MultiplyingService> multiplyingService, IDisplay displayService)
         {
             this._logger = logger;
             this._addingService = addingService;
@@ -33,14 +35,19 @@ namespace Facade.Facade
         }
 
         /// <inheritdoc />
-        public string PrepareResult<TAdd, TMultiply>(CalculationDto<TAdd, TMultiply> dto)
+        public string PrepareResult(CalculationDto dto)
         {
             try
             {
-                var addedNumbers = this._addingService.Calculate(dto.NumbersToAdd);
-                var multipliedNumbers = this._multiplyingService.Calculate(dto.NumbersToMultiply);
+                // Add
+                var sum = this._addingService.Calculate(dto.NumbersToAdd);
+
+                // Multiply
+                var numbersToMultiply = dto.NumbersToMultiply.Append(sum).ToArray();
+                var product = Math.Round(this._multiplyingService.Calculate(numbersToMultiply));
                 
-                return this._displayService.Enrich(multipliedNumbers);
+                // Display
+                return this._displayService.Enrich(product);
             }
             catch (Exception exception)
             {
