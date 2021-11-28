@@ -3,18 +3,16 @@
     /// <summary>
     /// The DTO to pass numbers to calculate.
     /// </summary>
-    /// <typeparam name="TAdd">The type of numbers to add.</typeparam>
-    /// <typeparam name="TMultiply">The type of numbers to multiply.</typeparam>
-    public sealed class CalculationDto<TAdd, TMultiply>
+    public sealed class CalculationDto
     {
         /// <summary>
         /// Gets or sets the numbers to add.
         /// </summary>
-        public TAdd[] NumbersToAdd { get; set; }
+        public double[] NumbersToAdd { get; set; }
 
         /// <summary>
         /// Gets or sets the numbers to multiply.
         /// </summary>
-        public TMultiply[] NumbersToMultiply { get; set; }
+        public double[] NumbersToMultiply { get; set; }
     }
 }
