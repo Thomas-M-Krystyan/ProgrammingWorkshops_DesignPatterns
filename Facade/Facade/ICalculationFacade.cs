@@ -10,9 +10,8 @@ namespace Facade.Facade
         /// <summary>
         /// Prepares the result.
         /// </summary>
-        /// <typeparam name="T">The type of input data.</typeparam>
-        /// <param name="numbers">The numbers to be calculated.</param>
+        /// <param name="dto">The DTO with numbers to be calculated.</param>
         /// <returns>Formatted calculated result.</returns>
-        string PrepareResult<TAdd, TMultiply>(CalculationDto<TAdd, TMultiply> dto);
+        string PrepareResult(CalculationDto dto);
     }
 }
