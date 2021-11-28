@@ -3,7 +3,7 @@
     /// <summary>
     /// The interface for mathematics services.
     /// </summary>
-    public interface ICalculate
+    public interface ICalculate<S> where S : class, ICalculate<S>
     {
         /// <summary>
         /// Calculates the specified numbers.

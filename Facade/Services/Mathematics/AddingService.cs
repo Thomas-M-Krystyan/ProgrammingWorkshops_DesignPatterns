@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq;
-using Facade.Services.Mathematics.Interfaces;
+﻿using Facade.Services.Mathematics.Interfaces;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
 
 namespace Facade.Services.Mathematics
 {
@@ -9,7 +9,7 @@ namespace Facade.Services.Mathematics
     /// Adds numbers to each other.
     /// </summary>
     /// <seealso cref="ICalculate"/>
-    public sealed class AddingService : ICalculate
+    public sealed class AddingService : ICalculate<AddingService>
     {
         private readonly ILogger<AddingService> _logger;
 

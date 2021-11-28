@@ -31,8 +31,8 @@ namespace Facade
             services.AddSingleton<ICalculationFacade, RichCalculationFacade>();
 
             // Mathematics
-            services.AddSingleton<ICalculate, AddingService>();
-            services.AddSingleton<ICalculate, MultiplyingService>();
+            services.AddSingleton<ICalculate<AddingService>, AddingService>();
+            services.AddSingleton<ICalculate<MultiplyingService>, MultiplyingService>();
             
             // Displays
             services.AddSingleton<IDisplay, RichTextService>();
