@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Facade.DTOs;
 using Facade.Services.Displays.Interfaces;
 using Facade.Services.Mathematics.Interfaces;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace Facade.Facade
 {
@@ -37,11 +38,21 @@ namespace Facade.Facade
         /// <typeparam name="T">The type of input data.</typeparam>
         /// <param name="numbers">The numbers to be calculated.</param>
         /// <returns>Formatted calculated result.</returns>
-        public string PrepareResult<T>(params T[] numbers)
+        public string PrepareResult<TAdd, TMultiply>(CalculationDto<TAdd, TMultiply> dto)
         {
-            // TODO: Use this method in HomeController
+            try
+            {
+                var addedNumbers = this._addingService.Calculate(dto.NumbersToAdd);
+                var multipliedNumbers = this._multiplyingService.Calculate(dto.NumbersToMultiply);
+                
+                return this._displayService.Enrich(multipliedNumbers);
+            }
+            catch (Exception exception)
+            {
+                this._logger.LogError(exception.Message);
 
-            throw new NotImplementedException();
+                return $"Failed to process numbers";
+            }
         }
     }
 }
