@@ -1,3 +1,8 @@
+using Facade.Facade;
+using Facade.Services.Displays;
+using Facade.Services.Displays.Interfaces;
+using Facade.Services.Mathematics;
+using Facade.Services.Mathematics.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +26,16 @@ namespace Facade
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            // Facade
+            services.AddSingleton<ICalculationFacade, RichCalculationFacade>();
+
+            // Mathematics
+            services.AddSingleton<ICalculate, AddingService>();
+            services.AddSingleton<ICalculate, MultiplyingService>();
+            
+            // Displays
+            services.AddSingleton<IDisplay, RichTextService>();
         }
 
         /// <summary>

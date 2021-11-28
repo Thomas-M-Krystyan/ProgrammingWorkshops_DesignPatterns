@@ -9,7 +9,7 @@ namespace Facade.Facade
     /// <summary>
     /// Process specific math operations and format them in a user-friendly way.
     /// </summary>
-    public sealed class RichCalculationFacade
+    public sealed class RichCalculationFacade : ICalculationFacade
     {
         private readonly ILogger<RichCalculationFacade> _logger;
         private readonly ICalculate _addingService;
@@ -32,12 +32,7 @@ namespace Facade.Facade
             this._displayService = displayService;
         }
 
-        /// <summary>
-        /// Prepares the result.
-        /// </summary>
-        /// <typeparam name="T">The type of input data.</typeparam>
-        /// <param name="numbers">The numbers to be calculated.</param>
-        /// <returns>Formatted calculated result.</returns>
+        /// <inheritdoc />
         public string PrepareResult<TAdd, TMultiply>(CalculationDto<TAdd, TMultiply> dto)
         {
             try
