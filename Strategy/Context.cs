@@ -11,22 +11,14 @@ namespace Strategy
    public class Context
     {
         private IStrategy _strategy;
-
-        public Context(string strategyName)
+        public Context(IStrategy strategyName)
         {
             SetStrategy(strategyName);
         }
 
-        private void SetStrategy(string strategyName)
+        public void SetStrategy(IStrategy strategy)
         {
-            if(strategyName == "BFS")
-            {
-                _strategy = new BFS_Strategy();
-            }
-            else
-            {
-                _strategy = new DFS_Strategy();
-            }
+            _strategy = strategy;
         }
 
         public TraverseResult Find(bool isLefthand, string value)
