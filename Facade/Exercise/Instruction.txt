@@ -1,0 +1,45 @@
+﻿
+                            "Facade" exercise:
+
+You have a new challenge to face. This time project is larger, contains a few different classes,
+a specific (MVC) structure and some communication between its components. Your task is to finish
+Facade pattern first (according to the requirements), then call facade method from a proper place
+and use the achieved result on a HTML view. It is necessary to register your services in Startup.cs
+class, otherwise the application will not ever work.
+
+
+                                Requirements:
+
+BASIC:
+
+  1. Finishing implementation of PrepareResult() method in "RichCalculationFacade.cs" class
+     - Add the following numbers: 4, 8, 15, 16, 23, 42
+     - Multiply the sum by 6, and then by 3.12037037037037
+     - Return Enriched (IDisplay) product
+  2. Look around and read Internet sources to understand the MVC architecture and communication within it
+     (how we are sending something to view, how we are retrieving something from view, how MVC controllers
+      are calling pages from cshtml files using Routing, how we are using "partial views" in other views)
+  3. Register all required services in "Startup.cs" class
+  4. Use instance of Facade in "HomeController.cs" (HINT: you need services to be registered)
+  5. Use finished PrepareResult() method in "HomeController.cs"
+  6. Display the calculation result on "Index.cshtml" view
+  7. Prepare unit tests for Facade method PrepareResult():
+     - invalid input
+     - valid input (the conditions from point 1)
+
+
+INTERMEDIATE:
+
+  8. Improve the current implementation and allow the user to provide the values:
+     - simple text input field
+     - values separated by comma
+     - error handling
+
+
+                              Expected outcome:
+
+- code is compiling
+- all unit tests are passing
+- the implementation of Facade pattern is finished according to the given requirements
+- when starting application "Index.cshtml" view is the first one to be opened
+- the calculation result is visible on "Index.cshtml" page

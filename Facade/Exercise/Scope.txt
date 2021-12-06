@@ -1,0 +1,28 @@
+- Facade (design pattern)
+  * Combining results from different services
+
+- Web Application
+
+- Microservices architecture
+
+- MVC (architecture pattern)
+  * using MVC Controllers			- to render pages
+  * using Razor in CSHTML files		- to mix C# with HTML
+  * using ViewModels				- to pass results into views
+
+- ILogger<T>
+
+- .NET Core configuration
+  * More settings and methods required by Web projects
+
+- Dependency Injection (services)
+  * This time it's not just an exercise to train the AddService convention,
+    without registering the services the application will just not work(!)
+
+- Generics <T> and dynamics
+  * using powerful benefit of dynamics and generic types to
+    achieve unbelievable code flexibility and maintainability
+
+- LINQ syntax
+
+- Unit tests (NUnit3)
