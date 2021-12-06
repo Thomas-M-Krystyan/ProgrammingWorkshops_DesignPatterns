@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using Facade.Services.Displays.Interfaces;
 using Facade.Services.Mathematics.Interfaces;
 using Microsoft.Extensions.Logging;
@@ -39,9 +40,16 @@ namespace Facade.Facade
         /// <returns>Formatted calculated result.</returns>
         public string PrepareResult<T>(params T[] numbers)
         {
-            // TODO: Use this method in HomeController
+            if(numbers == null) return String.Empty;
+            
+            var result = _addingService.Calculate(numbers);
+            var firstMultiplier = 6.0;
+            var secoundMultiplier = 3.12037037037037;
+            result = _multiplyingService.Calculate(result, (T)(object)firstMultiplier);
+            result = _multiplyingService.Calculate(result, (T)(object)secoundMultiplier);
+            var displayresult = _displayService.Enrich(result);
 
-            throw new NotImplementedException();
+            return displayresult;
         }
     }
 }

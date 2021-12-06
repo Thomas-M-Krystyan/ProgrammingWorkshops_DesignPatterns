@@ -1,3 +1,5 @@
+using Facade.Controllers;
+using Facade.Services.Displays;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +23,8 @@ namespace Facade
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSingleton<HomeController>();
+            //services.AddControllersWithViews();
         }
 
         /// <summary>
