@@ -61,16 +61,13 @@ namespace Strategy.Exercise.TraverseStrategies
                     {
                         if (isLeftHanded)
                         {   
-                            if (node.NextLeft != null) stack.Push(node.NextLeft);                         
                             if (node.NextRight != null) stack.Push(node.NextRight);
-                            
+                            if (node.NextLeft != null) stack.Push(node.NextLeft);
                         }
                         else
                         {
-                            if (node.NextRight != null) stack.Push(node.NextRight);
                             if (node.NextLeft != null) stack.Push(node.NextLeft);
-                            
-                            
+                            if (node.NextRight != null) stack.Push(node.NextRight);
                         }
 
                     }
