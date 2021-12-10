@@ -1,3 +1,4 @@
+using Facade.Controllers;
 using Facade.Facade;
 using Facade.Services.Displays;
 using Facade.Services.Displays.Interfaces;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace Facade
 {
@@ -59,8 +61,13 @@ namespace Facade
             {
                 endpoints.MapControllerRoute(
                     name: @"default",
-                    pattern: @"{controller=Home}/{action=Index}/{id?}");
+                    pattern: $@"{{controller={GetControllerName(nameof(HomeController))}}}/{{action={nameof(HomeController.Index)}}}/{{id?}}");
             });
+        }
+
+        private static string GetControllerName(string controllerName)
+        {
+            return controllerName.Replace("Controller", String.Empty);
         }
     }
 }
