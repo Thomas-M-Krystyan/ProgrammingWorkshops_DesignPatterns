@@ -14,5 +14,10 @@
         /// Gets or sets the numbers to multiply.
         /// </summary>
         public double[] NumbersToMultiply { get; set; }
+
+        /// <summary>
+        /// Gets or sets the flag to determine whether the result should be rounded up.
+        /// </summary>
+        public bool UseRoundUp { get; set; }
     }
 }
