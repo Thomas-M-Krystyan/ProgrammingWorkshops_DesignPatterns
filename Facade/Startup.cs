@@ -6,6 +6,7 @@ using Facade.Services.Mathematics;
 using Facade.Services.Mathematics.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -61,13 +62,13 @@ namespace Facade
             {
                 endpoints.MapControllerRoute(
                     name: @"default",
-                    pattern: $@"{{controller={GetControllerName(nameof(HomeController))}}}/{{action={nameof(HomeController.Index)}}}/{{id?}}");
+                    pattern: $@"{{controller={GetControllerName<HomeController>()}}}/{{action={nameof(HomeController.Index)}}}/{{id?}}");
             });
         }
 
-        private static string GetControllerName(string controllerName)
+        private static string GetControllerName<T>() where T : Controller
         {
-            return controllerName.Replace("Controller", String.Empty);
+            return typeof(T).Name.Replace(nameof(Controller), String.Empty);
         }
     }
 }
