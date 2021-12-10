@@ -28,6 +28,7 @@ namespace Facade
         /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
+            // MVC Controllers
             services.AddControllersWithViews();
 
             // Facade
@@ -44,21 +45,23 @@ namespace Facade
         /// <summary>
         /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         /// </summary>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder application, IWebHostEnvironment environment)
         {
-            if (env.IsDevelopment())
+            // Detailed exceptions in Development mode
+            if (environment.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                application.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            // Use HTTPS protocol
+            application.UseHttpsRedirection();
+            
+            // Include static files such as HTML styles, images, etc.
+            application.UseStaticFiles();
 
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
+            // Endpoints
+            application.UseRouting();
+            application.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: @"default",
@@ -66,6 +69,11 @@ namespace Facade
             });
         }
 
+        /// <summary>
+        /// Gets the MVC Controller name by returning only the name without "Controller" word.
+        /// </summary>
+        /// <typeparam name="T">The type of MVC <see cref="Controller"/>.</typeparam>
+        /// <returns>Simplified MVC Controller name.</returns>
         private static string GetControllerName<T>() where T : Controller
         {
             return typeof(T).Name.Replace(nameof(Controller), String.Empty);
