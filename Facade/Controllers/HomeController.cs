@@ -26,7 +26,7 @@ namespace Facade.Controllers
         {
             dto = new CalculationDto
             {
-                NumbersToAdd = new[] { 4D, 8, 15, 16, 23, 42 },
+                NumbersToAdd = new double[] { 4, 8, 15, 16, 23, 42 },
                 NumbersToMultiply = new[] { 6, 3.12037037037037 },
                 UseRoundUp = true
             };
