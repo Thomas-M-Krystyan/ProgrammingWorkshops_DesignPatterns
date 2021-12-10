@@ -44,7 +44,7 @@ namespace Facade.Facade
 
                 // Multiply
                 var numbersToMultiply = dto.NumbersToMultiply.Append(sum).ToArray();
-                var product = Math.Round(this._multiplyingService.Calculate(numbersToMultiply), 5);
+                var product = Math.Round(this._multiplyingService.Calculate(numbersToMultiply));
                 
                 // Display
                 return this._displayService.Enrich(product);

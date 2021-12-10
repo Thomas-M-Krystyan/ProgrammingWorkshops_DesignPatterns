@@ -24,11 +24,11 @@ namespace Facade.Controllers
         /// </summary>
         public IActionResult Index([FromQuery] CalculationDto dto)
         {
-            //dto = new CalculationDto
-            //{
-            //    NumbersToAdd = new[] { 4D, 8, 15, 16, 23, 42 },
-            //    NumbersToMultiply = new[] { 6, 3.12037037037037 }
-            //};
+            dto = new CalculationDto
+            {
+                NumbersToAdd = new[] { 4D, 8, 15, 16, 23, 42 },
+                NumbersToMultiply = new[] { 6, 3.12037037037037 }
+            };
 
             var viewModel = new ResultViewModel
             {
