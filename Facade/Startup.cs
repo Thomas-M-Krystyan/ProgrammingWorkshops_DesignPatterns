@@ -65,7 +65,10 @@ namespace Facade
             {
                 endpoints.MapControllerRoute(
                     name: @"default",
-                    pattern: $@"{{controller={GetControllerName<HomeController>()}}}/{{action={nameof(HomeController.Index)}}}/{{id?}}");
+                    pattern: $@"{{controller={GetControllerName<HomeController>()}}}/{{action={nameof(HomeController.Index)}}}/{{viewModel?}}");
+                endpoints.MapControllerRoute(
+                    name: @"partial",
+                    pattern: $@"{{controller={GetControllerName<HomeController>()}}}/{{action={nameof(HomeController.Recalculate)}}}/{{dto}}");
             });
         }
 

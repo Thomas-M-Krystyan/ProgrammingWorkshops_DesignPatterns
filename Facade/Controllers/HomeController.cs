@@ -13,18 +13,21 @@ namespace Facade.Controllers
     {
         private readonly ICalculationFacade _facade;
 
+        /// <summary>
+        /// Injects dependencies for <see cref="HomeController"/>.
+        /// </summary>
         public HomeController(ICalculationFacade facade)
         {
             this._facade = facade;
         }
 
-        [HttpGet]
         /// <summary>
-        /// Renders the first "Index" page.
+        /// Renders the main view with predefined calculation parameters.
         /// </summary>
-        public IActionResult Index([FromQuery] CalculationDto dto)
+        [HttpGet]
+        public IActionResult Index()
         {
-            dto = new CalculationDto
+            var dto = new CalculationDto
             {
                 NumbersToAdd = new double[] { 4, 8, 15, 16, 23, 42 },
                 NumbersToMultiply = new[] { 6, 3.12037037037037 },
@@ -37,6 +40,29 @@ namespace Facade.Controllers
             };
 
             return View(viewModel);
+        }
+
+        /// <summary>
+        /// Pass the <see cref="ResultViewModel"/> to the main view.
+        /// </summary>
+        [HttpPost]
+        public IActionResult Index(ResultViewModel viewModel)
+        {
+            return View(viewModel);
+        }
+
+        /// <summary>
+        /// Renders the first "Index" page with input-based calculation parameters.
+        /// </summary>
+        [HttpPost]
+        public IActionResult Recalculate(CalculationDto dto)
+        {
+            var viewModel = new ResultViewModel
+            {
+                Value = this._facade.PrepareResult(dto)
+            };
+
+            return View(nameof(Index), viewModel);
         }
     }
 }

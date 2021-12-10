@@ -4,10 +4,32 @@
     ViewData[@"Title"] = @"Facade";
 }
 
-<div class="text-center">
+<header class="text-center" style="margin-top: 20px;">
     <h1>Facade Design Pattern</h1>
-    
-    <p>
-        @Model?.Value
-    </p>
-</div>
+</header>
+<body>
+    <div class="text-center" style="margin-top: 30px;">
+        @*The result of predefined or input-based calculation parameters*@
+        <div>
+            <p>@(Model?.Value ?? "Type new numbers")</p>
+        </div>
+
+        <div style="margin-top: 20px;">
+            @*Partial view with form for input-based parameters*@
+            @if (Model.ShowInput)
+            {
+                <partial name="_Input"/>
+            }
+            @*Button to enable partial view*@
+            else
+            {
+                @using (Html.BeginForm(actionName: "Index", controllerName: "Home", method: FormMethod.Post))
+                {
+                    @Html.Hidden(nameof(Model.ShowInput), true)
+
+                    <input type="submit" value="Recalculate" />
+                }
+            }
+        </div>
+    </div>
+</body>

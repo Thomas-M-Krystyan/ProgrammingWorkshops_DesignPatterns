@@ -1,0 +1,23 @@
+﻿<body>
+    <div class="text-center">
+        @using (Html.BeginForm(actionName: "Recalculate", controllerName: "Home", method: FormMethod.Post))
+        {
+            <div>
+                @Html.Label("NumbersToAdd")
+                @Html.TextBox("NumbersToAdd")
+            </div>
+
+            <div style="margin-top: 10px">
+                @Html.Label("NumbersToMultiply")
+                @Html.TextBox("NumbersToMultiply")
+            </div>
+
+            <div style="margin-top: 10px">
+                @Html.Label("UseRoundUp")
+                @Html.CheckBox("UseRoundUp")
+            </div>
+
+            <input type="submit" value="Calculate" style="margin-top: 20px" />
+        }
+    </div>
+</body>
