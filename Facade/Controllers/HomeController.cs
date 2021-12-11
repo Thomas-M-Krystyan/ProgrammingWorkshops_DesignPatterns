@@ -58,6 +58,12 @@ namespace Facade.Controllers
             return View(nameof(Index), PrepareViewModelFrom(dto));
         }
 
+        /// <summary>
+        /// Prepares the valid <see cref="ResultViewModel"/> from the given DTO.
+        /// </summary>
+        /// <typeparam name="T">The type of data used by DTO.</typeparam>
+        /// <param name="dto">The DTO model.</param>
+        /// <returns>The view model, ready to be used on a view.</returns>
         private ResultViewModel PrepareViewModelFrom<T>(CalculationDto<T> dto)
         {
             var viewModel = new ResultViewModel();
