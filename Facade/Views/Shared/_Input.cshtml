@@ -1,6 +1,11 @@
-﻿<body>
+﻿@{
+    string actionName = nameof(Facade.Controllers.HomeController.Recalculate);
+    string controllerName = Facade.Startup.GetControllerName<Facade.Controllers.HomeController>();
+}
+
+<body>
     <div class="text-center">
-        @using (Html.BeginForm(actionName: "Recalculate", controllerName: "Home", method: FormMethod.Post))
+        @using (Html.BeginForm(actionName, controllerName, method: FormMethod.Post))
         {
             <div class="text-left" style="text-align:center; width: 200px; margin: 0px auto;">
                 <div>

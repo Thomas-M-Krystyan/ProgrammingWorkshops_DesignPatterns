@@ -2,6 +2,9 @@
 
 @{
     ViewData[@"Title"] = @"Facade";
+
+    string actionName = nameof(Facade.Controllers.HomeController.Index);
+    string controllerName = Facade.Startup.GetControllerName<Facade.Controllers.HomeController>();
 }
 
 <header class="text-center" style="margin-top: 20px;">
@@ -33,7 +36,7 @@
             @*Button to enable partial view*@
             else
             {
-                @using (Html.BeginForm(actionName: "Index", controllerName: "Home", method: FormMethod.Post))
+                @using (Html.BeginForm(actionName, controllerName, method: FormMethod.Post))
                 {
                     @Html.Hidden(nameof(Model.ShowInput), true)
 
@@ -44,7 +47,7 @@
             @*Button to go back to the first result*@
             @if (Model.Value == null)
             {
-                @using (Html.BeginForm(actionName: "Index", controllerName: "Home", method: FormMethod.Get))
+                @using (Html.BeginForm(actionName, controllerName, method: FormMethod.Get))
                 {
                     <input type="submit" value="Return" style="margin-top: 10px" />
                 }
