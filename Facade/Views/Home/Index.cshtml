@@ -11,17 +11,24 @@
     <div class="text-center" style="margin-top: 30px;">
         @*The result of predefined or input-based calculation parameters*@
         <div>
-            <p>@Html.Raw(Model?.Value ??
-              $"Type new numbers to calculate</br>" +
-               "(comma-separated, e.g. \"1, 3, 5\")")
-            </p>
+            @if (Model.ErrorOccurred)
+            {
+                <p>Failed to process numbers</p>
+            }
+            else
+            {
+                <p>@Html.Raw(Model?.Value ??
+                  $"Type new numbers to calculate</br>" +
+                   "(comma-separated, e.g. \"1, 3, 5\")")
+                </p>
+            }
         </div>
 
         <div style="margin-top: 20px;">
             @*Partial view with form for input-based parameters*@
             @if (Model.ShowInput)
             {
-                <partial name="_Input"/>
+                <partial name="_Input" />
             }
             @*Button to enable partial view*@
             else
@@ -31,6 +38,15 @@
                     @Html.Hidden(nameof(Model.ShowInput), true)
 
                     <input type="submit" value="Recalculate" />
+                }
+            }
+
+            @*Button to go back to the first result*@
+            @if (Model.Value == null)
+            {
+                @using (Html.BeginForm(actionName: "Index", controllerName: "Home", method: FormMethod.Get))
+                {
+                    <input type="submit" value="Return" style="margin-top: 10px" />
                 }
             }
         </div>
