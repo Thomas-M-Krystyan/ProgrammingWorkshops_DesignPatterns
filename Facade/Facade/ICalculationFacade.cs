@@ -1,4 +1,5 @@
 ﻿using Facade.DTOs;
+using System.Threading.Tasks;
 
 namespace Facade.Facade
 {
@@ -12,6 +13,6 @@ namespace Facade.Facade
         /// </summary>
         /// <param name="dto">The DTO with numbers to be calculated.</param>
         /// <returns>Formatted calculated result.</returns>
-        string PrepareResult<T>(CalculationDto<T> dto);
+        Task<string> PrepareResult<T>(CalculationDto<T> dto);
     }
 }

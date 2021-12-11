@@ -1,6 +1,7 @@
 ﻿using Facade.Services.Mathematics.Interfaces;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading.Tasks;
 
 namespace Facade.Services.Mathematics
 {
@@ -22,18 +23,21 @@ namespace Facade.Services.Mathematics
         }
 
         /// <inheritdoc />
-        public T Calculate<T>(params T[] numbers)
+        public async Task<T> Calculate<T>(params T[] numbers)
         {
             try
             {
-                var result = numbers[0];
-
-                for (var index = 1; index < numbers.Length; index++)
+                return await Task.Run(() =>
                 {
-                    result *= (dynamic)numbers[index];
-                }
+                    T result = numbers[0];
 
-                return (T)Convert.ChangeType(result, typeof(T));
+                    for (int index = 1; index < numbers.Length; index++)
+                    {
+                        result *= (dynamic)numbers[index];
+                    }
+
+                    return (T)Convert.ChangeType(result, typeof(T));
+                });
             }
             catch (Exception exception)
             {

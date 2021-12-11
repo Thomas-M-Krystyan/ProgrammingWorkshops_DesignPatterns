@@ -52,8 +52,8 @@ namespace Facade.DTOs
                 return default;
             }
 
-            var splittedElements = input.Split(',');
-            var validNumbers = new List<T>();
+            string[] splittedElements = input.Split(',');
+            List<T> validNumbers = new();
             
             for (int index = 0; index < splittedElements.Length; index++)
             {
@@ -78,7 +78,7 @@ namespace Facade.DTOs
 
             try
             {
-                var converter = TypeDescriptor.GetConverter(typeof(T));
+                TypeConverter converter = TypeDescriptor.GetConverter(typeof(T));
                 if (converter != null)
                 {
                     value = (T)converter.ConvertFromString(input.Replace('.', ','));

@@ -1,4 +1,5 @@
 ﻿using Facade.Services.Displays.Interfaces;
+using System.Threading.Tasks;
 
 namespace Facade.Services.Displays
 {
@@ -18,17 +19,17 @@ namespace Facade.Services.Displays
     public sealed class RichTextService : IDisplay
     {
         /// <inheritdoc />
-        public string Enrich(object value, DisplayModeEnums mode)
+        public async Task<string> Enrich(object value, DisplayModeEnums mode)
         {
-            switch (mode)
+            return await Task.Run(() =>
             {
-                case DisplayModeEnums.WelcomeNewYear:
-                    return @$"Happy {value}!";
+                return mode switch
+                {
+                    DisplayModeEnums.WelcomeNewYear => @$"Happy {value}!",
 
-                case DisplayModeEnums.Standard:
-                default:
-                    return @$"<strong>The result is:</strong> {value}";
-            }
+                    _ => @$"<strong>The result is:</strong> {value}",
+                };
+            });
         }
     }
 }

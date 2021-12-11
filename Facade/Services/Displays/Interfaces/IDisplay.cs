@@ -1,4 +1,6 @@
-﻿namespace Facade.Services.Displays.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace Facade.Services.Displays.Interfaces
 {
     /// <summary>
     /// The display service improving display of the input values.
@@ -11,6 +13,6 @@
         /// <param name="value">The original value.</param>
         /// <param name="mode">The display mode.</param>
         /// <returns>The formatted value.</returns>
-        string Enrich(object value, DisplayModeEnums mode);
+        Task<string> Enrich(object value, DisplayModeEnums mode);
     }
 }

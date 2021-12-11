@@ -30,7 +30,7 @@ namespace Facade.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var dto = new CalculationDto<decimal>
+            CalculationDto<decimal> dto = new()
             {
                 NumbersToAddText = "4, 8, 15, 16, 23, 42",
                 NumbersToMultiplyText = "6, 3.12037037037037",
@@ -67,21 +67,18 @@ namespace Facade.Controllers
         /// <returns>The view model, ready to be used on a view.</returns>
         private async Task<ResultViewModel> PrepareViewModelFrom<T>(CalculationDto<T> dto)
         {
-            return await Task.Run(() =>
+            ResultViewModel viewModel = new();
+
+            try
             {
-                var viewModel = new ResultViewModel();
+                viewModel.Value = await this._facade.PrepareResult(dto);
+            }
+            catch (Exception)
+            {
+                viewModel.ErrorOccurred = true;
+            }
 
-                try
-                {
-                    viewModel.Value = this._facade.PrepareResult(dto);
-                }
-                catch (Exception)
-                {
-                    viewModel.ErrorOccurred = true;
-                }
-
-                return viewModel;
-            });
+            return viewModel;
         }
     }
 }

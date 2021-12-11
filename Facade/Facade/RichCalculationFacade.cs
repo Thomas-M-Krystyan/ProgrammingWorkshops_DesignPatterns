@@ -2,9 +2,9 @@
 using Facade.Services.Displays.Interfaces;
 using Facade.Services.Mathematics;
 using Facade.Services.Mathematics.Interfaces;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Facade.Facade
 {
@@ -13,7 +13,6 @@ namespace Facade.Facade
     /// </summary>
     public sealed class RichCalculationFacade : ICalculationFacade
     {
-        private readonly ILogger<RichCalculationFacade> _logger;
         private readonly ICalculate<AddingService> _addingService;
         private readonly ICalculate<MultiplyingService> _multiplyingService;
         private readonly IDisplay _displayService;
@@ -25,32 +24,30 @@ namespace Facade.Facade
         /// <param name="addingService">The adding service.</param>
         /// <param name="multiplyingService">The multiplying service.</param>
         /// <param name="displayService">The display service.</param>
-        public RichCalculationFacade(ILogger<RichCalculationFacade> logger, ICalculate<AddingService> addingService,
-                                     ICalculate<MultiplyingService> multiplyingService, IDisplay displayService)
+        public RichCalculationFacade(ICalculate<AddingService> addingService, ICalculate<MultiplyingService> multiplyingService, IDisplay displayService)
         {
-            this._logger = logger;
             this._addingService = addingService;
             this._multiplyingService = multiplyingService;
             this._displayService = displayService;
         }
 
         /// <inheritdoc />
-        public string PrepareResult<T>(CalculationDto<T> dto)
+        public async Task<string> PrepareResult<T>(CalculationDto<T> dto)
         {
             // Add
-            var sum = this._addingService.Calculate(dto.NumbersToAdd);
+            T sum = await this._addingService.Calculate(dto.NumbersToAdd);
 
             // Multiply
-            var numbersToMultiply = dto.NumbersToMultiply.Append(sum).ToArray();
-            var product = this._multiplyingService.Calculate(numbersToMultiply);
+            T[] numbersToMultiply = dto.NumbersToMultiply.Append(sum).ToArray();
+            T product = await this._multiplyingService.Calculate(numbersToMultiply);
 
             if (dto.UseRoundUp)
             {
                 product = (T)Convert.ChangeType(Math.Round(Decimal.Parse(product.ToString())), typeof(T));
             }
-                
+
             // Display
-            return this._displayService.Enrich(product, dto.DisplayMode);
+            return await this._displayService.Enrich(product, dto.DisplayMode);
         }
     }
 }
