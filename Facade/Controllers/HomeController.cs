@@ -4,6 +4,7 @@ using Facade.Services.Displays;
 using Facade.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Threading.Tasks;
 
 namespace Facade.Controllers
 {
@@ -27,7 +28,7 @@ namespace Facade.Controllers
         /// Renders the main view with predefined calculation parameters.
         /// </summary>
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var dto = new CalculationDto<decimal>
             {
@@ -37,7 +38,7 @@ namespace Facade.Controllers
                 DisplayMode = DisplayModeEnums.WelcomeNewYear
             };
 
-            return View(PrepareViewModelFrom(dto));
+            return View(await PrepareViewModelFrom(dto));
         }
 
         /// <summary>
@@ -53,9 +54,9 @@ namespace Facade.Controllers
         /// Renders the first "Index" page with input-based calculation parameters.
         /// </summary>
         [HttpPost]
-        public IActionResult Recalculate(CalculationDto<decimal> dto)
+        public async Task<IActionResult> Recalculate(CalculationDto<decimal> dto)
         {
-            return View(nameof(Index), PrepareViewModelFrom(dto));
+            return View(nameof(Index), await PrepareViewModelFrom(dto));
         }
 
         /// <summary>
@@ -64,20 +65,23 @@ namespace Facade.Controllers
         /// <typeparam name="T">The type of data used by DTO.</typeparam>
         /// <param name="dto">The DTO model.</param>
         /// <returns>The view model, ready to be used on a view.</returns>
-        private ResultViewModel PrepareViewModelFrom<T>(CalculationDto<T> dto)
+        private async Task<ResultViewModel> PrepareViewModelFrom<T>(CalculationDto<T> dto)
         {
-            var viewModel = new ResultViewModel();
-
-            try
+            return await Task.Run(() =>
             {
-                viewModel.Value = this._facade.PrepareResult(dto);
-            }
-            catch (Exception)
-            {
-                viewModel.ErrorOccurred = true;
-            }
+                var viewModel = new ResultViewModel();
 
-            return viewModel;
+                try
+                {
+                    viewModel.Value = this._facade.PrepareResult(dto);
+                }
+                catch (Exception)
+                {
+                    viewModel.ErrorOccurred = true;
+                }
+
+                return viewModel;
+            });
         }
     }
 }
