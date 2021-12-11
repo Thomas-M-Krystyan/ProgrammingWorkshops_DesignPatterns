@@ -11,7 +11,10 @@
     <div class="text-center" style="margin-top: 30px;">
         @*The result of predefined or input-based calculation parameters*@
         <div>
-            <p>@(Model?.Value ?? "Type new numbers")</p>
+            <p>@Html.Raw(Model?.Value ??
+              $"Type new numbers to calculate</br>" +
+               "(comma-separated, e.g. \"1, 3, 5\")")
+            </p>
         </div>
 
         <div style="margin-top: 20px;">
