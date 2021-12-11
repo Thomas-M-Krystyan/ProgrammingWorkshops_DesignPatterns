@@ -1,5 +1,6 @@
 ﻿using Facade.DTOs;
 using Facade.Facade;
+using Facade.Services.Displays;
 using Facade.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,9 +30,10 @@ namespace Facade.Controllers
         {
             var dto = new CalculationDto
             {
-                NumbersToAdd = new double[] { 4, 8, 15, 16, 23, 42 },
-                NumbersToMultiply = new[] { 6, 3.12037037037037 },
-                UseRoundUp = true
+                NumbersToAddText = "4, 8, 15, 16, 23, 42",
+                NumbersToMultiplyText = "6, 3.12037037037037",
+                UseRoundUp = true,
+                DisplayMode = DisplayModeEnums.WelcomeNewYear
             };
 
             var viewModel = new ResultViewModel
