@@ -28,7 +28,7 @@ namespace Facade.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var dto = new CalculationDto
+            var dto = new CalculationDto<decimal>
             {
                 NumbersToAddText = "4, 8, 15, 16, 23, 42",
                 NumbersToMultiplyText = "6, 3.12037037037037",
@@ -57,7 +57,7 @@ namespace Facade.Controllers
         /// Renders the first "Index" page with input-based calculation parameters.
         /// </summary>
         [HttpPost]
-        public IActionResult Recalculate(CalculationDto dto)
+        public IActionResult Recalculate(CalculationDto<decimal> dto)
         {
             var viewModel = new ResultViewModel
             {

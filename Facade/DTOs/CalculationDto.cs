@@ -8,7 +8,7 @@ namespace Facade.DTOs
     /// <summary>
     /// The DTO to pass numbers to calculate.
     /// </summary>
-    public sealed class CalculationDto
+    public sealed class CalculationDto<T>
     {
         /// <summary>
         /// Gets or sets the text version of comma separated numbers to add.
@@ -18,7 +18,7 @@ namespace Facade.DTOs
         /// <summary>
         /// Gets or sets the numbers to add.
         /// </summary>
-        public decimal[] NumbersToAdd => SplitInputText<decimal>(this.NumbersToAddText);
+        public T[] NumbersToAdd => SplitInputText(this.NumbersToAddText);
 
         /// <summary>
         /// Gets or sets the text version of comma separated numbers to multiply.
@@ -28,7 +28,7 @@ namespace Facade.DTOs
         /// <summary>
         /// Gets or sets the numbers to multiply.
         /// </summary>
-        public decimal[] NumbersToMultiply => SplitInputText<decimal>(this.NumbersToMultiplyText);
+        public T[] NumbersToMultiply => SplitInputText(this.NumbersToMultiplyText);
 
         /// <summary>
         /// Gets or sets the flag to determine whether the result should be rounded up.
@@ -45,7 +45,7 @@ namespace Facade.DTOs
         /// </summary>
         /// <param name="input">The original text input.</param>
         /// <returns>The array of numbers.</returns>
-        private static T[] SplitInputText<T>(string input)
+        private static T[] SplitInputText(string input)
         {
             if (String.IsNullOrWhiteSpace(input))
             {
@@ -72,7 +72,7 @@ namespace Facade.DTOs
         /// <typeparam name="T">The generic type to convert value into.</typeparam>
         /// <param name="input">The source text input value.</param>
         /// <returns>The value converted to generic.</returns>
-        private static bool TryConvertToGeneric<T>(string input, out T value)
+        private static bool TryConvertToGeneric(string input, out T value)
         {
             value = default;
 

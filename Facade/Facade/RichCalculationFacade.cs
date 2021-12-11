@@ -35,7 +35,7 @@ namespace Facade.Facade
         }
 
         /// <inheritdoc />
-        public string PrepareResult(CalculationDto dto)
+        public string PrepareResult<T>(CalculationDto<T> dto)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace Facade.Facade
 
                 if (dto.UseRoundUp)
                 {
-                    product = Math.Round(product);
+                    product = (T)Convert.ChangeType(Math.Round(Decimal.Parse(product.ToString())), typeof(T));
                 }
                 
                 // Display
