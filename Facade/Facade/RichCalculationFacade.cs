@@ -37,29 +37,20 @@ namespace Facade.Facade
         /// <inheritdoc />
         public string PrepareResult<T>(CalculationDto<T> dto)
         {
-            try
+            // Add
+            var sum = this._addingService.Calculate(dto.NumbersToAdd);
+
+            // Multiply
+            var numbersToMultiply = dto.NumbersToMultiply.Append(sum).ToArray();
+            var product = this._multiplyingService.Calculate(numbersToMultiply);
+
+            if (dto.UseRoundUp)
             {
-                // Add
-                var sum = this._addingService.Calculate(dto.NumbersToAdd);
-
-                // Multiply
-                var numbersToMultiply = dto.NumbersToMultiply.Append(sum).ToArray();
-                var product = this._multiplyingService.Calculate(numbersToMultiply);
-
-                if (dto.UseRoundUp)
-                {
-                    product = (T)Convert.ChangeType(Math.Round(Decimal.Parse(product.ToString())), typeof(T));
-                }
+                product = (T)Convert.ChangeType(Math.Round(Decimal.Parse(product.ToString())), typeof(T));
+            }
                 
-                // Display
-                return this._displayService.Enrich(product, dto.DisplayMode);
-            }
-            catch (Exception exception)
-            {
-                this._logger.LogError(exception.Message);
-
-                return $"Failed to process numbers";
-            }
+            // Display
+            return this._displayService.Enrich(product, dto.DisplayMode);
         }
     }
 }
