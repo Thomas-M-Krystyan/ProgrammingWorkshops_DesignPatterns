@@ -2,19 +2,21 @@
     <div class="text-center">
         @using (Html.BeginForm(actionName: "Recalculate", controllerName: "Home", method: FormMethod.Post))
         {
-            <div>
-                @Html.Label("NumbersToAdd")
-                @Html.TextBox("NumbersToAdd")
-            </div>
+            <div class="text-left" style="text-align:center; width: 200px; margin: 0px auto;">
+                <div>
+                    <strong>@Html.Label("Add:")</strong>
+                    @Html.TextBox("NumbersToAddText")
+                </div>
 
-            <div style="margin-top: 10px">
-                @Html.Label("NumbersToMultiply")
-                @Html.TextBox("NumbersToMultiply")
-            </div>
+                <div style="margin-top: 10px">
+                    <strong>@Html.Label("Multiply:")</strong>
+                    @Html.TextBox("NumbersToMultiplyText")
+                </div>
 
-            <div style="margin-top: 10px">
-                @Html.Label("UseRoundUp")
-                @Html.CheckBox("UseRoundUp")
+                <div style="margin-top: 10px">
+                    <strong>@Html.Label("Round up:")</strong>
+                    <span style="margin-left: 5px">@Html.CheckBox("UseRoundUp")</span>
+                </div>
             </div>
 
             <input type="submit" value="Calculate" style="margin-top: 20px" />
