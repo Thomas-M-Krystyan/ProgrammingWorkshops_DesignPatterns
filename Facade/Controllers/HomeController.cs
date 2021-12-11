@@ -3,6 +3,7 @@ using Facade.Facade;
 using Facade.Services.Displays;
 using Facade.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Facade.Controllers
 {
@@ -36,12 +37,7 @@ namespace Facade.Controllers
                 DisplayMode = DisplayModeEnums.WelcomeNewYear
             };
 
-            var viewModel = new ResultViewModel
-            {
-                Value = this._facade.PrepareResult(dto)
-            };
-
-            return View(viewModel);
+            return View(PrepareViewModelFrom(dto));
         }
 
         /// <summary>
@@ -59,12 +55,23 @@ namespace Facade.Controllers
         [HttpPost]
         public IActionResult Recalculate(CalculationDto<decimal> dto)
         {
-            var viewModel = new ResultViewModel
-            {
-                Value = this._facade.PrepareResult(dto)
-            };
+            return View(nameof(Index), PrepareViewModelFrom(dto));
+        }
 
-            return View(nameof(Index), viewModel);
+        private ResultViewModel PrepareViewModelFrom<T>(CalculationDto<T> dto)
+        {
+            var viewModel = new ResultViewModel();
+
+            try
+            {
+                viewModel.Value = this._facade.PrepareResult(dto);
+            }
+            catch (Exception)
+            {
+                viewModel.ErrorOccurred = true;
+            }
+
+            return viewModel;
         }
     }
 }
