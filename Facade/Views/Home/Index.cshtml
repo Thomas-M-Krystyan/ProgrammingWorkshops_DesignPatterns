@@ -1,7 +1,7 @@
 ﻿@model Facade.ViewModels.ResultViewModel
 
 @{
-    ViewData[@"Title"] = @"Facade";
+    ViewData[@"Title"] = nameof(Facade);
 
     string actionName = nameof(Facade.Controllers.HomeController.Index);
     string controllerName = Facade.Startup.GetControllerName<Facade.Controllers.HomeController>();
