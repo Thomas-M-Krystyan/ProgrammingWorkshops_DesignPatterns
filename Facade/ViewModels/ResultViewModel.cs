@@ -14,5 +14,10 @@
         /// Determines whether custom input fields should be rendered.
         /// </summary>
         public bool ShowInput { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether error has occurred.
+        /// </summary>
+        public bool ErrorOccurred { get; set; }
     }
 }
