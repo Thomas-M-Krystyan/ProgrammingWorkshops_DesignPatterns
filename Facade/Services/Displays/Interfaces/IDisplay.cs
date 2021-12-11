@@ -9,7 +9,8 @@
         /// Enriches the specified value for display purposes.
         /// </summary>
         /// <param name="value">The original value.</param>
+        /// <param name="mode">The display mode.</param>
         /// <returns>The formatted value.</returns>
-        string Enrich(object value);
+        string Enrich(object value, DisplayModeEnums mode);
     }
 }
