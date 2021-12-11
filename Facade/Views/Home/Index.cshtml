@@ -3,8 +3,8 @@
 @{
     ViewData[@"Title"] = nameof(Facade);
 
-    string actionName = nameof(Facade.Controllers.HomeController.Index);
-    string controllerName = Facade.Startup.GetControllerName<Facade.Controllers.HomeController>();
+    var actionName = nameof(Facade.Controllers.HomeController.Index);
+    var controllerName = Facade.Startup.GetControllerName<Facade.Controllers.HomeController>();
 }
 
 <header class="text-center" style="margin-top: 20px;">

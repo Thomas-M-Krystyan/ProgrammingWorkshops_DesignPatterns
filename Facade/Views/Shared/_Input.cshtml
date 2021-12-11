@@ -1,6 +1,9 @@
 ﻿@{
-    string actionName = nameof(Facade.Controllers.HomeController.Recalculate);
-    string controllerName = Facade.Startup.GetControllerName<Facade.Controllers.HomeController>();
+    var actionName = nameof(Facade.Controllers.HomeController.Recalculate);
+    var controllerName = Facade.Startup.GetControllerName<Facade.Controllers.HomeController>();
+    var numbersToAdd = nameof(Facade.DTOs.CalculationDto<object>.NumbersToAddText);
+    var numbersToMultiply = nameof(Facade.DTOs.CalculationDto<object>.NumbersToMultiplyText);
+    var useRoundUp = nameof(Facade.DTOs.CalculationDto<object>.UseRoundUp);
 }
 
 <body>
@@ -10,17 +13,17 @@
             <div class="text-left" style="text-align:center; width: 200px; margin: 0px auto;">
                 <div>
                     <strong>@Html.Label("Add:")</strong>
-                    @Html.TextBox("NumbersToAddText")
+                    @Html.TextBox(numbersToAdd)
                 </div>
 
                 <div style="margin-top: 10px">
                     <strong>@Html.Label("Multiply:")</strong>
-                    @Html.TextBox("NumbersToMultiplyText")
+                    @Html.TextBox(numbersToMultiply)
                 </div>
 
                 <div style="margin-top: 10px">
                     <strong>@Html.Label("Round up:")</strong>
-                    <span style="margin-left: 5px">@Html.CheckBox("UseRoundUp")</span>
+                    <span style="margin-left: 5px">@Html.CheckBox(useRoundUp)</span>
                 </div>
             </div>
 
