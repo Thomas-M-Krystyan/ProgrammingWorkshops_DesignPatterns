@@ -52,7 +52,7 @@ namespace Facade.Facade
                 }
                 
                 // Display
-                return this._displayService.Enrich(product);
+                return this._displayService.Enrich(product, dto.DisplayMode);
             }
             catch (Exception exception)
             {
