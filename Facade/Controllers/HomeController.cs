@@ -3,6 +3,7 @@ using Facade.Facade;
 using Facade.Services.Displays;
 using Facade.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
@@ -14,13 +15,15 @@ namespace Facade.Controllers
     /// <seealso cref="Controller" />
     public sealed class HomeController : Controller
     {
+        private readonly ILogger<HomeController> _logger;
         private readonly ICalculationFacade _facade;
 
         /// <summary>
         /// Injects dependencies for <see cref="HomeController"/>.
         /// </summary>
-        public HomeController(ICalculationFacade facade)
+        public HomeController(ILogger<HomeController> logger, ICalculationFacade facade)
         {
+            this._logger = logger;
             this._facade = facade;
         }
 
@@ -73,8 +76,10 @@ namespace Facade.Controllers
             {
                 viewModel.Value = await this._facade.PrepareResult(dto);
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                this._logger.LogError(exception.Message);
+
                 viewModel.ErrorOccurred = true;
             }
 
