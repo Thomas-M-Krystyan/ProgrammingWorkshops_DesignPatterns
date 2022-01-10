@@ -25,7 +25,7 @@ namespace FacadeTests.Services
             var service = new RichCalculationFacade(richCalculationlogger,adddingService,multiplyService,displayService);
 
             // Act
-            var actualResult = service.PrepareResult(value);
+            var actualResult = service.PrepareResult<double>(value);
 
             // Assert
             Assert.That(actualResult, Is.EqualTo(expectedResult));

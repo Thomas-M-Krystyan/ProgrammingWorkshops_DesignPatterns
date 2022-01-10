@@ -1,5 +1,8 @@
 using Facade.Controllers;
 using Facade.Services.Displays;
+using Facade.Services.Displays.Interfaces;
+using Facade.Services.Mathematics;
+using Facade.Services.Mathematics.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,9 +25,11 @@ namespace Facade
         /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<ICalculate,AddingService>();
+            services.AddSingleton<ICalculate,MultiplyingService>();
+            services.AddSingleton<IDisplay, RichTextService>();
             services.AddControllersWithViews();
-            services.AddSingleton<HomeController>();
-            //services.AddControllersWithViews();
+            
         }
 
         /// <summary>
@@ -48,7 +53,8 @@ namespace Facade
             {
                 endpoints.MapControllerRoute(
                     name: @"default",
-                    pattern: @"{controller=Home}/{action=Index}/{id?}");
+                    pattern: @"{controller=Home}/{action=" + $"{nameof(HomeController.Homepage)}" + "}/{id?}");
+                //@"{controller=Home}/{action=" + $"{nameof(HomeController.Homepage)}" + "}/{id?}"
             });
         }
     }

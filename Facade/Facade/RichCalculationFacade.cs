@@ -38,15 +38,15 @@ namespace Facade.Facade
         /// <typeparam name="T">The type of input data.</typeparam>
         /// <param name="numbers">The numbers to be calculated.</param>
         /// <returns>Formatted calculated result.</returns>
-        public string PrepareResult<T>(params T[] numbers)
+        public string PrepareResult<T>(params double[] numbers)
         {
             if(numbers == null) return String.Empty;
             
             var result = _addingService.Calculate(numbers);
-            var firstMultiplier = 6.0;
+            var firstMultiplier = 6;
             var secoundMultiplier = 3.12037037037037;
-            result = _multiplyingService.Calculate(result, (T)(object)firstMultiplier);
-            result = _multiplyingService.Calculate(result, (T)(object)secoundMultiplier);
+            result = _multiplyingService.Calculate(Double.Parse(result.ToString()), firstMultiplier);
+            result = _multiplyingService.Calculate(result, secoundMultiplier);
             var displayresult = _displayService.Enrich(result);
 
             return displayresult;
