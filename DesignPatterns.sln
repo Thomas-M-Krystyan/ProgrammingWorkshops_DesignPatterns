@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Facade", "Facade\Facade.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FacadeTests", "FacadeTests\FacadeTests.csproj", "{20C8A765-ACAD-4292-B464-E5BE79FF7ACF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Command", "Command\Command.csproj", "{D8CBF07B-DE0F-43B9-A69B-3EB3FD0EC601}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Command_Web", "Command\Command_Web.csproj", "{D8CBF07B-DE0F-43B9-A69B-3EB3FD0EC601}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
