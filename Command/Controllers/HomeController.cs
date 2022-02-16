@@ -44,7 +44,7 @@ namespace Command_Web.Controllers
             // TODO #1: We should not use concrete implementation but interface of service!
             // TODO #2: Also, this is not a proper approach. Use Dependency Injection instead
             // TODO #3: Please, do not use command directly. Implement your version of "Invoker"
-            // - check in materials code examples of Invoker class for Command Design Pattern
+            // - Check in workshop materials code examples of Invoker class for Command Design Pattern
 
             var command = new ChangeFontColorCommand<ColorsEnum>(new TextService());
             // ------------------------------------------------------------------------------
