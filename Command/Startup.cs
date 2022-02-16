@@ -1,3 +1,4 @@
+using Command.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,31 +21,32 @@ namespace Command
         /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
+            // MVC Controllers
             services.AddControllersWithViews();
         }
 
         /// <summary>
         /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         /// </summary>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder application, IWebHostEnvironment environment)
         {
-            if (env.IsDevelopment())
+            // Detailed exceptions in Development mode
+            if (environment.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                application.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            // Use HTTPS protocol
+            application.UseHttpsRedirection();
 
-            app.UseRouting();
+            // Include static files such as HTML styles, images, etc.
+            application.UseStaticFiles();
 
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
+            // Endpoints
+            application.UseRouting();
+            application.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: @"default",
-                    pattern: @"{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(name: @"default", pattern: $@"{{controller=Home}}/{{action={nameof(HomeController.Index)}}}");
             });
         }
     }
