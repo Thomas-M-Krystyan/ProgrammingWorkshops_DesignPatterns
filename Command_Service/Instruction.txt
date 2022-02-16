@@ -1,0 +1,15 @@
+﻿1. Resolve the problem that your Product Owner wants from you methods working for both
+   environments (Web => HTML, and Console => CLI). How would you tackle this challenge?
+   Multiple service implementations? Strategy? Factory? Use design patterns you are already
+   familiar with to achieve the expected outcome.
+
+2. Implement missing service method for changing font color:
+   - for console application (CLI escaping characters)
+
+3. Implement missing service method for changing font weight:
+   - for web application (HTML style)
+   - for console application (CLI escaping characters)
+
+4. Implement missing service method for changing text background:
+   - for web application (HTML style)
+   - for console application (CLI escaping characters)

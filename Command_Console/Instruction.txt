@@ -1,0 +1,9 @@
+﻿		Display the changed text to reflect the following scenarios:
+
+1. Font color was changed (user input 1, 2, 3... => using proper command => passing user input as argument to the command)
+
+2. Font weight was changed (this is also possible in console!)
+
+3. Text background was changed (do not forget that the font color and font background are two different things)
+
+4. Don't forget to prevent choosing invalid options by user

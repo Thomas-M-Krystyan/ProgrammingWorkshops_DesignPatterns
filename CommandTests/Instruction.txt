@@ -1,0 +1,4 @@
+﻿1. Add separate unit tests for service methods (used by commands) to update the text in console application
+2. Add missing test classes for two remaining commands
+   - add tests for Web application (HTML text)
+   - add tests for Console application (CLI text)

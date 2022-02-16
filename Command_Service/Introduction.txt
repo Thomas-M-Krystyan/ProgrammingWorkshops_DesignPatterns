@@ -1,0 +1,12 @@
+﻿In this exercise you have given 4 projects:
+
+- Frontend project for Web application (ASP.NET Core MVC Framework)							=> "Command_Web"
+- Frontend project for Console application (.NET Core Console Application)					=> "Command_Console"
+
+- Backend project (.NET Core library), which contains generic reusable business logic		=> "Command_Service"
+
+- And test project using NUnit + Moq frameworks to test the backend service project			=> "CommandTests"
+  * This project should contain methods testing both text formatting behaviors:
+    for Web and for console application. Please, do not create additional project
+    references to other (frontend) projects, because we are not going to test UI in
+    this particular exercise

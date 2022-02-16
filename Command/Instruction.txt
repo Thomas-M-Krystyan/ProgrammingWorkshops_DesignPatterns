@@ -1,0 +1,19 @@
+﻿1. Add missing "text weight"" functionality:
+   - A new button for font weight in Index.cshtml
+   - Name the button "B" (like "bold")
+   - Create a proper REST API method in MVC controller (use example) for font weight
+   - Connect this new method (from MVC controller) to your button (in the view)
+   - Use DTO model (the already implemented one or a new one - as you wish)
+     for an example true/false to check if text should be set to bold or not
+
+2. Add missing "text background" functionality:
+   - A new button for text background in Index.cshtml
+   - Name the button "Background"
+   - Create a proper REST API method in MVC controller (use example) for text background
+   - Connect this new method (from MVC controller) to your button (in the view)
+   - Use DTO model (the already implemented one or a new one - as you wish)
+     to pass information which background color should be used (use an example from "font color" functionality)
+   - Create a new drop-down control (in HTML) to show all possible background color options
+     (use an example for "font color" how to send a selected option from view, as an Enum, back to MVC controller)
+
+3. Consider cleaning up the view (nice button styles, alignment, user experience => to make it easy to use)
