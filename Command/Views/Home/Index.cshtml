@@ -1,60 +1,64 @@
-﻿@using Command_Service.Implementation.Commands
+﻿@using Command_Service.Commands.Implementations
+@using Command_Service.Constants
 @using Command_Web.Controllers
+
 @model Command_Web.ViewModels.StyleViewModel
 
 @{
-    ViewData[@"Title"] = $@"{nameof(Command)}";
+    ViewData[@"Title"] = @"Command";
 
     var homeController = nameof(HomeController).Replace(@"Controller", String.Empty);
+
+    @* Name of properties *@
+    const string colorProperty = nameof(Command_Web.DTOs.CommandDto.Color);
 }
 
-<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>@nameof(Command)</title>
+    <title>Command-based text editor</title>
 </head>
 <body>
-<div class="text-center">
-    <h1>Command Design Pattern</h1>
+    <div class="text-center">
+        <h1>Command Design Pattern</h1>
 
-    <div style="margin-top: 30px">
-        @*
-                    1. Inside of the paragraph <p> given below we want to apply a HTML inline style (to not play with CSS and Bootstrap).
-                        This style would be responsible to format how our text is displayed on the webpage.
-                    2. We would like to use property in a ViewModel to handle different styles and to avoid hardcoding them in CSHTML document
-                    3. Unfortunately, we cannot just copy and paste some .NET string there - e.g., "style=color: red". This text needs to be decoded as HTML
-                    3. The most obvious solution would be to use the following helper method: Html.Raw("some text to be converted into working HTML code")
-                    4. However, such approach is considered to be unsafe => prone to XSS (Cross-Site Scripting) attacks on your webpage
+        <div style="margin-top: 30px">
+            @*
+                1. Inside of the paragraph <p> given below we want to apply a HTML inline style (to not play with CSS and Bootstrap).
+                   This style would be responsible to format how our text is displayed on the webpage.
+                2. We would like to use property in a ViewModel to handle different styles and to avoid hard-coding them in CSHTML document
+                3. Unfortunately, we cannot just copy and paste some .NET string there - e.g., "style=color: red". This text needs to be decoded as HTML
+                3. The most obvious solution would be to use the following helper method: Html.Raw("some text to be converted into working HTML code")
+                4. However, such approach is considered to be unsafe => prone to XSS (Cross-Site Scripting) attacks on your webpage
 
-                    NOTE: Read these articles to learn why you should not use Html.Raw("") helper method but safer alternatives
-                    - https://kevinchalet.com/2018/01/09/why-you-should-never-use-html-raw-in-your-razor-views/
-                    - https://www.mikepope.com/blog/displayblog.aspx?permalink=2218
-                    - https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-6.0#expression-encoding
-                *@
+                NOTE: Read these articles to learn why you should not use Html.Raw("") helper method but safer alternatives
+                - https://kevinchalet.com/2018/01/09/why-you-should-never-use-html-raw-in-your-razor-views/
+                - https://www.mikepope.com/blog/displayblog.aspx?permalink=2218
+                - https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-6.0#expression-encoding
+            *@
 
-        <p @Model?.HtmlStyle>Example of text</p>
+            <p @Model?.HtmlStyle>@Utilities.Text</p>
+        </div>
+
+        @* Buttons to change text formatting *@
+        <div style="margin-top: 10px">
+            
+            @* Font color *@
+            @using (Html.BeginForm(actionName: nameof(HomeController.ChangeColor),
+                                   controllerName: homeController,
+                                   method: FormMethod.Post))
+            {
+                // Map a selected option to a property in DTO model
+                @Html.DropDownList(expression: colorProperty,
+                                   selectList: Html.GetEnumSelectList<ColorsEnum>())
+
+                <input type="submit" class="btn btn-outline-secondary" value=@colorProperty />
+            }
+
+            @* Font weight (bold) *@
+            @* TODO: To be implemented *@
+
+            @* Text background color *@
+            @* TODO: To be implemented *@
+
+        </div>
     </div>
-
-    @* Buttons to change text formatting *@
-    <div style="margin-top: 10px">
-
-        @* Font color *@
-        @using (Html.BeginForm(actionName: nameof(HomeController.ChangeColor),
-            controllerName: homeController,
-            method: FormMethod.Post))
-        {
-            // Map a selected option to a property in DTO model
-            @Html.DropDownList(
-                expression: nameof(Command_Web.DTOs.CommandDto.Color),
-                selectList: Html.GetEnumSelectList<ColorsEnum>())
-
-            <input type="submit" class="btn btn-outline-secondary" value="Color" />
-        }
-
-        @* Font weight (bold) *@
-
-        @* Text background color *@
-
-    </div>
-</div>
 </body>
-</html>

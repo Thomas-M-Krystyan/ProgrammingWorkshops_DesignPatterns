@@ -1,3 +1,5 @@
+using Command_Service.Services.TextService.Implementations;
+using Command_Service.Services.TextService.Interfaces;
 using Command_Web.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,6 +25,9 @@ namespace Command_Web
         {
             // MVC Controllers
             services.AddControllersWithViews();
+
+            // Services
+            services.AddSingleton<ITextService, TextService>();
         }
 
         /// <summary>

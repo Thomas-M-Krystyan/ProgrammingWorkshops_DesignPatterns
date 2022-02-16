@@ -1,4 +1,5 @@
 ﻿using System;
+using Command_Service.Constants;
 
 namespace Command_Console
 {
@@ -7,7 +8,7 @@ namespace Command_Console
         private static void Main()
         {
             // TODO: Format the text using the same commands, but it should work for Console environment instead
-            Console.WriteLine(@"Example of text");
+            Console.WriteLine(Utilities.Text);
         }
     }
 }

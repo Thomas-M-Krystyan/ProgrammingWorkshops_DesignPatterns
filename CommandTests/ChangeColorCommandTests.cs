@@ -1,5 +1,6 @@
-using Command_Service.API.Commands;
-using Command_Service.Implementation.Commands;
+using Command_Service.Commands.Implementations;
+using Command_Service.Commands.Interfaces;
+using Command_Service.Services.TextService.Implementations;
 using NUnit.Framework;
 
 namespace CommandTests
@@ -7,12 +8,12 @@ namespace CommandTests
     [TestFixture]
     public class ChangeColorCommandTests
     {
-        private ICommand _command;
-
+        private ICommand<ColorsEnum> _command;
+        
         [SetUp]
         public void Setup()
         {
-            this._command = new ChangeColorCommand();
+            this._command = new ChangeFontColorCommand<ColorsEnum>(new TextService());
         }
 
         [TestCase(ColorsEnum.Black, "black")]
@@ -33,7 +34,7 @@ namespace CommandTests
         public void Method_Execute_ForWeb_WithoutParameter_ReturnsDefaultStyle()
         {
             // Act
-            string result = this._command.Execute<ColorsEnum>();
+            string result = this._command.Execute();
 
             // Assert
             Assert.That(result, Is.EqualTo($@"style=""color: {default(ColorsEnum).ToString().ToLower()}"""));
