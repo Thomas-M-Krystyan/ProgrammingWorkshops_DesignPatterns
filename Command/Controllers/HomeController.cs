@@ -22,6 +22,7 @@ namespace Command_Web.Controllers
         /// <param name="logger">The logger.</param>
         public HomeController(ILogger<HomeController> logger)
         {
+            // TODO: Most likely you want to either inject Commands here, or (better) some "Invoker" service
             this._logger = logger;
         }
 
