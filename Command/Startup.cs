@@ -1,4 +1,4 @@
-using Command.Controllers;
+using Command_Web.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

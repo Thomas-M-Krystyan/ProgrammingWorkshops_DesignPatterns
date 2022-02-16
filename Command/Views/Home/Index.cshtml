@@ -1,9 +1,10 @@
-﻿@model Command_Web.ViewModels.StyleViewModel
+﻿@using Command_Web.Controllers
+@model Command_Web.ViewModels.StyleViewModel
 
 @{
     ViewData[@"Title"] = $@"{nameof(Command)}";
 
-    var homeController = nameof(Command.Controllers.HomeController).Replace("Controller", String.Empty);
+    var homeController = nameof(HomeController).Replace("Controller", String.Empty);
 }
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -33,7 +34,7 @@
             <div style="margin-top: 10px">
 
                 @* Font color *@
-                @using (Html.BeginForm(actionName: nameof(Command.Controllers.HomeController.ChangeColor),
+                @using (Html.BeginForm(actionName: nameof(HomeController.ChangeColor),
                                        controllerName: homeController,
                                        method: FormMethod.Post))
                 {

@@ -4,7 +4,7 @@ using Implementation.Commands;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Command.Controllers
+namespace Command_Web.Controllers
 {
     /// <summary>
     /// The main MVC Controller to display the Home page.
