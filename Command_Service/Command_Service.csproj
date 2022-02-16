@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Strategy\" />
+    <Compile Remove="Strategy\**" />
+    <EmbeddedResource Remove="Strategy\**" />
+    <None Remove="Strategy\**" />
   </ItemGroup>
 
 </Project>

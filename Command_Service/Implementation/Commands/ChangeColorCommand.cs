@@ -1,6 +1,6 @@
-﻿using API.Commands.Interfaces;
+﻿using Command_Service.API.Commands;
 
-namespace Implementation.Commands
+namespace Command_Service.Implementation.Commands
 {
     /// <summary>
     /// The available text colors.
@@ -26,7 +26,7 @@ namespace Implementation.Commands
         /// <inheritdoc />
         public string Execute<ColorsEnum>(ColorsEnum color)
         {
-            return $"style=\"color: {color.ToString().ToLower()}\"";
+            return $@"style=""color: {color.ToString()?.ToLower()}""";
         }
     }
 }

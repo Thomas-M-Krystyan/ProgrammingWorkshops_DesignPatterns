@@ -1,5 +1,5 @@
-using API.Commands.Interfaces;
-using Implementation.Commands;
+using Command_Service.API.Commands;
+using Command_Service.Implementation.Commands;
 using NUnit.Framework;
 
 namespace CommandTests
@@ -26,7 +26,7 @@ namespace CommandTests
             string result = this._command.Execute(color);
 
             // Assert
-            Assert.That(result, Is.EqualTo($"style=\"color: {expectedColor}\""));
+            Assert.That(result, Is.EqualTo($@"style=""color: {expectedColor}"""));
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace CommandTests
             string result = this._command.Execute<ColorsEnum>();
 
             // Assert
-            Assert.That(result, Is.EqualTo($"style=\"color: {default(ColorsEnum).ToString().ToLower()}\""));
+            Assert.That(result, Is.EqualTo($@"style=""color: {default(ColorsEnum).ToString().ToLower()}"""));
         }
     }
 }

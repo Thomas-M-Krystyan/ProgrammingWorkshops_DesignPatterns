@@ -1,4 +1,4 @@
-﻿namespace API.Commands.Interfaces
+﻿namespace Command_Service.API.Commands
 {
     /// <summary>
     /// The interface for all commands.

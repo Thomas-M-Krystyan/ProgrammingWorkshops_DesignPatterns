@@ -1,6 +1,6 @@
-﻿using Command_Web.DTOs;
+﻿using Command_Service.Implementation.Commands;
+using Command_Web.DTOs;
 using Command_Web.ViewModels;
-using Implementation.Commands;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 

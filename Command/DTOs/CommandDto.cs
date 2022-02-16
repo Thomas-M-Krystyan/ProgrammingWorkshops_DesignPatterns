@@ -1,4 +1,4 @@
-﻿using Implementation.Commands;
+﻿using Command_Service.Implementation.Commands;
 
 namespace Command_Web.DTOs
 {
