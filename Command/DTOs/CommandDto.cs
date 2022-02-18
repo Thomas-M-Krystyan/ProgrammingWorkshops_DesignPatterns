@@ -1,4 +1,4 @@
-﻿using Command_Service.Commands.Implementations;
+﻿using Command_Service.Commands.Enums;
 
 namespace Command_Web.DTOs
 {

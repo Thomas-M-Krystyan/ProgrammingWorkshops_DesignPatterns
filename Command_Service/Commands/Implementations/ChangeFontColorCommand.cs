@@ -1,24 +1,9 @@
-﻿using System;
-using Command_Service.Commands.Interfaces;
+﻿using Command_Service.Commands.Interfaces;
 using Command_Service.Services.TextService.Interfaces;
+using System;
 
 namespace Command_Service.Commands.Implementations
 {
-    /// <summary>
-    /// The available text colors.
-    /// </summary>
-    public enum ColorsEnum
-    {
-        // Default
-        Black,
-
-        // Additional
-        White,
-        Red,
-        Yellow,
-        Green
-    }
-    
     /// <summary>
     /// Command changing color of the text.
     /// </summary>

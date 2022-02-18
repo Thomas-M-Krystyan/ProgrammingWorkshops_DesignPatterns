@@ -1,4 +1,5 @@
-﻿using Command_Service.Commands.Implementations;
+﻿using Command_Service.Commands.Enums;
+using Command_Service.Commands.Implementations;
 using Command_Service.Services.TextService.Implementations;
 using Command_Web.DTOs;
 using Command_Web.ViewModels;
@@ -47,10 +48,10 @@ namespace Command_Web.Controllers
             // TODO #3: Please, do not use command directly. Implement your version of "Invoker"
             // - Check in workshop materials code examples of Invoker class for Command Design Pattern
 
-            var command = new ChangeFontColorCommand<ColorsEnum>(new TextService());
+            ChangeFontColorCommand<ColorsEnum> command = new(new TextService());
             // ------------------------------------------------------------------------------
 
-            var result = command.Execute(dto.Color);
+            string result = command.Execute(dto.Color);
 
             return View(nameof(Index), new StyleViewModel(result));
         }
