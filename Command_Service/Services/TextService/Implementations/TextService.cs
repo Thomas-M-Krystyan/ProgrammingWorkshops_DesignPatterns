@@ -15,13 +15,13 @@ namespace Command_Service.Services.TextService.Implementations
         /// <inheritdoc />
         public string ChangeWeight()
         {
-            throw new System.NotImplementedException();
+            return $@"style=""font-weight: 500""";
         }
 
         /// <inheritdoc />
-        public string ChangeBackground()
+        public string ChangeBackground(string color)
         {
-            throw new System.NotImplementedException();
+            return $@"style=""background-color: {color}""";
         }
     }
 }

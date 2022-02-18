@@ -8,7 +8,7 @@
         /// <summary>
         /// Changes the text color.
         /// </summary>
-        /// <param name="color">The desired color.</param>
+        /// <param name="color">The desired font color.</param>
         /// <returns>The output format.</returns>
         string ChangeColor(string color);
 
@@ -21,7 +21,8 @@
         /// <summary>
         /// Changes the text background.
         /// </summary>
+        /// <param name="color">The desired background color.</param>
         /// <returns>The output format.</returns>
-        string ChangeBackground();
+        string ChangeBackground(string color);
     }
 }
