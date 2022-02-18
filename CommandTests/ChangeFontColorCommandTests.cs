@@ -9,7 +9,7 @@ using System.Linq;
 namespace CommandTests
 {
     [TestFixture]
-    public class ChangeColorCommandTests
+    public class ChangeFontColorCommandTests
     {
         private ICommand<ColorsEnum> _command;
         
@@ -39,7 +39,7 @@ namespace CommandTests
             Assert.That(result, Is.EqualTo($@"style=""color: {default(ColorsEnum).ToString().ToLower()}"""));
         }
 
-        public static (ColorsEnum, string)[] GetEnumsWithNames()
+        private static (ColorsEnum, string)[] GetEnumsWithNames()
         {
             return ((ColorsEnum[])Enum.GetValues(typeof(ColorsEnum)))     // Get all enums of specified type
                 .Select(option => (option, option.ToString().ToLower()))  // Convert enums to a tuple of (enum + enum's name as lower case)
