@@ -13,9 +13,9 @@ namespace Command_Service.Services.TextService.Implementations
         }
 
         /// <inheritdoc />
-        public string ChangeWeight()
+        public string ChangeWeight(bool isBold)
         {
-            return $@"style=""font-weight: 500""";
+            return $@"style=""font-weight: {(isBold ? 500 : 0)}""";
         }
 
         /// <inheritdoc />

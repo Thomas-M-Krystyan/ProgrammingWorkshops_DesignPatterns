@@ -15,8 +15,9 @@
         /// <summary>
         /// Changes the text weight.
         /// </summary>
+        /// <param name="isBold">Determine whether the font should be changed to bold or reset to normal.</param>
         /// <returns>The output format.</returns>
-        string ChangeWeight();
+        string ChangeWeight(bool isBold);
 
         /// <summary>
         /// Changes the text background.
