@@ -1,6 +1,6 @@
-﻿using Command_Service.Commands.Interfaces;
+﻿using Command_Service.Commands.Enums;
+using Command_Service.Commands.Interfaces;
 using Command_Service.Services.TextService.Interfaces;
-using System;
 
 namespace Command_Service.Commands.Implementations
 {
@@ -9,7 +9,7 @@ namespace Command_Service.Commands.Implementations
     /// </summary>
     /// <summary>
     /// <seealso cref="ICommand{T}"/>
-    public sealed class ChangeTextBackgroundCommand<T> : ICommand<T> where T : struct, Enum
+    public sealed class ChangeTextBackgroundCommand : ICommand<ColorsEnum>
     {
         private readonly ITextService _textService;
 
@@ -23,9 +23,9 @@ namespace Command_Service.Commands.Implementations
         }
 
         /// <inheritdoc />
-        public string Execute(T color)
+        public string Execute(ColorsEnum color)
         {
-            return this._textService.ChangeBackground(color.ToString().ToLower());
+            return this._textService.ChangeBackground(color);
         }
     }
 }

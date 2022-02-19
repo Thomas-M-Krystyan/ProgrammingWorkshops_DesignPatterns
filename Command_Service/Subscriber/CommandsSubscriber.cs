@@ -43,8 +43,8 @@ namespace Command_Service.Subscriber
         /// </summary>
         private void InitializeCommands()
         {
-            this._fontColorCommand = new ChangeFontColorCommand<ColorsEnum>(this._textService);
-            this._backgroundCommand = new ChangeTextBackgroundCommand<ColorsEnum>(this._textService);
+            this._fontColorCommand = new ChangeFontColorCommand(this._textService);
+            this._backgroundCommand = new ChangeTextBackgroundCommand(this._textService);
             this._weightCommand = new ChangeFontWeightCommand(this._textService);
         }
 
