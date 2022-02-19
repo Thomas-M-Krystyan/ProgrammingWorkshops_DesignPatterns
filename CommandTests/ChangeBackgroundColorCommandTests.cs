@@ -41,8 +41,8 @@ namespace CommandTests
 
         private static (ColorsEnum, string)[] GetEnumsWithNames()
         {
-            return ((ColorsEnum[])Enum.GetValues(typeof(ColorsEnum)))     // Get all enums of specified type
-                .Select(option => (option, option.ToString()))  // Convert enums to a tuple of (enum + enum's name)
+            return ((ColorsEnum[])Enum.GetValues(typeof(ColorsEnum)))  // Get all enums of specified type
+                .Select(option => (option, option.ToString()))         // Convert enums to a tuple of (enum + enum's name)
                 .ToArray();
         }
     }
