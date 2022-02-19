@@ -2,8 +2,19 @@
 
 namespace Command_Web.DTOs
 {
+    /// <summary>
+    /// The DTO model used to pass user input from the main view.
+    /// </summary>
     public class CommandDto
     {
+        /// <summary>
+        /// Used to change text foreground or background color.
+        /// </summary>
         public ColorsEnum Color { get; set; }
+
+        /// <summary>
+        /// Used to change the font weight.
+        /// </summary>
+        public bool IsBold { get; set; }
     }
 }
