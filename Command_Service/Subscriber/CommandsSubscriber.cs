@@ -6,6 +6,11 @@ using System;
 
 namespace Command_Service.Subscriber
 {
+    /// <summary>
+    /// The class responsible for establishing an application context (e.g., web or console) and
+    /// keeping consistency regarding which commands and methods will be used for a given context.
+    /// </summary>
+    /// <seealso cref="IDisposable" />
     public sealed class CommandsSubscriber : IDisposable
     {
         // Service
@@ -16,10 +21,10 @@ namespace Command_Service.Subscriber
         private ICommand<ColorsEnum> _backgroundCommand;
         private ICommand<bool> _weightCommand;
 
-        // Events
-        public event Func<ColorsEnum, string> OnFontColorChange;
-        public event Func<ColorsEnum, string> OnFontBackgroundColorChange;
-        public event Func<bool, string> OnFontWeightChange;
+        // Delegates
+        public Func<ColorsEnum, string> OnFontColorChange;
+        public Func<ColorsEnum, string> OnFontBackgroundColorChange;
+        public Func<bool, string> OnFontWeightChange;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandsSubscriber"/> class.
@@ -28,21 +33,25 @@ namespace Command_Service.Subscriber
         public CommandsSubscriber(ITextService textService)
         {
             this._textService = textService;
+
+            InitializeCommands();
+            SubscribeCommands();
         }
 
-        public void InitializeWebCommands()
+        /// <summary>
+        /// Initializes the specific commands.
+        /// </summary>
+        private void InitializeCommands()
         {
             this._fontColorCommand = new ChangeFontColorCommand<ColorsEnum>(this._textService);
             this._backgroundCommand = new ChangeTextBackgroundCommand<ColorsEnum>(this._textService);
             this._weightCommand = new ChangeFontWeightCommand(this._textService);
-
-            Subscribe();
         }
 
         /// <summary>
-        /// Subscribes events.
+        /// Subscribes commands-related delegates.
         /// </summary>
-        private void Subscribe()
+        private void SubscribeCommands()
         {
             OnFontColorChange += this._fontColorCommand.Execute;
             OnFontBackgroundColorChange += this._backgroundCommand.Execute;
@@ -50,7 +59,7 @@ namespace Command_Service.Subscriber
         }
 
         /// <summary>
-        /// Disposes subscriber's events.
+        /// Unsubscribes command-related delegates.
         /// </summary>
         public void Dispose()
         {
