@@ -46,7 +46,19 @@
                                    controllerName: homeController,
                                    method: FormMethod.Post))
             {
-                // Map a selected option to a property in DTO model
+                // Map a selected option to a Color property in DTO model
+                @Html.DropDownList(expression: colorProperty,
+                                   selectList: Html.GetEnumSelectList<ColorsEnum>())
+
+                <input type="submit" class="btn btn-outline-secondary" value=@colorProperty />
+            }
+
+            @* Text background color *@
+            @using (Html.BeginForm(actionName: nameof(HomeController.ChangeBackground),
+                                   controllerName: homeController,
+                                   method: FormMethod.Post))
+            {
+                // Map a selected option to a Color property in DTO model
                 @Html.DropDownList(expression: colorProperty,
                                    selectList: Html.GetEnumSelectList<ColorsEnum>())
 
@@ -54,9 +66,6 @@
             }
 
             @* Font weight (bold) *@
-            @* TODO: To be implemented *@
-
-            @* Text background color *@
             @* TODO: To be implemented *@
 
         </div>
