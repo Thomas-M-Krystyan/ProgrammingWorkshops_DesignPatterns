@@ -69,7 +69,7 @@ namespace Command_Web.Controllers
         [HttpPost]
         public IActionResult ChangeColor(CommandDto dto)
         {
-            string style = this._subscriber.OnFontColorChange(dto.Color);
+            string style = this._subscriber.OnFontColorChange(dto.ForegroundColor);
 
             return View(nameof(Index), new StyleViewModel(style));
         }
@@ -81,7 +81,7 @@ namespace Command_Web.Controllers
         [HttpPost]
         public IActionResult ChangeBackground(CommandDto dto)
         {
-            string style = this._subscriber.OnFontBackgroundColorChange(dto.Color);
+            string style = this._subscriber.OnFontBackgroundColorChange(dto.BackgroundColor);
 
             return View(nameof(Index), new StyleViewModel(style));
         }

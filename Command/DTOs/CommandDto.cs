@@ -8,9 +8,14 @@ namespace Command_Web.DTOs
     public class CommandDto
     {
         /// <summary>
-        /// Used to change text foreground or background color.
+        /// Used to change text foreground color.
         /// </summary>
-        public ColorsEnum Color { get; set; }
+        public ColorsEnum ForegroundColor { get; set; }
+
+        /// <summary>
+        /// Used to change text background color.
+        /// </summary>
+        public ColorsEnum BackgroundColor { get; set; }
 
         /// <summary>
         /// Used to change the font weight.

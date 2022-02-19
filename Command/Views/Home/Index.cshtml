@@ -10,7 +10,8 @@
     var homeController = nameof(HomeController).Replace(@"Controller", String.Empty);
 
     @* Name of properties *@
-    const string colorProperty = nameof(Command_Web.DTOs.CommandDto.Color);
+    const string foregroundColor = nameof(Command_Web.DTOs.CommandDto.ForegroundColor);
+    const string backgroundColor = nameof(Command_Web.DTOs.CommandDto.BackgroundColor);
 }
 
 <head>
@@ -47,10 +48,10 @@
                                    method: FormMethod.Post))
             {
                 // Map a selected option to a Color property in DTO model
-                @Html.DropDownList(expression: colorProperty,
+                @Html.DropDownList(expression: foregroundColor,
                                    selectList: Html.GetEnumSelectList<ColorsEnum>())
 
-                <input type="submit" class="btn btn-outline-secondary" value=@colorProperty />
+                <input type="submit" class="btn btn-outline-secondary" value="Foreground color" />
             }
 
             @* Text background color *@
@@ -59,10 +60,10 @@
                                    method: FormMethod.Post))
             {
                 // Map a selected option to a Color property in DTO model
-                @Html.DropDownList(expression: colorProperty,
+                @Html.DropDownList(expression: backgroundColor,
                                    selectList: Html.GetEnumSelectList<ColorsEnum>())
 
-                <input type="submit" class="btn btn-outline-secondary" value=@colorProperty />
+                <input type="submit" class="btn btn-outline-secondary" value="Background color" />
             }
 
             @* Font weight (bold) *@
