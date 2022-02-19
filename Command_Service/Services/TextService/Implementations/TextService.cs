@@ -1,4 +1,5 @@
-﻿using Command_Service.Services.TextService.Interfaces;
+﻿using Command_Service.Commands.Enums;
+using Command_Service.Services.TextService.Interfaces;
 
 namespace Command_Service.Services.TextService.Implementations
 {
@@ -6,22 +7,41 @@ namespace Command_Service.Services.TextService.Implementations
     /// <seealso cref="ITextService"/>
     public sealed class TextService : ITextService
     {
+        private ColorsEnum _foreground;
+        private ColorsEnum _bacgkround;
+        private int _weight;
+
         /// <inheritdoc />
-        public string ChangeColor(string color)
+        public string ChangeForeground(ColorsEnum color)
         {
-            return $@"style=""color: {color}""";
+            this._foreground = color;
+
+            return GetStyle();
+        }
+
+        /// <inheritdoc />
+        public string ChangeBackground(ColorsEnum color)
+        {
+            this._bacgkround = color;
+
+            return GetStyle();
         }
 
         /// <inheritdoc />
         public string ChangeWeight(bool isBold)
         {
-            return $@"style=""font-weight: {(isBold ? 500 : 0)}""";
+            this._weight = isBold ? 500 : 0;
+
+            return GetStyle();
         }
 
-        /// <inheritdoc />
-        public string ChangeBackground(string color)
+        /// <summary>
+        /// Gets the valid style for HTML element.
+        /// </summary>
+        /// <returns>String containing all style information.</returns>
+        private string GetStyle()
         {
-            return $@"style=""background-color: {color}""";
+            return $@"style=""color: {_foreground}; background-color: {_bacgkround}; font-weight: {_weight}""";
         }
     }
 }
