@@ -64,7 +64,13 @@ namespace Command_Web.Controllers
             return View(nameof(Index), new StyleViewModel(result));
         }
 
-        // TODO: Implement new method ChangeWeight(xxx)
+        [HttpPost]
+        public IActionResult ChangeBackground(CommandDto dto)
+        {
+            string result = this._subscriber.OnFontBackgroundColorChange(dto.Color);
+
+            return View(nameof(Index), new StyleViewModel(result));
+        }
 
         // TODO: Implement new method ChangeBackground(xxx)
     }
