@@ -1,6 +1,5 @@
-﻿using Command_Service.Commands.Enums;
-using Command_Service.Commands.Implementations;
-using Command_Service.Services.TextService.Implementations;
+﻿using Command_Service.Services.TextService.Interfaces;
+using Command_Service.Subscriber;
 using Command_Web.DTOs;
 using Command_Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -15,18 +14,36 @@ namespace Command_Web.Controllers
     public class HomeController : Controller
     {
         // TODO: Use logging in try-catch
+        private readonly ITextService _textService;
         private readonly ILogger<HomeController> _logger;
+        private readonly CommandsSubscriber _subscriber;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HomeController"/> class.
         /// </summary>
+        /// <param name="textService">The text service.</param>
         /// <param name="logger">The logger.</param>
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ITextService textService, ILogger<HomeController> logger)
         {
             // TODO: Most likely you want to either inject Commands here, or (better) some "Invoker" service
+            this._textService = textService;
             this._logger = logger;
+
+            this._subscriber = new(textService);
         }
 
+        /// <summary>
+        /// Finalizes an instance of the <see cref="HomeController"/> class.
+        /// </summary>
+        ~HomeController()
+        {
+            this._subscriber?.Dispose();
+        }
+
+        // ------------
+        // REST methods
+        // ------------
+        
         [HttpGet]
         public IActionResult Index()
         {
@@ -42,16 +59,7 @@ namespace Command_Web.Controllers
         [HttpPost]
         public IActionResult ChangeColor(CommandDto dto)
         {
-            // ------------------------------------------------------------------------------
-            // TODO #1: We should not use concrete implementation but interface of service!
-            // TODO #2: Also, this is not a proper approach. Use Dependency Injection instead
-            // TODO #3: Please, do not use command directly. Implement your version of "Invoker"
-            // - Check in workshop materials code examples of Invoker class for Command Design Pattern
-
-            ChangeFontColorCommand<ColorsEnum> command = new(new TextService());
-            // ------------------------------------------------------------------------------
-
-            string result = command.Execute(dto.Color);
+            string result = this._subscriber.OnFontColorChange(dto.Color);
 
             return View(nameof(Index), new StyleViewModel(result));
         }
