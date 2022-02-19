@@ -43,35 +43,59 @@ namespace Command_Web.Controllers
         // ------------
         // REST methods
         // ------------
-        
+
+        /// <summary>
+        /// The main page with default view.
+        /// </summary>
         [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// The main page with view reflecting user's choice (from input).
+        /// </summary>
         [HttpPost]
         public IActionResult Index(StyleViewModel viewModel)
         {
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Changes the foreground color of the text.
+        /// </summary>
+        /// <param name="dto">The command DTO model.</param>
         [HttpPost]
         public IActionResult ChangeColor(CommandDto dto)
         {
-            string result = this._subscriber.OnFontColorChange(dto.Color);
+            string style = this._subscriber.OnFontColorChange(dto.Color);
 
-            return View(nameof(Index), new StyleViewModel(result));
+            return View(nameof(Index), new StyleViewModel(style));
         }
 
+        /// <summary>
+        /// Changes the background color of the text.
+        /// </summary>
+        /// <param name="dto">The command DTO model.</param>
         [HttpPost]
         public IActionResult ChangeBackground(CommandDto dto)
         {
-            string result = this._subscriber.OnFontBackgroundColorChange(dto.Color);
+            string style = this._subscriber.OnFontBackgroundColorChange(dto.Color);
 
-            return View(nameof(Index), new StyleViewModel(result));
+            return View(nameof(Index), new StyleViewModel(style));
         }
 
-        // TODO: Implement new method ChangeBackground(xxx)
+        /// <summary>
+        /// Changes the font weight of the text.
+        /// </summary>
+        /// <param name="dto">The command DTO model.</param>
+        [HttpPost]
+        public IActionResult ChangeWeight(CommandDto dto)
+        {
+            string style = this._subscriber.OnFontWeightChange(dto.IsBold);
+
+            return View(nameof(Index), new StyleViewModel(style));
+        }
     }
 }
