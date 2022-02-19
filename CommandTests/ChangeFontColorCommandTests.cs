@@ -16,7 +16,7 @@ namespace CommandTests
         [SetUp]
         public void Setup()
         {
-            this._command = new ChangeFontColorCommand<ColorsEnum>(new TextService());
+            this._command = new ChangeFontColorCommand(new TextService());
         }
 
         [TestCaseSource(nameof(GetEnumsWithNames))]
@@ -26,7 +26,7 @@ namespace CommandTests
             string result = this._command.Execute(enums.Color);
 
             // Assert
-            Assert.That(result, Is.EqualTo($@"style=""color: {enums.Name}"""));
+            Assert.That(result, Is.EqualTo($@"style=""color: {enums.Name}; background-color: Black; font-weight: 0"""));
         }
 
         [Test]
@@ -36,13 +36,13 @@ namespace CommandTests
             string result = this._command.Execute();
 
             // Assert
-            Assert.That(result, Is.EqualTo($@"style=""color: {default(ColorsEnum).ToString().ToLower()}"""));
+            Assert.That(result, Is.EqualTo(@"style=""color: Black; background-color: Black; font-weight: 0"""));
         }
 
         private static (ColorsEnum, string)[] GetEnumsWithNames()
         {
             return ((ColorsEnum[])Enum.GetValues(typeof(ColorsEnum)))     // Get all enums of specified type
-                .Select(option => (option, option.ToString().ToLower()))  // Convert enums to a tuple of (enum + enum's name as lower case)
+                .Select(option => (option, option.ToString()))  // Convert enums to a tuple of (enum + enum's name)
                 .ToArray();
         }
     }

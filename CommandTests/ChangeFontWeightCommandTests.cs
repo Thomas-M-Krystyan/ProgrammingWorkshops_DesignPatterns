@@ -24,7 +24,7 @@ namespace CommandTests
             string result = this._command.Execute(isBold);
 
             // Assert
-            Assert.That(result, Is.EqualTo($@"style=""font-weight: {weight}"""));
+            Assert.That(result, Is.EqualTo($@"style=""color: Black; background-color: Black; font-weight: {weight}"""));
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace CommandTests
             string result = this._command.Execute();
 
             // Assert
-            Assert.That(result, Is.EqualTo($@"style=""font-weight: 0"""));
+            Assert.That(result, Is.EqualTo(@"style=""color: Black; background-color: Black; font-weight: 0"""));
         }
     }
 }
