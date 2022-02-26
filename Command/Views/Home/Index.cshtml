@@ -23,7 +23,7 @@ const string isFontBold = nameof(Command_Web.DTOs.CommandDto.IsFontBold);
     <div class="text-center">
         <h1>Command Design Pattern</h1>
 
-        <div style="margin-top: 30px">
+        <div style="margin: auto; width: 200px; padding-top: 30px; padding-bottom: 20px">
             @*
                 1. Inside of the paragraph <p> given below we want to apply a HTML inline style (to not play with CSS and Bootstrap).
                    This style would be responsible to format how our text is displayed on the webpage.
@@ -39,10 +39,11 @@ const string isFontBold = nameof(Command_Web.DTOs.CommandDto.IsFontBold);
             *@
 
             <p @Model?.HtmlStyle>@Utilities.Text</p>
+            
         </div>
 
         @* Buttons to change text formatting *@
-        <div style="margin-top: 10px">
+        <div style="margin: auto; width: 200px; border-style: solid; border-width: 1px; ">
             
             @* Form changing font properties *@
             @using (Html.BeginForm(actionName: nameof(HomeController.UpdateFont),
@@ -50,17 +51,28 @@ const string isFontBold = nameof(Command_Web.DTOs.CommandDto.IsFontBold);
                                    method: FormMethod.Post))
             {
                 // Foreground color
-                @Html.DropDownList(expression: foregroundColor,
-                                   selectList: Html.GetEnumSelectList<ForegroundColorsEnum>())
+                <p style="margin-top: 15px">
+                    <label>Foreground</label>
+                    @Html.DropDownList(expression: foregroundColor,
+                                       selectList: Html.GetEnumSelectList<ForegroundColorsEnum>())
+                </p>
 
                 // Background color
-                @Html.DropDownList(expression: backgroundColor,
-                                   selectList: Html.GetEnumSelectList<BackgroundColorsEnum>())
+                <p>
+                    <label>Background</label>
+                    @Html.DropDownList(expression: backgroundColor,
+                                       selectList: Html.GetEnumSelectList<BackgroundColorsEnum>())
+                </p>
                 
                 // Font weight
-                @Html.CheckBox(expression: isFontBold);
+                <p>
+                    <label>Bold</label>
+                    @Html.CheckBox(expression: isFontBold)
+                </p>
                 
-                <input type="submit" class="btn btn-outline-secondary" value="Apply" />
+                <p>
+                    <input type="submit" class="btn btn-outline-secondary" value="Apply" />
+                </p>
             }
 
         </div>
