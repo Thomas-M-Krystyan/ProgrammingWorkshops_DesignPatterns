@@ -3,15 +3,17 @@
     /// <summary>
     /// The available text colors.
     /// </summary>
-    public enum ColorsEnum
+    public enum BackgroundColorsEnum
     {
         // Default
-        Black,
+        White,
 
         // Additional
-        White,
+        Black,
         Red,
         Yellow,
-        Green
+        Green,
+        Blue,
+        Purple
     }
 }

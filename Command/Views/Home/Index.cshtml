@@ -7,11 +7,13 @@
 @{
     ViewData[@"Title"] = @"Command";
 
-    var homeController = nameof(HomeController).Replace(@"Controller", String.Empty);
+    @* Name of controller *@
+    string homeController = nameof(HomeController).Replace(@"Controller", String.Empty);
 
     @* Name of properties *@
-    const string foregroundColor = nameof(Command_Web.DTOs.CommandDto.ForegroundColor);
-    const string backgroundColor = nameof(Command_Web.DTOs.CommandDto.BackgroundColor);
+const string foregroundColor = nameof(Command_Web.DTOs.CommandDto.ForegroundColor);
+const string backgroundColor = nameof(Command_Web.DTOs.CommandDto.BackgroundColor);
+const string isFontBold = nameof(Command_Web.DTOs.CommandDto.IsFontBold);
 }
 
 <head>
@@ -42,32 +44,24 @@
         @* Buttons to change text formatting *@
         <div style="margin-top: 10px">
             
-            @* Font color *@
-            @using (Html.BeginForm(actionName: nameof(HomeController.ChangeColor),
+            @* Form changing font properties *@
+            @using (Html.BeginForm(actionName: nameof(HomeController.UpdateFont),
                                    controllerName: homeController,
                                    method: FormMethod.Post))
             {
-                // Map a selected option to a Color property in DTO model
+                // Foreground color
                 @Html.DropDownList(expression: foregroundColor,
-                                   selectList: Html.GetEnumSelectList<ColorsEnum>())
+                                   selectList: Html.GetEnumSelectList<ForegroundColorsEnum>())
 
-                <input type="submit" class="btn btn-outline-secondary" value="Foreground color" />
-            }
-
-            @* Text background color *@
-            @using (Html.BeginForm(actionName: nameof(HomeController.ChangeBackground),
-                                   controllerName: homeController,
-                                   method: FormMethod.Post))
-            {
-                // Map a selected option to a Color property in DTO model
+                // Background color
                 @Html.DropDownList(expression: backgroundColor,
-                                   selectList: Html.GetEnumSelectList<ColorsEnum>())
-
-                <input type="submit" class="btn btn-outline-secondary" value="Background color" />
+                                   selectList: Html.GetEnumSelectList<BackgroundColorsEnum>())
+                
+                // Font weight
+                @Html.CheckBox(expression: isFontBold);
+                
+                <input type="submit" class="btn btn-outline-secondary" value="Apply" />
             }
-
-            @* Font weight (bold) *@
-            @* TODO: To be implemented *@
 
         </div>
     </div>

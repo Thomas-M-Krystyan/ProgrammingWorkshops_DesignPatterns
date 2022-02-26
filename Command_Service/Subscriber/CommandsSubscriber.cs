@@ -1,6 +1,6 @@
-﻿using Command_Service.Commands.Enums;
-using Command_Service.Commands.Implementations;
+﻿using Command_Service.Commands.Implementations;
 using Command_Service.Commands.Interfaces;
+using Command_Service.DomainModels;
 using Command_Service.Services.TextService.Interfaces;
 using System;
 
@@ -17,14 +17,10 @@ namespace Command_Service.Subscriber
         private readonly ITextService _textService;
 
         // Commands
-        private ICommand<ColorsEnum> _fontColorCommand;
-        private ICommand<ColorsEnum> _backgroundCommand;
-        private ICommand<bool> _weightCommand;
+        private ICommand _fontStyleCommand;
 
         // Delegates
-        public Func<ColorsEnum, string> OnFontColorChange;
-        public Func<ColorsEnum, string> OnFontBackgroundColorChange;
-        public Func<bool, string> OnFontWeightChange;
+        public Func<CommandParametersDto, string> OnFontStyleUpdate;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandsSubscriber"/> class.
@@ -43,9 +39,7 @@ namespace Command_Service.Subscriber
         /// </summary>
         private void InitializeCommands()
         {
-            this._fontColorCommand = new ChangeFontColorCommand(this._textService);
-            this._backgroundCommand = new ChangeTextBackgroundCommand(this._textService);
-            this._weightCommand = new ChangeFontWeightCommand(this._textService);
+            this._fontStyleCommand = new FontStyleCommand(this._textService);
         }
 
         /// <summary>
@@ -53,9 +47,7 @@ namespace Command_Service.Subscriber
         /// </summary>
         private void SubscribeCommands()
         {
-            OnFontColorChange += this._fontColorCommand.Execute;
-            OnFontBackgroundColorChange += this._backgroundCommand.Execute;
-            OnFontWeightChange += this._weightCommand.Execute;
+            OnFontStyleUpdate += this._fontStyleCommand.Execute;
         }
 
         /// <summary>
@@ -63,9 +55,7 @@ namespace Command_Service.Subscriber
         /// </summary>
         public void Dispose()
         {
-            OnFontColorChange = null;
-            OnFontBackgroundColorChange = null;
-            OnFontWeightChange = null;
+            OnFontStyleUpdate = null;
         }
     }
 }

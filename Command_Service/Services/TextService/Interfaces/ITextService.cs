@@ -8,24 +8,12 @@ namespace Command_Service.Services.TextService.Interfaces
     public interface ITextService
     {
         /// <summary>
-        /// Changes the text foreground color.
+        /// Gets the valid style for HTML element.
         /// </summary>
-        /// <param name="color">The desired font color.</param>
+        /// <param name="foregroundColor">The desired font color.</param>
+        /// <param name="backgroundColor">The desired background color.</param>
+        /// <param name="isFontBold">Determine whether the font should be changed to bold or reset to normal.</param>
         /// <returns>The output format.</returns>
-        string ChangeForeground(ColorsEnum color);
-
-        /// <summary>
-        /// Changes the text background color.
-        /// </summary>
-        /// <param name="color">The desired background color.</param>
-        /// <returns>The output format.</returns>
-        string ChangeBackground(ColorsEnum color);
-
-        /// <summary>
-        /// Changes the text weight.
-        /// </summary>
-        /// <param name="isBold">Determine whether the font should be changed to bold or reset to normal.</param>
-        /// <returns>The output format.</returns>
-        string ChangeWeight(bool isBold);
+        string GetStyle(ForegroundColorsEnum foregroundColor, BackgroundColorsEnum backgroundColor, bool isFontBold);
     }
 }

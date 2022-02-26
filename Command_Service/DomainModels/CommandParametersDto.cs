@@ -1,12 +1,9 @@
 ﻿using Command_Service.Commands.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace Command_Web.DTOs
+namespace Command_Service.DomainModels
 {
-    /// <summary>
-    /// The DTO model used to pass user input from the main view.
-    /// </summary>
-    public sealed class CommandDto
+    public sealed class CommandParametersDto
     {
         /// <summary>
         /// Used to change text foreground color.

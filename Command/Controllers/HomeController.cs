@@ -1,4 +1,5 @@
-﻿using Command_Service.Services.TextService.Interfaces;
+﻿using Command_Service.DomainModels;
+using Command_Service.Services.TextService.Interfaces;
 using Command_Service.Subscriber;
 using Command_Web.DTOs;
 using Command_Web.ViewModels;
@@ -63,37 +64,20 @@ namespace Command_Web.Controllers
         }
 
         /// <summary>
-        /// Changes the foreground color of the text.
-        /// </summary>
-        /// <param name="dto">The command DTO model.</param>
-        [HttpPost]
-        public IActionResult ChangeColor(CommandDto dto)
-        {
-            string style = this._subscriber.OnFontColorChange(dto.ForegroundColor);
-
-            return View(nameof(Index), new StyleViewModel(style));
-        }
-
-        /// <summary>
         /// Changes the background color of the text.
         /// </summary>
         /// <param name="dto">The command DTO model.</param>
         [HttpPost]
-        public IActionResult ChangeBackground(CommandDto dto)
+        public IActionResult UpdateFont(CommandDto dto)
         {
-            string style = this._subscriber.OnFontBackgroundColorChange(dto.BackgroundColor);
+            CommandParametersDto domainDto = new()
+            {
+                ForegroundColor = dto.ForegroundColor,
+                BackgroundColor = dto.BackgroundColor,
+                IsFontBold = dto.IsFontBold
+            };
 
-            return View(nameof(Index), new StyleViewModel(style));
-        }
-
-        /// <summary>
-        /// Changes the font weight of the text.
-        /// </summary>
-        /// <param name="dto">The command DTO model.</param>
-        [HttpPost]
-        public IActionResult ChangeWeight(CommandDto dto)
-        {
-            string style = this._subscriber.OnFontWeightChange(dto.IsBold);
+            string style = this._subscriber.OnFontStyleUpdate(domainDto);
 
             return View(nameof(Index), new StyleViewModel(style));
         }
