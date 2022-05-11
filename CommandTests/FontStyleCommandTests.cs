@@ -17,7 +17,7 @@ namespace CommandTests
         [SetUp]
         public void Setup()
         {
-            this._command = new FontStyleCommand(new TextService());
+            this._command = new FontStyleCommand(new WebTextService());
         }
 
         [TestCaseSource(nameof(GetForegroundEnums))]

@@ -27,7 +27,7 @@ namespace Command_Web
             services.AddControllersWithViews();
 
             // Services
-            services.AddSingleton<ITextService, TextService>();
+            services.AddSingleton<ITextService, WebTextService>();
         }
 
         /// <summary>

@@ -5,7 +5,7 @@ namespace Command_Service.Services.TextService.Implementations
 {
     /// <inheritdoc />
     /// <seealso cref="ITextService"/>
-    public sealed class TextService : ITextService
+    public sealed class WebTextService : ITextService
     {
         /// <inheritdoc />
         public string GetStyle(ForegroundColorsEnum foregroundColor, BackgroundColorsEnum backgroundColor, bool isFontBold)
