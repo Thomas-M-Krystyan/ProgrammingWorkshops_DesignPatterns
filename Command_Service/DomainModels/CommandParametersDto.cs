@@ -22,5 +22,10 @@ namespace Command_Service.DomainModels
         /// </summary>
         [Required]
         public bool IsFontBold { get; set; }
+
+        /// <summary>
+        /// Gets or sets the text to be formatted.
+        /// </summary>
+        public string Text { get; set; }
     }
 }

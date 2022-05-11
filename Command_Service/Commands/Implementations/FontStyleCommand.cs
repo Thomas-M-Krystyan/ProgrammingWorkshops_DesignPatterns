@@ -24,7 +24,7 @@ namespace Command_Service.Commands.Implementations
         /// <inheritdoc />
         public string Execute(CommandParametersDto dto)
         {
-            return this._textService.GetStyle(dto.ForegroundColor, dto.BackgroundColor, dto.IsFontBold);
+            return this._textService.GetStyle(dto.ForegroundColor, dto.BackgroundColor, dto.IsFontBold, dto.Text);
         }
     }
 }
