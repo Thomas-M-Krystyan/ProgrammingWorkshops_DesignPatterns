@@ -24,7 +24,9 @@ namespace Builder.Exercise.Factory.Handler
         /// </summary>
         public IProduct Create<T>() where T : IProduct, new()
         {
-            return this.Factory.Create<T>();
+            return this.Factory != null
+                ? (IProduct)this.Factory.Create<T>()
+                : default(T);
         }
     }
 }
