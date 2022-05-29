@@ -6,7 +6,7 @@ namespace Builder.Exercise.Product.Implementations.Vehicles.Models.Base
     /// <summary>
     /// Base class for vehicle products.
     /// </summary>
-    /// <seealso cref="IAggregatedProduct" />
+    /// <seealso cref="IProductComponentized" />
     public abstract class BaseVehicle : IProduct
     {
         public string Name { get; set; }
