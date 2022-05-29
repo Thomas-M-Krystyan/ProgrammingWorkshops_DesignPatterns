@@ -2,7 +2,7 @@
 
 namespace Builder.Exercise.Products.Implementations.Vehicles.Models
 {
-    public sealed class Bike : BaseVehicle
+    public class Bike : BaseVehicle
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Bike"/> class.
@@ -11,6 +11,15 @@ namespace Builder.Exercise.Products.Implementations.Vehicles.Models
         {
             this.Wheels = 2;
             this.Doors = 0;
+        }
+    }
+
+    public sealed class MountainBike : Bike
+    {
+        public MountainBike()
+        {
+            this.Name = "Mountain bike";
+            this.WeightInKg = 12.5f;
         }
     }
 }
