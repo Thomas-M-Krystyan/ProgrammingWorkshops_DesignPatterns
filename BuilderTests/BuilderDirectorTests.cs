@@ -57,6 +57,19 @@ namespace BuilderTests
             Assert.That(actualSerializedProduct, Is.EqualTo(expectedSerializedProuct));
         }
 
+        [Test]
+        public void TestMethod_Create_ForNullFactory_DoesNotThrowNullReferenceException_ReturnsDefaultProduct()
+        {
+            // Arrange
+            this._builderDirector = new BuilderDirector(null);
+
+            // Act
+            IProduct product = this._builderDirector.Build(PizzaTypesEnum.Margheritta);
+
+            // Assert
+            Assert.That(product, Is.EqualTo(default(IProduct)));
+        }
+
         private static BuilderDirector GetMockedDirector(PizzaTypesEnum pizzaType)
         {
             PizzaBuilder pizzaBuilder = new();
