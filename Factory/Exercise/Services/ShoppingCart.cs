@@ -8,7 +8,7 @@ namespace Factory.Exercise.Services
     public sealed class ShoppingCart : ICollectingService
     {
         private readonly ProductsFactory _productsFactory = new();
-        private IList<object> _shoppingCart;
+        private readonly IList<object> _shoppingCart;
 
         public void AddProduct(object product)
         {
@@ -16,7 +16,7 @@ namespace Factory.Exercise.Services
              * 1. Add
              * 2. A specific product
              * 3. To the collection of products (shopping cart) */
-
+            
             throw new NotImplementedException();
         }
 
