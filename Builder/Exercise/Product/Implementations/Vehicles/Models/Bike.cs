@@ -1,4 +1,6 @@
-﻿namespace Builder.Exercise.Product.Implementations.Vehicles
+﻿using Builder.Exercise.Product.Implementations.Vehicles.Models.Base;
+
+namespace Builder.Exercise.Product.Implementations.Vehicles.Models
 {
     public sealed class Bike : BaseVehicle
     {
