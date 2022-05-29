@@ -1,0 +1,18 @@
+The purpose of this exercise is to train implementation of Builder design pattern and to compare it with Abstract Factory one.
+
+1. There are given unit tests checking whether the code was properly implemented. Follow unit tests (like in TDD approach) as guidelines to implement the missing Builder and Factory logic.
+
+2. Implementations from:
+- ConcreteFactory,
+- FactoryManager,
+- PizzaBuilder,
+- BuilderDirector
+
+were corrupted (cleaned up entirely or partially => replaced by throw new NotImplementedException placeholders)
+
+Your task is to reimplement the code using your knowledge about Builder and Factory patterns, and following unit tests checking expected data.
+
+PS: Since the code was severly impacted it is not compiling anymore. Fix the exceptions first, before running unit tests.
+
+
+3. Pay attention and try to spot the difference between both design patterns. They purpose is very similar => to create new objects, however, the approaches to achieve this result are different.
