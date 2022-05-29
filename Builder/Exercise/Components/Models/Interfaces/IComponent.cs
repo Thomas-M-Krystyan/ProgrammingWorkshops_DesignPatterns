@@ -2,6 +2,5 @@
 {
     public interface IComponent
     {
-        string Name { get; set; }
     }
 }
