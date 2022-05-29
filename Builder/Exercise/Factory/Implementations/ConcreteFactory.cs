@@ -7,7 +7,7 @@ namespace Builder.Exercise.Factory.Implementations
     {
         public T Create<T>() where T : IProduct, new()
         {
-            throw new System.NotImplementedException();
+            return new T();
         }
     }
 }

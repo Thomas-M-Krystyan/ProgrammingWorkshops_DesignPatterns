@@ -6,9 +6,19 @@ namespace Builder.Exercise.Builder.Handler
 {
     public class BuilderDirector  // NOTE: Singleton
     {
+        public IBuilder<IProduct, Enum> Builder { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BuilderDirector"/> class.
+        /// </summary>
+        public BuilderDirector(IBuilder<IProduct, Enum> builder)
+        {
+            this.Builder = builder;
+        }
+
         public IProduct Build(Enum type)
         {
-            throw new NotImplementedException();
+            return this.Builder.Build(type);
         }
     }
 }
