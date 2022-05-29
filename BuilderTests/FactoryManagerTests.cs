@@ -42,7 +42,7 @@ namespace BuilderTests
         }
 
         [Test]
-        public void TestMethod_CreatePizza_OetkerRistorantePollo_ReturnsExpectedPizzaType()
+        public void TestMethod_Create_OetkerRistorantePollo_ReturnsExpectedPizzaType()
         {
             // Act
             ReadyMeal product = this._factoryManager.Create<OetkerRistorantePollo>() as ReadyMeal;
@@ -59,7 +59,7 @@ namespace BuilderTests
         }
 
         [Test]
-        public void TestMethod_CreateBike_MountainBike_Black_ReturnsExpectedBikeType()
+        public void TestMethod_Create_MountainBike_Black_ReturnsExpectedBikeType()
         {
             // Act
             Bike product = this._factoryManager.Create<MountainBike>() as Bike;
