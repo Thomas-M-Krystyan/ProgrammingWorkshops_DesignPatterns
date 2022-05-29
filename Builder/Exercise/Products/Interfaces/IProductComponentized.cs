@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using Builder.Exercise.Components.Interfaces;
+using System.Collections.Generic;
 
 namespace Builder.Exercise.Products.Interfaces
 {
@@ -9,6 +9,6 @@ namespace Builder.Exercise.Products.Interfaces
     /// <seealso cref="IProduct" />
     interface IProductComponentized : IProduct
     {
-        ICollection<IComponent> Components { get; }
+        List<IComponent> Components { get; }
     }
 }
