@@ -17,7 +17,7 @@ namespace BuilderTests
     {
         private FactoryManager _factoryManager;
 
-        [OneTimeSetUp]
+        [SetUp]
         public void InitializeTests()
         {
             this._factoryManager = new FactoryManager(new ConcreteFactory());
@@ -72,6 +72,19 @@ namespace BuilderTests
 
             Assert.That(product.GetType(), Is.EqualTo(typeof(MountainBike)));
             Assert.That(actualSerializedProduct, Is.EqualTo(expectedSerializedProuct));
+        }
+
+        [Test]
+        public void TestMethod_Create_ForNullFactory_DoesNotThrowNullReferenceException_ReturnsDefaultProduct()
+        {
+            // Arrange
+            this._factoryManager = new FactoryManager(null);
+
+            // Act
+            IProduct product = this._factoryManager.Create<MountainBike>();
+
+            // Assert
+            Assert.That(product, Is.EqualTo(default(IProduct)));
         }
     }
 }
