@@ -4,6 +4,7 @@
     {
         // Classic
         Margheritta,
+        Capriciosa,
 
         // Frozen (ready meals)
         OetkerRistorantePollo
