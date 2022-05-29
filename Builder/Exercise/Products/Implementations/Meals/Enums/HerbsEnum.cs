@@ -6,6 +6,7 @@
         Oregano,
         Thyme,
         Marjoram,
-        Rosemary
+        Rosemary,
+        Estragon
     }
 }
