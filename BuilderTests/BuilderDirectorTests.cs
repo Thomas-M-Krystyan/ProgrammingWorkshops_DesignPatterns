@@ -70,6 +70,24 @@ namespace BuilderTests
             Assert.That(product, Is.EqualTo(default(IProduct)));
         }
 
+        [Test]
+        public void TestMethod_Create_ForInvalidEnum_ReturnsBaseProduct()
+        {
+            // Arrange
+            this._builderDirector = GetMockedDirector(PizzaTypesEnum.Capriciosa);
+
+            // Act
+            Pizza pizza = this._builderDirector.Build(PizzaTypesEnum.Capriciosa) as Pizza;
+
+            // Assert
+            string actualSerializedProduct = JsonConvert.SerializeObject(pizza);  // NOTE: Serializing (public) properties to not check them one-by-one
+            const string expectedSerializedProuct =
+                "{\"WeightInGrams\":0,\"PreparationMethods\":[],\"NutriScore\":0,\"Components\":[],\"Name\":null}";
+
+            Assert.That(pizza.GetType(), Is.EqualTo(typeof(Pizza)));
+            Assert.That(actualSerializedProduct, Is.EqualTo(expectedSerializedProuct));
+        }
+
         private static BuilderDirector GetMockedDirector(PizzaTypesEnum pizzaType)
         {
             PizzaBuilder pizzaBuilder = new();
