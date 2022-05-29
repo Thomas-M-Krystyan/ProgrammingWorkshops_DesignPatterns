@@ -1,4 +1,4 @@
-﻿namespace Builder.Exercise.Product.Component.Interfaces
+﻿namespace Builder.Exercise.Components.Interfaces
 {
     public interface IComponent
     {
