@@ -1,7 +1,7 @@
-﻿using Builder.Exercise.Product.Implementations.Vehicles.Enums;
-using Builder.Exercise.Product.Interfaces;
+﻿using Builder.Exercise.Products.Implementations.Vehicles.Enums;
+using Builder.Exercise.Products.Interfaces;
 
-namespace Builder.Exercise.Product.Implementations.Vehicles.Models.Base
+namespace Builder.Exercise.Products.Implementations.Vehicles.Models.Base
 {
     /// <summary>
     /// Base class for vehicle products.

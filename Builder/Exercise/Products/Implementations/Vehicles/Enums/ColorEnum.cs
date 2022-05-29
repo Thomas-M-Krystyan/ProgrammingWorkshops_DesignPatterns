@@ -1,4 +1,4 @@
-﻿namespace Builder.Exercise.Product.Implementations.Vehicles.Enums
+﻿namespace Builder.Exercise.Products.Implementations.Vehicles.Enums
 {
     public enum ColorEnum
     {

@@ -1,4 +1,4 @@
-﻿namespace Builder.Exercise.Product.Interfaces
+﻿namespace Builder.Exercise.Products.Interfaces
 {
     /// <summary>
     /// This interface exposes only the name of the product. Particular components

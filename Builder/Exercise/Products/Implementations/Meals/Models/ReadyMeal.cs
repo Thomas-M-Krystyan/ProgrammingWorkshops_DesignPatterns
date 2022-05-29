@@ -1,8 +1,8 @@
-﻿using Builder.Exercise.Product.Implementations.Meals.Enums;
-using Builder.Exercise.Product.Implementations.Meals.Models.Base;
+﻿using Builder.Exercise.Products.Implementations.Meals.Enums;
+using Builder.Exercise.Products.Implementations.Meals.Models.Base;
 using System.Collections.Generic;
 
-namespace Builder.Exercise.Product.Implementations.Meals.Models
+namespace Builder.Exercise.Products.Implementations.Meals.Models
 {
     public sealed class ReadyMeal : BaseMeal
     {

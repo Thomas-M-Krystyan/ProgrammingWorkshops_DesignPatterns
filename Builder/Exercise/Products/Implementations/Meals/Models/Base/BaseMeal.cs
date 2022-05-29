@@ -1,6 +1,6 @@
-﻿using Builder.Exercise.Product.Interfaces;
+﻿using Builder.Exercise.Products.Interfaces;
 
-namespace Builder.Exercise.Product.Implementations.Meals.Models.Base
+namespace Builder.Exercise.Products.Implementations.Meals.Models.Base
 {
     /// <summary>
     /// Base class for meal products.
