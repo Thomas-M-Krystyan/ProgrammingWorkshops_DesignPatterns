@@ -1,4 +1,4 @@
-﻿using Builder.Exercise.Product.Interfaces;
+﻿using Builder.Exercise.Products.Interfaces;
 
 namespace Builder.Exercise.Factory.Interfaces
 {
