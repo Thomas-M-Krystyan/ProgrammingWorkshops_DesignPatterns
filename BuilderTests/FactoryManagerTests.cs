@@ -17,7 +17,7 @@ namespace BuilderTests
     {
         private FactoryManager _factoryManager;
 
-        [OneTimeSetUp]
+        [SetUp]
         public void InitializeTests()
         {
             this._factoryManager = new FactoryManager(new ConcreteFactory());
@@ -42,7 +42,7 @@ namespace BuilderTests
         }
 
         [Test]
-        public void TestMethod_CreatePizza_OetkerRistorantePollo_ReturnsExpectedPizzaType()
+        public void TestMethod_Create_OetkerRistorantePollo_ReturnsExpectedPizzaType()
         {
             // Act
             ReadyMeal product = this._factoryManager.Create<OetkerRistorantePollo>() as ReadyMeal;
@@ -59,7 +59,7 @@ namespace BuilderTests
         }
 
         [Test]
-        public void TestMethod_CreateBike_MountainBike_Black_ReturnsExpectedBikeType()
+        public void TestMethod_Create_MountainBike_Black_ReturnsExpectedBikeType()
         {
             // Act
             Bike product = this._factoryManager.Create<MountainBike>() as Bike;
@@ -72,6 +72,19 @@ namespace BuilderTests
 
             Assert.That(product.GetType(), Is.EqualTo(typeof(MountainBike)));
             Assert.That(actualSerializedProduct, Is.EqualTo(expectedSerializedProuct));
+        }
+
+        [Test]
+        public void TestMethod_Create_ForNullFactory_DoesNotThrowNullReferenceException_ReturnsDefaultProduct()
+        {
+            // Arrange
+            this._factoryManager = new FactoryManager(null);
+
+            // Act
+            IProduct product = this._factoryManager.Create<MountainBike>();
+
+            // Assert
+            Assert.That(product, Is.EqualTo(default(IProduct)));
         }
     }
 }
