@@ -2,6 +2,10 @@
 {
     public enum PizzaTypesEnum
     {
+        // Classic
+        Margheritta,
+
+        // Frozen (ready meals)
         OetkerRistorantePollo
     }
 }
