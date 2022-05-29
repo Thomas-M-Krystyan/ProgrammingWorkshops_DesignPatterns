@@ -18,7 +18,9 @@ namespace Builder.Exercise.Builder.Handler
 
         public IProduct Build(Enum type)
         {
-            return this.Builder.Build(type);
+            return this.Builder != null
+                ? this.Builder.Build(type)
+                : default;
         }
     }
 }
