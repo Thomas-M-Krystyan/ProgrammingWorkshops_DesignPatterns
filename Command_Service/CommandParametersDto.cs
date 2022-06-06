@@ -1,10 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Command_Service.Commands;
-using Command_Service.Commands.Implementations;
 
-namespace Command_Web.DTOs
+namespace Command_Service
 {
-    public class CommandDto
+    public sealed class CommandParametersDto
     {
         /// <summary>
         /// Used to change text foreground color.

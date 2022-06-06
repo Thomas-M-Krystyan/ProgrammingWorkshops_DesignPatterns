@@ -1,4 +1,5 @@
-﻿@using Command_Service.Commands.Implementations
+﻿@using Command_Service.Commands
+@using Command_Service.Commands.Implementations
 @using Command_Service.Constants
 @using Command_Web.Controllers
 
@@ -7,12 +8,14 @@
 @{
     ViewData[@"Title"] = @"Command";
 
-    var homeController = nameof(HomeController).Replace(@"Controller", String.Empty);
+    @* Name of controller *@
+    string homeController = nameof(HomeController).Replace(@"Controller", String.Empty);
 
     @* Name of properties *@
-    const string colorProperty = nameof(Command_Web.DTOs.CommandDto.Color);
+    const string foregroundColor = nameof(Command_Web.DTOs.CommandDto.ForegroundColor);
+    const string backgroundColor = nameof(Command_Web.DTOs.CommandDto.BackgroundColor);
+    const string isFontBold = nameof(Command_Web.DTOs.CommandDto.IsFontBold);
 }
-
 <head>
     <title>Command-based text editor</title>
 </head>
@@ -40,24 +43,24 @@
 
         @* Buttons to change text formatting *@
         <div style="margin-top: 10px">
-            
+
             @* Font color *@
-            @using (Html.BeginForm(actionName: nameof(HomeController.ChangeColor),
-                                   controllerName: homeController,
-                                   method: FormMethod.Post))
+            @using (Html.BeginForm(actionName: nameof(HomeController.UpdateFont),
+                                  controllerName: homeController,
+                                  method: FormMethod.Post))
             {
+                <label>Foreground</label>
                 // Map a selected option to a property in DTO model
-                @Html.DropDownList(expression: colorProperty,
-                                   selectList: Html.GetEnumSelectList<ColorsEnum>())
-
-                <input type="submit" class="btn btn-outline-secondary" value=@colorProperty />
+                @Html.DropDownList(expression: foregroundColor,
+                                   selectList: Html.GetEnumSelectList<ForegroundColorsEnum>())
+                <label>Background</label>
+                // Map a selected option to a property in DTO model
+                @Html.DropDownList(expression: backgroundColor,
+                    selectList: Html.GetEnumSelectList<BackgroundColorsEnum>())
+                <label>Bold</label>
+                @Html.CheckBox(expression: isFontBold)
+                <input type="submit" class="btn btn-outline-secondary" value="Apply" />
             }
-
-            @* Font weight (bold) *@
-            @* TODO: To be implemented *@
-
-            @* Text background color *@
-            @* TODO: To be implemented *@
 
         </div>
     </div>

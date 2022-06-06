@@ -1,5 +1,7 @@
-﻿using Command_Service.Commands.Implementations;
+﻿using Command_Service;
+using Command_Service.Commands.Implementations;
 using Command_Service.Services.TextService.Implementations;
+using Command_Service.Services.TextService.Interfaces;
 using Command_Web.DTOs;
 using Command_Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -15,14 +17,16 @@ namespace Command_Web.Controllers
     {
         // TODO: Use logging in try-catch
         private readonly ILogger<HomeController> _logger;
+        private readonly CommandsSubscriber _subscriber;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HomeController"/> class.
         /// </summary>
         /// <param name="logger">The logger.</param>
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ITextService textService)
         {
             // TODO: Most likely you want to either inject Commands here, or (better) some "Invoker" service
+
             this._logger = logger;
         }
 
@@ -39,24 +43,23 @@ namespace Command_Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult ChangeColor(CommandDto dto)
+        /// <summary>
+        /// Changes the background color of the text.
+        /// </summary>
+        /// <param name="dto">The command DTO model.</param>
+        [HttpPost]
+        public IActionResult UpdateFont(CommandDto dto)
         {
-            // ------------------------------------------------------------------------------
-            // TODO #1: We should not use concrete implementation but interface of service!
-            // TODO #2: Also, this is not a proper approach. Use Dependency Injection instead
-            // TODO #3: Please, do not use command directly. Implement your version of "Invoker"
-            // - Check in workshop materials code examples of Invoker class for Command Design Pattern
+            CommandParametersDto domainDto = new()
+            {
+                ForegroundColor = dto.ForegroundColor,
+                BackgroundColor = dto.BackgroundColor,
+                IsFontBold = dto.IsFontBold
+            };
 
-            var command = new ChangeFontColorCommand<ColorsEnum>(new TextService());
-            // ------------------------------------------------------------------------------
+            string style = this._subscriber.OnFontStyleUpdate(domainDto);
 
-            var result = command.Execute(dto.Color);
-
-            return View(nameof(Index), new StyleViewModel(result));
+            return View(nameof(Index), new StyleViewModel(style));
         }
-
-        // TODO: Implement new method ChangeWeight(xxx)
-
-        // TODO: Implement new method ChangeBackground(xxx)
     }
 }
