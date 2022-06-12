@@ -23,10 +23,10 @@
 4. Check the class "Graph.cs"
 
 - Do not use anymore "hardcoded" Graph => Implement your own (3rd iterator) graph's method "Initialize" or "Populate",
-  or something meaningful, which will be accepting pistive (zero is allowed) integer value (for example 8 or 10) as an
+  or something meaningful, which will be accepting positive (zero is allowed) integer value (for example 8 or 10) as an
   argument, and based on this number it will be creating Graph (e.g., using BFS or DFS method => this time doesn't matter)
   from scratch. Nodes values should be capital letters ("A", "B", "C") from English alphabet. In case of reaching the last
-  28th letter "Z", the next one, 29th, should be "AA", "AB"... "AZ", and so on... There is not limit how many letters can
+  26th letter "Z", the next one, 27th, should be "AA", "AB"... "AZ", and so on... There is not limit how many letters can
   be created.
 
 - Write your own unit tests for the 3rd Graph iterator responsible for creating Graph.
@@ -76,7 +76,7 @@ public void CheckIfMethod_IsEven_ReturnsCorrectResult()
 
     // Assert
     Assert.IsFalse(isGraphEven);  // Graph size: 9
-    Assert.IsTrue(isGraphEven);   // Graph size: 30
+    Assert.IsTrue(isGraphEven);   // Graph size: 28
 }
 
 
