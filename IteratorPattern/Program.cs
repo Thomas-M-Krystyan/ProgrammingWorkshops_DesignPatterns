@@ -8,8 +8,11 @@ namespace IteratorPattern
     {
         public static void Main()
         {
+            // Standard Graph
+            Graph graph = new(size: 10);
+
             // Using BFS iterator
-            BFS_Strategy bfs = new();
+            BFS_Strategy bfs = new(graph, isLeftHanded: true);
 
             foreach (Node node in bfs)  // NOTE: Implement the BFS iterator
             {
@@ -20,7 +23,7 @@ namespace IteratorPattern
             }
 
             // Using DFS iterator
-            DFS_Strategy dfs = new();
+            DFS_Strategy dfs = new(graph, isLeftHanded: true);
 
             foreach (Node node in dfs)  // NOTE: Implement the DFS iterator
             {

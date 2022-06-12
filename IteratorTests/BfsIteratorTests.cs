@@ -14,7 +14,7 @@ namespace IteratorTests
             // NOTE: This is not the place to test whether graph is created properly. You need to
             // test functionality of this class separately, in a separate GraphIteratorTests.cs file
 
-            Graph graph = new Graph(GraphSize);  // HINT: Method to initialize the graph can be private
+            Graph graph = new Graph(size: GraphSize);  // HINT: Method to initialize the graph can be private
 
             this._iterator = new BfsIterator(graph, isLeftHanded: true);
         }
