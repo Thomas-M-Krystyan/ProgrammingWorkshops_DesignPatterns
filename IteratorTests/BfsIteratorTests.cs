@@ -5,7 +5,7 @@ namespace IteratorTests
 {
     public class BfsIteratorTests
     {
-        private const int GraphSize = 30;
+        private const int GraphSize = 28;
         private BfsIterator _iterator;
 
         [SetUp]
