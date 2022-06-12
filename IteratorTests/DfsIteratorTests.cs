@@ -1,4 +1,3 @@
-using Iterator.Exercise.Data;
 using NUnit.Framework;
 
 namespace IteratorTests

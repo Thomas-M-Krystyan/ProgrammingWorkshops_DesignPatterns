@@ -2,7 +2,7 @@
 using Iterator.Exercise.TraverseStrategies;
 using System;
 
-namespace IteratorPattern
+namespace Iterator
 {
     public static class Program
     {
