@@ -16,7 +16,7 @@
 - Iterator should return currently visited (iterated) Node
 - Iterator should be able to answer the question, how many Nodes are there in total
 - Implement missing extension methods for BFS and DFS iterators, mentioned in Unit tests
-- Finally, Iterator should be safe enough to not throw any exceptions while it be
+- Finally, Iterator should be safe enough to not throw any exceptions while it will be
   used in foreach loops
 
 
