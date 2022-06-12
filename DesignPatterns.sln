@@ -27,9 +27,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandTests", "CommandTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Command_Console", "Command_Console\Command_Console.csproj", "{AAB61D9B-2ED6-44DB-BCEF-928C5D346247}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Builder", "Builder\Builder.csproj", "{FC73CDC9-4C8A-4C45-8776-BD42D8832168}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Builder", "Builder\Builder.csproj", "{FC73CDC9-4C8A-4C45-8776-BD42D8832168}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuilderTests", "BuilderTests\BuilderTests.csproj", "{09EBDA0E-9A04-404A-A75C-288722AEA233}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuilderTests", "BuilderTests\BuilderTests.csproj", "{09EBDA0E-9A04-404A-A75C-288722AEA233}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iterator", "IteratorPattern\Iterator.csproj", "{519AE810-9CA5-4362-9E6D-86D30E555924}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,10 @@ Global
 		{09EBDA0E-9A04-404A-A75C-288722AEA233}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09EBDA0E-9A04-404A-A75C-288722AEA233}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09EBDA0E-9A04-404A-A75C-288722AEA233}.Release|Any CPU.Build.0 = Release|Any CPU
+		{519AE810-9CA5-4362-9E6D-86D30E555924}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{519AE810-9CA5-4362-9E6D-86D30E555924}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{519AE810-9CA5-4362-9E6D-86D30E555924}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{519AE810-9CA5-4362-9E6D-86D30E555924}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

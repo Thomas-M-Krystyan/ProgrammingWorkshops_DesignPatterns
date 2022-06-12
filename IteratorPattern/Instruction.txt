@@ -1,0 +1,24 @@
+﻿1. Check class "Program.cs":
+
+- It has 2 foreach loops iterating over graph traverse strategies. However, these objects are classes
+  and does not support iteration, as well as Graph data structure itself.
+
+
+2. Check interface "IStrategy.cs"
+
+- Fix the NOTE comment, which was left by the previous author.
+
+
+3. In the folder "Iterator"
+
+- Implement BfsIterator and DfsIterator using respective traverse strategies.
+- Iterator should allow to iterate over BFS_Strategy and DFS_Strategy
+- Iterator should return currently visited (iterated) Node
+- Iterator should be able to answer the question, how many Nodes are there in total
+- Finally, Iterator should be safe enough to not throw any exceptions while it be
+  used in foreach loops
+
+
+4. Make to code compilable and all unit tests passing.
+
+Have fun!
