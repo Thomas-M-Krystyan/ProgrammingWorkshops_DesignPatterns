@@ -1,10 +1,10 @@
-﻿1. Check class "Program.cs":
+﻿1. Check the class "Program.cs":
 
 - It has 2 foreach loops iterating over graph traverse strategies. However, these objects are classes
   and does not support iteration, as well as Graph data structure itself.
 
 
-2. Check interface "IStrategy.cs"
+2. Check the interface "IStrategy.cs"
 
 - Fix the NOTE comment, which was left by the previous author.
 
@@ -15,10 +15,69 @@
 - Iterator should allow to iterate over BFS_Strategy and DFS_Strategy
 - Iterator should return currently visited (iterated) Node
 - Iterator should be able to answer the question, how many Nodes are there in total
+- Implement missing extension methods for BFS and DFS iterators, mentioned in Unit tests
 - Finally, Iterator should be safe enough to not throw any exceptions while it be
   used in foreach loops
 
 
-4. Make to code compilable and all unit tests passing.
+4. Check the class "Graph.cs"
+
+- Do not use anymore "hardcoded" Graph => Implement your own (3rd iterator) graph's method "Initialize" or "Populate",
+  or something meaningful, which will be accepting pistive (zero is allowed) integer value (for example 8 or 10) as an
+  argument, and based on this number it will be creating Graph (e.g., using BFS or DFS method => this time doesn't matter)
+  from scratch. Nodes values should be capital letters ("A", "B", "C") from English alphabet. In case of reaching the last
+  28th letter "Z", the next one, 29th, should be "AA", "AB"... "AZ", and so on... There is not limit how many letters can
+  be created.
+
+- Write your own unit tests for the 3rd Graph iterator responsible for creating Graph.
+  Ensure to check corner cases (negative numbers for example).
+
+
+5. Make to code compilable and all unit tests passing.
+
+
+6. Implement the following (advanced) extension method for GraphIterator.cs
+
+The "even" graph is the one which have exactly the same number of nodes (counting always
+from the first - Head node) on the left side (from Head) and on the right side (from Head).
+"Odd" graph has different amount of nodes on the left side and on the right side.
+
+// ---------
+// EXAMPLES:
+// ---------
+
+a) Even graph:
+
+           o
+          / \
+         o   o      1 : 1
+        / \ / \
+       o  o o  o    2 : 2
+
+Total:              3 : 3  => Even
+
+
+b) Odd graph:
+
+           o
+          / \
+         o   o      1 : 1
+        / \
+       o   o        2 : 0
+
+Total:              3 : 1  => Odd
+
+
+[Test]
+public void CheckIfMethod_IsEven_ReturnsCorrectResult()
+{
+    // Act
+    bool isGraphEven = this._iterator.IsEven();
+
+    // Assert
+    Assert.IsFalse(isGraphEven);  // Graph size: 9
+    Assert.IsTrue(isGraphEven);   // Graph size: 30
+}
+
 
 Have fun!
