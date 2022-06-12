@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IteratorPattern\Iterator.csproj" />
+    <ProjectReference Include="..\Iterator\Iterator.csproj" />
   </ItemGroup>
 
 </Project>
