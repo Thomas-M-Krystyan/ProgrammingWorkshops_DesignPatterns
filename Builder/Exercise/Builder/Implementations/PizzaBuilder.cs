@@ -4,7 +4,6 @@ using Builder.Exercise.Components.Implementations.Models.Base;
 using Builder.Exercise.Products.Implementations.Meals.Enums;
 using Builder.Exercise.Products.Implementations.Meals.Enums.ProductTypes;
 using Builder.Exercise.Products.Implementations.Meals.Models;
-using System;
 
 namespace Builder.Exercise.Builder.Implementations
 {
@@ -18,12 +17,22 @@ namespace Builder.Exercise.Builder.Implementations
 
         public Pizza Build(PizzaTypesEnum pizzaType)
         {
-            throw new NotImplementedException();
+            ResetComponents();
+            switch (pizzaType)
+            {
+                case PizzaTypesEnum.Margheritta:
+                    GetMargherita();
+                    return _pizza;
+                case PizzaTypesEnum.OetkerRistorantePollo:
+                    GetDrOetker();
+                    return _pizza;
+            }
+            return _pizza;
         }
 
         public void ResetComponents()
         {
-            throw new NotImplementedException();
+            _pizza.Components.Clear();
         }
 
         // ------------
@@ -32,22 +41,50 @@ namespace Builder.Exercise.Builder.Implementations
 
         public void InitializeProduct(string name, ushort weightInGrams)
         {
-            throw new NotImplementedException();
+            _pizza.Name = name;
+            _pizza.WeightInGrams = weightInGrams;
+            _pizza.PreparationMethods.AddRange(new[]
+             {
+                new PreparationMethod { Type = PreparingMethodEnum.MicrovaweProcessing,  CookingTimeInMinutes = 7 },
+                new PreparationMethod { Type = PreparingMethodEnum.CookingInOvenWithFan, CookingTimeInMinutes = 11, TemperatureInC = 200 },
+                new PreparationMethod { Type = PreparingMethodEnum.CookingInOven,        CookingTimeInMinutes = 14, TemperatureInC = 220 }
+            });
+
+            _pizza.NutriScore = NutriScoreEnum.C;
         }
 
         public void AddSpices(params Spice[] spices)
         {
-            throw new NotImplementedException();
+            _pizza.Components.AddRange(spices);
         }
 
         public void AddHerbs(params Herb[] herbs)
         {
-            throw new NotImplementedException();
+            _pizza.Components.AddRange(herbs);
         }
 
         public void AddIngredients(params BaseIngredient[] ingredients)
         {
-            throw new NotImplementedException();
+            _pizza.Components.AddRange(ingredients);
         }
+
+        private void GetMargherita()
+        {
+            InitializeProduct("Margherita", 300);
+            AddIngredients(new BaseIngredient[]
+            {
+                new IngredientLiquid { Type = IngredientsEnum.TomatoSauce,  Amount = 150 },
+                new IngredientSolid  { Type = IngredientsEnum.EdamerCheese, Amount = 150 },
+                new IngredientSolid  { Type = IngredientsEnum.Tomatoes,     Amount = 100 }
+            });
+            AddHerbs(new Herb[] { new Herb() { Type = HerbsEnum.Basilicum, Grams = 5 } });
+        }
+
+        private void GetDrOetker()
+        {
+            InitializeProduct("Dr. Oetker Ristorante Pollo Pizza", 355);
+        }
+
+
     }
 }

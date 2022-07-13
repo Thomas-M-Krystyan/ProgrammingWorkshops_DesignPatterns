@@ -26,6 +26,7 @@ namespace BuilderTests
             Pizza pizza = this._builderDirector.Build(PizzaTypesEnum.Margheritta) as Pizza;
 
             // Assert
+            //order of the inheriante when serialize
             string actualSerializedProduct = JsonConvert.SerializeObject(pizza);  // NOTE: Serializing (public) properties to not check them one-by-one
             const string expectedSerializedProuct =
                 "{\"WeightInGrams\":300,\"PreparationMethods\":[{\"Type\":4,\"TemperatureInC\":null,\"CookingTimeInMinutes\":7}," +

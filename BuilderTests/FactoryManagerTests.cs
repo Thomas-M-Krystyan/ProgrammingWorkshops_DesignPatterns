@@ -20,7 +20,7 @@ namespace BuilderTests
         [SetUp]
         public void InitializeTests()
         {
-            this._factoryManager = new FactoryManager(new ConcreteFactory());
+            //this._factoryManager = new FactoryManager(new ConcreteFactory());
         }
 
         [TestCase(typeof(Pizza))]
@@ -78,7 +78,7 @@ namespace BuilderTests
         public void TestMethod_Create_ForNullFactory_DoesNotThrowNullReferenceException_ReturnsDefaultProduct()
         {
             // Arrange
-            this._factoryManager = new FactoryManager(null);
+           // this._factoryManager = new FactoryManager(null);
 
             // Act
             IProduct product = this._factoryManager.Create<MountainBike>();

@@ -6,6 +6,7 @@
         Margheritta,
 
         // Frozen (ready meals)
-        OetkerRistorantePollo
+        OetkerRistorantePollo,
+        Capriciosa
     }
 }
